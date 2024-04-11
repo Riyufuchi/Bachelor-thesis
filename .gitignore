@@ -1,3 +1,14 @@
+# LaTeX
+*.pdf
+*.log
+*.aux
+*.lof
+*.lol
+*.lot
+*.gz
+*.toc
+
+# C++
 # Prerequisites
 *.d
 

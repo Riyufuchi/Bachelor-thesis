@@ -1,0 +1,104 @@
+\documentclass[12pt,a4paper,titlepage]{scrartcl}
+
+\usepackage[czech]{babel} 
+\usepackage {fontspec}
+\usepackage[hidelinks]{hyperref}
+\usepackage{pdfpages}
+
+\usepackage{multirow}
+\usepackage{makecell}
+%\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabulary}
+\usepackage{emoji}
+
+%pro formátování čísel
+\usepackage{numprint}
+\npthousandsep{\,}\npthousandthpartsep{}\npdecimalsign{.}
+
+%Uprava (odstraneni modifikaci generovaneneho texttu tridou scratcl)
+\setkomafont{disposition}{\mdseries\rmfamily}
+
+\title{\vspace{6cm}Návrh zařízení pro testování nabíjecích kabelů}
+\subtitle{Bakalářská práce}
+\author{Filip Šimek}
+\date{\today}
+
+%font
+\setmainfont{DejaVu Serif}
+
+%Rozestup řádku (1.5)
+\linespread{1.35}
+
+%Nastaveni okraje (normostrana)
+%\usepackage[left=3.00cm, right=3.00cm, top=2.50cm, bottom=2.50cm]{geometry}
+\usepackage[left=2.50cm, right=2.50cm, top=1.75cm, bottom=1.75cm, includeheadfoot]{geometry}
+
+%Justify text mode
+\tolerance=1
+\emergencystretch=\maxdimen
+\hyphenpenalty=10000
+\hbadness=10000
+
+%cody
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+    escapeinside=``
+}
+
+\lstset{style=mystyle}
+
+\makeatletter
+\renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
+            {-2.5ex\@plus -1ex \@minus -.25ex}%
+            {1.25ex \@plus .25ex}%
+            {\normalfont\normalsize}}
+\makeatother
+\setcounter{secnumdepth}{4} % how many sectioning levels to assign numbers to
+\setcounter{tocdepth}{4}    % how many sectioning levels to show in ToC
+
+\begin{document}
+%\includepdf[pages={1-41}]{text.pdf}
+
+	\maketitle 
+
+	\pagenumbering{gobble}
+	\tableofcontents
+	\newpage
+	\pagenumbering{arabic}
+	
+	\section {Úvod}
+	Toto je moje bakalářská práce.
+	
+	 \section*{Závěr}
+	Závěrem je že C++ > C\#.
+
+	\newpage
+	\listoffigures
+	\listoftables
+	\lstlistoflistings
+
+\end{document}
