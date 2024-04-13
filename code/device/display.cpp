@@ -1,6 +1,8 @@
 #include "Arduino.h"
 #include "display.h"
 
+using namespace Device;
+
 Display::Display() : lcd(0x27, 20, 4)
 {
 }

@@ -1,4 +1,4 @@
-\documentclass[12pt,a4paper,titlepage]{scrartcl}
+\documentclass[12pt,a4paper,titlepage]{scrreprt}
 
 \usepackage[czech]{babel} 
 \usepackage {fontspec}
@@ -71,18 +71,11 @@ backgroundcolor=\color{backcolour},
 
 \lstset{style=mystyle}
 
-\makeatletter
-\renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
-            {-2.5ex\@plus -1ex \@minus -.25ex}%
-            {1.25ex \@plus .25ex}%
-            {\normalfont\normalsize}}
-\makeatother
-\setcounter{secnumdepth}{4} % how many sectioning levels to assign numbers to
-\setcounter{tocdepth}{4}    % how many sectioning levels to show in ToC
+% My modules
+\include{texModules/czech.tex}
+\include{texModules/paragraph.tex}
 
 \begin{document}
-%\includepdf[pages={1-41}]{text.pdf}
-
 	\maketitle 
 
 	\pagenumbering{gobble}
@@ -92,8 +85,14 @@ backgroundcolor=\color{backcolour},
 	
 	\includepdf[pages={1-2}]{zadaniBP.pdf}
 	
+	\chapter{Kapitola}
+	\section {Sekce}
+	\subsection {SubSekce}
+	\subsubsection {SubSubSekce}
+	\paragraph{Odstavec}
+	
 	\section {Úvod}
-	Toto je moje bakalářská práce.
+	Téma mojí bakalářské práce je “Návrh zařízení pro testování nabíjecích kabelů”. Toto zařízení bude řízeno jednodeskovým počítačem Arduino (SEM\_VLOŽIT\_MODEL). Arduino se programuje pomocí jazyka C/C++ a je Open source.
 	
 	\section{IoT - Internet věcí}
 	\input{IoT.tex}
