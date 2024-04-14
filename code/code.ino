@@ -1,6 +1,6 @@
 #include "device/display.h"
 
-Display dp;
+Device::Display dp;
 
 struct Time
 {

@@ -1,5 +1,5 @@
 #include "Arduino.h"
-#include "display.h"
+#include "Display.h"
 
 using namespace Device;
 
