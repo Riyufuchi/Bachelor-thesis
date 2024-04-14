@@ -1,7 +1,10 @@
 #ifndef _CONTROLLER_H_
 #define _CONTROLLER_H_
 
+
 #include "Display.h"
+#include "IConnector.h"
+#include "TimeUtils.hpp"
 
 namespace Device
 {
@@ -9,6 +12,8 @@ namespace Device
   {
     private:
       Display dp;
+      DeviceIO::IConnector* testIO[3];
+      TimeUtils::Time tTime;
     public:
       Controller();
       ~Controller();
