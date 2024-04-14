@@ -1,10 +1,10 @@
-#include "Arduino.h"
 #include "Controller.h"
 
 using namespace Device;
 
 Controller::Controller()
 {
+  testIO[0] = new DeviceIO::ConOK();
 }
 
 Controller::~Controller()

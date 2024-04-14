@@ -6,8 +6,8 @@ namespace DeviceIO
   class IConnector
   {
     public:
-      IConnector();
-      virtual ~IConnector();
+      IConnector() = default;
+      virtual ~IConnector() = default;
       virtual void sendSignal() = 0;
       virtual bool reciveSignal() = 0;
   };
