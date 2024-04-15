@@ -1,6 +1,7 @@
 \documentclass[12pt,a4paper,titlepage]{scrreprt}
 
-%\usepackage[czech]{babel} 
+% Language is defined in package module
+
 \usepackage {fontspec}
 \usepackage[hidelinks]{hyperref}
 \usepackage{pdfpages}
@@ -32,10 +33,9 @@
 
 %Nastaveni okraje (normostrana)
 \usepackage[left=3.00cm, right=3.00cm, top=2.0cm, bottom=2.50cm]{geometry}
+
 %\usepackage[left=2.25cm, right=2.25cm, top=1.75cm, bottom=1.75cm, includeheadfoot]{geometry}
 %\setlength{\parindent}{0pt} % Odstraní odsazení prvního odstavce každé sekce
-
-%\RedeclareSectionCommand[beforeskip=.1cm, afterskip=0cm]{chapter}
 
 \RedeclareSectionCommand[
   beforeskip=.1cm,
@@ -49,10 +49,12 @@
 \hbadness=10000
 
 % My modules
-\include{texModules/czech.tex}
+\input{texModules/czech.tex}
 \input{texModules/paragraph.tex}
 \input{texModules/cppListing.tex}
-%\babelhyphenation[czech]{o}
+
+% My commands
+\newcommand{\ardMeg}{Arduino Mega 2560}
 
 \begin{document}
 
@@ -73,7 +75,14 @@
 	
 	\chapter{Předmluva}
 	\section {Úvod}
-	Téma mojí bakalářské práce je “Návrh zařízení pro testování nabíjecích kabelů”. Toto zařízení bude řízeno jednodeskovým počítačem Arduino (SEM\_VLOŽIT\_MODEL). Arduino se programuje pomocí jazyka C/C++ a je Open source.
+	Téma mojí bakalářské práce je “Návrh zařízení pro testování nabíjecích kabelů”. Toto zařízení bude řízeno jednodeskovým počítačem Arduino (\ardMeg). Arduino se programuje pomocí jazyka C/C++ a je open source. Toto zařízení se bude testovat a následně používat v reálném prostředí.
+	
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=\textwidth]{pictures/placeHolderFHD.png}
+	    	\caption{Výsledné zařízení}
+	   	\label{fig:projektFinal}
+	\end{figure}
 	
 	\chapter{IoT - Internet věcí}
 	\input{IoT.tex}
@@ -88,13 +97,14 @@
 
 	\newpage
 	\chapter{Přílohy}
-	\section{Zdroje}
+	\section*{Zdroje}
+	\addcontentsline{toc}{section}{Seznam zdrojů}
 	\listoffigures
 	\addcontentsline{toc}{section}{Seznam obrázků}
 	\listoftables
 	\addcontentsline{toc}{section}{Seznam tabulek}
 	%\addcontentsline{toc}{section}{\protect\numberline{\thetable}List of Tables}
 	\lstlistoflistings
-	\addcontentsline{toc}{section}{Listings} % Add the list of listings to the TOC as a section
+	\addcontentsline{toc}{section}{Seznam zdrojových kódů} % Add the list of listings to the TOC as a section
 
 \end{document}
