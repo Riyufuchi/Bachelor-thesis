@@ -10,9 +10,9 @@ namespace Device
     public:
     struct Time
     {
-      int hours;
-      int minutes;
-      int seconds; // int will overflow in +-49 days, this program don't account for running longer than day tho 
+      int hours {0};
+      int minutes {0};
+      int seconds {0}; // int will overflow in +-49 days, this program don't account for running longer than day tho 
     };
     TimeUtils();
     ~TimeUtils();
@@ -22,6 +22,13 @@ namespace Device
         dp.print(posBase + 1, 2, val);
       else
         dp.print(posBase, 2, val);
+    }
+    static void updateTime(Time& tTime)
+    {
+      tTime.seconds = millis() / 1000;
+      tTime.hours = tTime.seconds / 3600;
+      tTime.minutes = tTime.seconds / 60 - (tTime.hours * 60); //(tTime.hours * 60) % 60;
+      tTime.seconds = tTime.seconds % 60;
     }
   };
 }

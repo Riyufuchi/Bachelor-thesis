@@ -3,12 +3,15 @@
 
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
+#include <string.h>
 
 namespace Device
 {
   class Display
   {
     private:
+      const char DISPLAY_WIDTH;
+      char message[20];
       LiquidCrystal_I2C lcd; // Declaration without initialization
     public:
       Display();
@@ -18,6 +21,8 @@ namespace Device
       This method sets cursor to given line
       */
       void setLine(int line);
+      char* centerText(const char* text);
+      // Templates
       template <typename T>
       void print(int line, const T& text)
       {

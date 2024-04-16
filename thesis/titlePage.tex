@@ -1,0 +1,50 @@
+\documentclass[12pt,a4paper,titlepage]{scrreprt}
+
+% Language is defined in package module
+
+\usepackage {fontspec}
+\usepackage[hidelinks]{hyperref}
+\usepackage{pdfpages}
+
+%pro formátování čísel
+\usepackage{numprint}
+\npthousandsep{\,}\npthousandthpartsep{}\npdecimalsign{.}
+
+%Uprava (odstraneni modifikaci generovaneneho texttu tridou scratcl)
+\setkomafont{disposition}{\mdseries\rmfamily}
+
+\title{\vspace{6cm}Návrh zařízení pro testování nabíjecích kabelů}
+\subtitle{Bakalářská práce}
+\author{Filip Šimek}
+\date{\today}
+
+%font
+\setmainfont{DejaVu Serif}
+
+%Rozestup řádku (1.5)
+\linespread{1.35}
+
+%Nastaveni okraje (normostrana)
+\usepackage[left=3.00cm, right=3.00cm, top=2.0cm, bottom=2.50cm]{geometry}
+
+\RedeclareSectionCommand[
+  beforeskip=.1cm,
+  afterskip=1.0ex plus .2ex
+]{chapter}
+
+%Justify text mode
+\tolerance=1
+\emergencystretch=\maxdimen
+\hyphenpenalty=10000
+\hbadness=10000
+
+% My modules
+\input{texModules/czech.tex}
+\input{texModules/paragraph.tex}
+
+
+\begin{document}
+
+	\maketitle 
+
+\end{document}

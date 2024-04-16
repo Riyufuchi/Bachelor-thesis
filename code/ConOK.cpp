@@ -2,7 +2,7 @@
 
 using namespace DeviceIO;
 
-ConOK::ConOK()
+ConOK::ConOK(const char* name) : IConnector(name)
 {
 }
 

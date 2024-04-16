@@ -2,8 +2,10 @@
 #define _CONTROLLER_H_
 
 #include <Arduino.h>
+#include <string.h>
 
 #include "Display.h"
+#include "Keyboard.h"
 #include "IConnector.h"
 #include "TimeUtils.hpp"
 #include "ConOK.h"
@@ -14,8 +16,14 @@ namespace Device
   {
     private:
       Display dp;
-      DeviceIO::IConnector* testIO[3]; // We test 3 cabel types
-      TimeUtils::Time tTime;
+      Keyboard keyboard;
+      static const unsigned char NUM_OF_CONNECTORS = 3;
+      DeviceIO::IConnector* testIO[NUM_OF_CONNECTORS];
+      TimeUtils::Time actualTime;
+      char selectedItem;
+      char lineBuffer[20];
+      void moveMenu(bool right);
+      void updateMenu();
     public:
       Controller();
       ~Controller();

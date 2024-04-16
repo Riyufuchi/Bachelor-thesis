@@ -3,12 +3,34 @@
 
 using namespace Device;
 
-Display::Display() : lcd(0x27, 20, 4)
+Display::Display() : DISPLAY_WIDTH(20), lcd(0x27, DISPLAY_WIDTH, 4)
 {
 }
 
 Display::~Display()
 {
+}
+
+char* Display::centerText(const char* text)
+{
+    int textLength = strlen(text);
+    if (textLength >= DISPLAY_WIDTH)
+    {
+        // Text is wider than or equal to the width, return a copy of the original text
+        //char* result = new char[textLength + 1];
+        //strcpy(result, text);
+        return text;
+    }
+
+    int spacesToAdd = DISPLAY_WIDTH - textLength;
+    int spacesBefore = spacesToAdd / 2;
+    int spacesAfter = spacesToAdd - spacesBefore;
+
+    memset(message, ' ', spacesBefore);   // Fill spaces before text
+    strcpy(message + spacesBefore, text); // Copy text
+    memset(message + spacesBefore + textLength, ' ', spacesAfter); // Fill spaces after text
+    message[DISPLAY_WIDTH - 1] = '\0'; // Null-terminate the string
+    return message;
 }
 
 void Display::initDisplay()

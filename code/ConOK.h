@@ -8,7 +8,7 @@ namespace DeviceIO
   class ConOK : public IConnector
   {
     public:
-    ConOK();
+    ConOK(const char* name);
     ~ConOK();
     void sendSignal() override;
     bool reciveSignal() override;
