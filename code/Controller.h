@@ -18,6 +18,7 @@ namespace Device
       Display dp;
       Keyboard keyboard;
       const char* SELECTION_MENU = "Cable: ";
+      const char* CONNECTOR = "Conn: ";
       static const char NUM_OF_CONNECTORS = 3;
       DeviceIO::IConnector* testIO[NUM_OF_CONNECTORS];
       TimeUtils::Time actualTime;
@@ -25,6 +26,7 @@ namespace Device
       char lineBuffer[20];
       void moveMenu(char right);
       void updateMenu();
+      void testConnector();
     public:
       Controller();
       ~Controller();
