@@ -1,24 +1,50 @@
 %!TeX root =  thesis.tex
-
-\section{Návrh softwarové části}
-
-\subsection{Jazyk a struktura}
+\section{Jazyk a struktura}
 Platforma Arduino se programuje pomocí C/C++ popřípadě Arduino verze C/C++. Já firmaware pro toto zařízení napíši v C++, ačkoliv by se většinou běžně vyvíjí v Céčku, ale pro tento projekt poslouží C++ lépe a taky s ním mám více zkušeností.
 \newpage
-\subsubsection{Controller}
+\subsection{Controller}
 \lstinputlisting[language=C++, caption={Device controller}, label={lst:cpp_controller}]{../code/Controller.h}
 
-\subsection{Interakce s uživatelem}
+\section{Interakce s uživatelem}
 Uživatel ovládá zařízení skrze jednoduchou klávesničku a výstpu je na LCD displeji.
 
 \newpage
-\subsubsection{Display controller}
+\section{Display}
+\subsection{Display controller}
 \lstinputlisting[language=C++, caption={Display controller}, label={lst:cpp_display}]{../code/Display.h}
 
-
-
-\subsection{Testování kabelů}
 \newpage
-\subsubsection{Předek pro třídy konnectorů}
+\section{Klávesnička}
+\subsection{Keyboard controller}
+\lstinputlisting[language=C++, caption={Display controller}, label={lst:cpp_display}]{../code/Keyboard.h}
+
+\subsection{Připojení k desce}
+\begin{table} [h!]
+	\centering
+	\catcode`\-=12 % Because of czech
+	\begin{tabular}[c]{|| c | c | c ||}
+	\hline
+		\multicolumn{3}{||c||}{Piny klávesničky} \\
+	\hline
+ 		 \textbf{PIN} & \textbf{Tlačítko} & \textbf{Akce}\\
+	\hline
+		42 &  RIGHT & Posune menu doprava\\
+	\hline
+		46 & POWER & N/A\\
+	\hline
+		48 & LEFT & Posune menu doleva\\
+	\hline
+		50 & MENU & N/A\\
+	\hline
+		52 & AUTO & Začne testovat vybraný kabel\\
+	\hline
+	\end{tabular}
+	\caption{Pinové rozložení klávesnice}
+	\label{table:pinKB}
+\end{table}
+
+\section{Testování kabelů}
+\newpage
+\subsection{Předek pro třídy konnectorů}
 \lstinputlisting[language=C++, caption={IConnector}, label={lst:cpp_IConnector}]{../code/IConnector.h}
 Toto je společný předek pro jednotlivé konektory, který nám usnadní manipulaci s jeho potomky, tedy již specifickými konektory.

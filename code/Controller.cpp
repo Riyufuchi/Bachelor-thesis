@@ -20,17 +20,15 @@ void Controller::initilize()
   dp.initDisplay();
   dp.print(1, dp.centerText(_VERSRION));
   dp.print(2, "------00:00:00------");
-  dp.print(3, dp.centerText("Cable: NONE"));
+  dp.print(3, "");
   dp.print(4, dp.centerText("C/C++ is the best!"));
   keyboard.initialize();
+  updateMenu();
 }
 
-void Controller::moveMenu(bool right)
+void Controller::moveMenu(char right)
 {
-  if (right)
-    selectedItem++;
-  else
-    selectedItem--;
+  selectedItem += right;
   if (selectedItem >= NUM_OF_CONNECTORS)
     selectedItem = 0;
   else if (selectedItem < 0)
@@ -40,8 +38,7 @@ void Controller::moveMenu(bool right)
 
 void Controller::updateMenu()
 {
-  const char* str = "Cable: ";
-  strcpy(lineBuffer, str);
+  strcpy(lineBuffer, SELECTION_MENU);
   strcat(lineBuffer, testIO[selectedItem]->getName());
   dp.print(3, dp.centerText(lineBuffer));
 }
@@ -52,8 +49,8 @@ void Controller::run()
   {
     case 0: break;
     case 1: break;
-    case 2: moveMenu(false);break;
-    case 3: moveMenu(true); break;
+    case 2: moveMenu(-1);break;
+    case 3: moveMenu(1); break;
     case 4: break;
   }
 

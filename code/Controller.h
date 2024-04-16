@@ -17,12 +17,13 @@ namespace Device
     private:
       Display dp;
       Keyboard keyboard;
-      static const unsigned char NUM_OF_CONNECTORS = 3;
+      const char* SELECTION_MENU = "Cable: ";
+      static const char NUM_OF_CONNECTORS = 3;
       DeviceIO::IConnector* testIO[NUM_OF_CONNECTORS];
       TimeUtils::Time actualTime;
       char selectedItem;
       char lineBuffer[20];
-      void moveMenu(bool right);
+      void moveMenu(char right);
       void updateMenu();
     public:
       Controller();

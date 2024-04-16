@@ -1,10 +1,10 @@
+#include "Arduino.h"
 #include "Keyboard.h"
 
 using namespace Device;
 
 Keyboard::Keyboard()
 {
-  //this->stisk = 0;
 }
 
 Keyboard::~Keyboard()
@@ -15,17 +15,17 @@ void Keyboard::initialize()
 {  
   for(int x = 0; x < NUM_OF_BTNS; x++)
   {
-    pinMode(tlacitka[x], INPUT_PULLUP);
+    pinMode(button_pins[x], INPUT_PULLUP);
   }
+  //digitalWrite(44, HIGH);
 }
 int Keyboard::readInput()
 {
   for(int x = 0; x < NUM_OF_BTNS; x++)
   {
-    //stisk = digitalRead(tlacitka[x]);
-    if (digitalRead(tlacitka[x]) == LOW)
+    if (digitalRead(button_pins[x]) == LOW)
     {
-      delay(100);
+      delay(200);
       return x;
     }
   }
