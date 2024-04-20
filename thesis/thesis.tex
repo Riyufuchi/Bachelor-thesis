@@ -75,7 +75,7 @@
 	
 	\chapter{Předmluva}
 	\section {Úvod}
-	Téma mojí bakalářské práce je “Návrh zařízení pro testování nabíjecích kabelů”. Toto zařízení bude řízeno jednodeskovým počítačem Arduino (\ardMeg). Arduino se programuje pomocí jazyka C/C++ a je open source. Toto zařízení se bude testovat a následně používat v reálném prostředí.
+	Téma mojí bakalářské práce je “Návrh zařízení pro testování nabíjecích kabelů”. Toto zařízení bude řízeno jednodeskovým počítačem Arduino (\ardMeg) a bude se testovat a následně používat v reálném prostředí. Tudíž má má bakalářská práce i praktické využití a není jen teoretická. Ovšem součástí je teoretická část o IoT - Internet of Things neboli Internet věcí.
 	
 	\begin{figure}[h!]
 		\centering
@@ -87,11 +87,16 @@
 	\chapter{IoT - Internet věcí}
 	\input{IoT.tex}
 	
-	\chapter{Harwarová část}
-	\input{deviceHW.tex}
-	\chapter{Softwarová část}
-	\input{deviceSW.tex}
+	\chapter{Návrh zařízení}
+	\section{Účel a využití}
 	
+	%\chapter{Technický popis}
+	\chapter{Casing \& Mikrokontrolér}
+	\input{arduino.tex}
+	\chapter{Komponenty}
+	\input{komponenty.tex}
+	\chapter{Testování kabelů}
+	\input{kabely.tex}
 	
 	 \section*{Závěr}
 	Závěrem je že C++ > C\#.

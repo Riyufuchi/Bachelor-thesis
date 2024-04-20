@@ -3,9 +3,11 @@
 
 #include <Arduino.h>
 
+#include "IComponent.h" 
+
 namespace Device
 {
-  class Keyboard
+  class Keyboard : public IComponent
   {
     private:
     static const char NUM_OF_BTNS = 5;
@@ -14,7 +16,7 @@ namespace Device
     public:
       Keyboard();
       ~Keyboard();
-      void initialize();
+      bool initialize() override;
       int readInput();
   };
 }

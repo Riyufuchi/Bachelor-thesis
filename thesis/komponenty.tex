@@ -1,0 +1,54 @@
+%!TeX root =  thesis.tex
+
+\section{IComponent}
+\lstinputlisting[language=C++, caption={IComponent}, label={lst:cpp_icomp}]{../code/IComponent.h}
+
+\newpage
+\section{Display}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=\textwidth]{pictures/placeHolderFHD.png}
+    	\caption{Display HW}
+   	\label{fig:displayHW}
+\end{figure}
+
+\newpage
+\subsection{Display controller}
+\lstinputlisting[language=C++, caption={Display controller}, label={lst:cpp_display}, style=mystyle]{../code/Display.h}
+Pro ovládáni displaye používám modul, se kterým se kominikuje skrze “LiquidCrystal\_IC2” knihovnu, jejímž autorem je AUTOR.
+
+\section{Klávesnice}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=\textwidth]{pictures/placeHolderFHD.png}
+    	\caption{Klávesnička}
+   	\label{fig:keyborad}
+\end{figure}
+
+\subsection{Keyboard controller}
+\lstinputlisting[language=C++, caption={Display controller}, label={lst:cpp_display}]{../code/Keyboard.h}
+
+\subsection{Připojení k desce}
+\begin{table} [h!]
+	\centering
+	\catcode`\-=12 % Because of czech
+	\begin{tabular}[c]{|| c | c | c ||}
+	\hline
+		\multicolumn{3}{||c||}{Piny klávesničky} \\
+	\hline
+ 		 \textbf{PIN} & \textbf{Tlačítko} & \textbf{Akce}\\
+	\hline
+		42 &  RIGHT & Posune menu doprava\\
+	\hline
+		46 & POWER & N/A\\
+	\hline
+		48 & LEFT & Posune menu doleva\\
+	\hline
+		50 & MENU & N/A\\
+	\hline
+		52 & AUTO & Začne testovat vybraný kabel\\
+	\hline
+	\end{tabular}
+	\caption{Pinové rozložení klávesnice}
+	\label{table:pinKB}
+\end{table}

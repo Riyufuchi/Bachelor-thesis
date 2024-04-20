@@ -1,4 +1,3 @@
-#include "Arduino.h"
 #include "Keyboard.h"
 
 using namespace Device;
@@ -11,12 +10,13 @@ Keyboard::~Keyboard()
 {
 }
 
-void Keyboard::initialize()
+bool Keyboard::initialize()
 {  
   for(int x = 0; x < NUM_OF_BTNS; x++)
   {
     pinMode(button_pins[x], INPUT_PULLUP);
   }
+  return true;
   //digitalWrite(44, HIGH);
 }
 int Keyboard::readInput()

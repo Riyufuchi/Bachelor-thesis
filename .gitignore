@@ -7,6 +7,7 @@
 *.lot
 *.gz
 *.toc
+bin
 
 # C++
 # Prerequisites

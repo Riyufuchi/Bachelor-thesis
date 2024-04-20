@@ -5,9 +5,11 @@
 #include <LiquidCrystal_I2C.h>
 #include <string.h>
 
+#include "IComponent.h"
+
 namespace Device
 {
-  class Display
+  class Display : public IComponent
   {
     private:
       const char DISPLAY_WIDTH;
@@ -16,11 +18,8 @@ namespace Device
     public:
       Display();
       ~Display();
-      void initDisplay();
-      /**
-      This method sets cursor to given line
-      */
-      void setLine(int line);
+      bool initialize() override;
+      void setLine(int line); // Sets cursor to given line
       char* centerText(const char* text);
       // Templates
       template <typename T>

@@ -1,13 +1,13 @@
 #include "Controller.h"
 
 using namespace Device;
-#define _VERSRION "Tester v0.6"
+#define _VERSRION "Tester v0.7"
 
 Controller::Controller() : selectedItem(0)
 {
-  testIO[0] = new DeviceIO::ConOK("USB");
-  testIO[1] = new DeviceIO::ConOK("Serial");
-  testIO[2] = new DeviceIO::ConOK("JACK");
+  this->testIO[0] = new DeviceIO::ConOK("USB");
+  this->testIO[1] = new DeviceIO::ConOK("Serial");
+  this->testIO[2] = new DeviceIO::ConOK("JACK");
 }
 
 Controller::~Controller()
@@ -16,7 +16,7 @@ Controller::~Controller()
 
 void Controller::initilize()
 {
-  dp.initDisplay();
+  dp.initialize();
   dp.print(1, dp.centerText(_VERSRION));
   dp.print(2, "------00:00:00------");
   dp.print(3, "");
@@ -37,9 +37,7 @@ void Controller::moveMenu(char right)
 
 void Controller::updateMenu()
 {
-  strcpy(lineBuffer, SELECTION_MENU);
-  strcat(lineBuffer, testIO[selectedItem]->getName());
-  dp.print(3, dp.centerText(lineBuffer));
+  dp.print(3, dp.centerText(testIO[selectedItem]->getName()));
 }
 
 void Controller::testConnector()

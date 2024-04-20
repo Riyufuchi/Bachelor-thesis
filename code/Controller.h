@@ -17,7 +17,6 @@ namespace Device
     private:
       Display dp;
       Keyboard keyboard;
-      const char* SELECTION_MENU = "Cable: ";
       const char* CONNECTOR = "Conn: ";
       static const char NUM_OF_CONNECTORS = 3;
       DeviceIO::IConnector* testIO[NUM_OF_CONNECTORS];

@@ -33,11 +33,12 @@ char* Display::centerText(const char* text)
     return message;
 }
 
-void Display::initDisplay()
+bool Display::initialize()
 {
   lcd.begin(); // Inicializace LCD
   lcd.backlight(); // Zapnutí podsvícení
   delay(1000);
+  return true;
 }
 
 void Display::setLine(int line)
