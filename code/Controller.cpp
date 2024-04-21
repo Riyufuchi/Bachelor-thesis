@@ -12,16 +12,21 @@ Controller::Controller() : selectedItem(0)
 
 Controller::~Controller()
 {
+  for (int i = 0; i < NUM_OF_CONNECTORS; i++)
+    delete testIO[i];
 }
 
 void Controller::initilize()
 {
-  dp.initialize();
+  bool checks[3];
+  checks[0] = dp.initialize();
+  checks[1] = keyboard.initialize();
+  checks[2] = speaker.initialize();
+  
   dp.print(1, dp.centerText(_VERSRION));
   dp.print(2, "------00:00:00------");
   dp.print(3, "");
   dp.print(4, dp.centerText("C/C++ is the best!"));
-  keyboard.initialize();
   updateMenu();
 }
 

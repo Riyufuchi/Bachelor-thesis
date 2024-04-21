@@ -6,6 +6,7 @@
 
 #include "Display.h"
 #include "Keyboard.h"
+#include "Speaker.h"
 #include "IConnector.h"
 #include "TimeUtils.hpp"
 #include "ConOK.h"
@@ -15,14 +16,19 @@ namespace Device
   class Controller
   {
     private:
+      // Components
       Display dp;
       Keyboard keyboard;
-      const char* CONNECTOR = "Conn: ";
+      Speaker speaker;
+      // Test IO
       static const char NUM_OF_CONNECTORS = 3;
       DeviceIO::IConnector* testIO[NUM_OF_CONNECTORS];
-      TimeUtils::Time actualTime;
+      // Help attributes
       char selectedItem;
       char lineBuffer[20];
+      const char* CONNECTOR = "Conn: ";
+      TimeUtils::Time actualTime;
+      // Methods
       void moveMenu(char right);
       void updateMenu();
       void testConnector();
