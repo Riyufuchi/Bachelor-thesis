@@ -10,6 +10,7 @@
 #include "IConnector.h"
 #include "TimeUtils.hpp"
 #include "ConOK.h"
+#include "ConFail.h"
 
 namespace Device
 {
@@ -31,6 +32,7 @@ namespace Device
       // Methods
       void moveMenu(char right);
       void updateMenu();
+      void initDisplayText();
       void testConnector();
       void printErrorMessage(const char* what, const char* message);
     public:

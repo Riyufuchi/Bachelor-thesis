@@ -10,8 +10,7 @@ namespace DeviceIO
     public:
     ConOK(const char* name);
     ~ConOK();
-    void sendSignal() override;
-    bool reciveSignal() override;
+    bool testConnector() override;
   };
 }
 #endif

@@ -10,11 +10,7 @@ ConOK::~ConOK()
 {
 }
 
-void ConOK::sendSignal()
-{
-}
-
-bool ConOK::reciveSignal()
+bool ConOK::testConnector()
 {
   return true;
 }

@@ -16,10 +16,9 @@ char* Display::centerText(const char* text)
     int textLength = strlen(text);
     if (textLength >= DISPLAY_WIDTH)
     {
-        // Text is wider than or equal to the width, return a copy of the original text
-        //char* result = new char[textLength + 1];
-        //strcpy(result, text);
-        return text;
+      memset(message, 0, sizeof(message));
+      strncpy(message, text, 19);
+      return message;
     }
 
     int spacesToAdd = DISPLAY_WIDTH - textLength;

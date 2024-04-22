@@ -10,9 +10,16 @@ namespace Device
   class Speaker : public IComponent
   {
     public:
+      enum Sound
+      {
+        SUCCESS,
+        ERROR,
+        BOOT
+      };
       Speaker();
       ~Speaker();
       bool initialize() override;
+      void makeSound(Speaker::Sound sound);
   };
 }
 #endif
