@@ -17,7 +17,7 @@ namespace Device
   {
     private:
       // Components
-      Display dp;
+      Display display;
       Keyboard keyboard;
       Speaker speaker;
       // Test IO
@@ -32,6 +32,7 @@ namespace Device
       void moveMenu(char right);
       void updateMenu();
       void testConnector();
+      void printErrorMessage(const char* what, const char* message);
     public:
       Controller();
       ~Controller();
