@@ -12,6 +12,8 @@
 #include "ConOK.h"
 #include "ConFail.h"
 
+#define _VERSRION "Tester v0.17"
+
 namespace Device
 {
   class Controller
@@ -27,12 +29,12 @@ namespace Device
       // Help attributes
       char selectedItem;
       char lineBuffer[20];
-      const char* CONNECTOR = "Conn: ";
       TimeUtils::Time actualTime;
       // Methods
       void moveMenu(char right);
       void updateMenu();
       void initDisplayText();
+      void resetMainMenu();
       void testConnector();
       void printErrorMessage(const char* what, const char* message);
     public:

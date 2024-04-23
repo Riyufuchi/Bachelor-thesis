@@ -1,7 +1,6 @@
 #include "Controller.h"
 
 using namespace Device;
-#define _VERSRION "Tester v0.16"
 
 Controller::Controller() : selectedItem(0)
 {
@@ -23,12 +22,19 @@ void Controller::printErrorMessage(const char* what, const char* message)
   // TODO: Ability to print longer messages
 }
 
-void Controller::initDisplayText()
+void Controller::resetMainMenu()
 {
   selectedItem = 0;
   display.print(1, display.centerText(_VERSRION));
+  display.print(2, "------00:00:00------");
   display.print(4, display.centerText("C/C++ is the best!"));
   updateMenu();
+}
+
+void Controller::initDisplayText()
+{
+  display.print(1, display.centerText(_VERSRION));
+  display.print(4, display.centerText("C/C++ is the best!"));
 }
 
 void Controller::initilize()
@@ -44,21 +50,22 @@ void Controller::initilize()
     speaker.makeSound(Speaker::Sound::ERROR);
   }
   initDisplayText();
-  display.print(2, display.centerText("█"));
+  //display.print(2, display.centerText("#"));
   checks[1] = keyboard.initialize();
   if(!checks[1] || keyboard.readInput() != -1) // Also checks for broken buttons
   {
     printErrorMessage("Keyboard", "Input error");
     return;
   }
-  display.print(2, display.centerText("██"));
+  //display.print(2, display.centerText("##"));
+  delay(200);
   checks[2] = speaker.initialize();
   if(!checks[2])
   {
     printErrorMessage("Speaker", "Not connected!");
     return;
   }
-  display.print(2, display.centerText("███"));
+  //display.print(2, display.centerText("###"));
   display.print(2, "------00:00:00------");
   updateMenu();
 }
@@ -101,7 +108,7 @@ void Controller::run()
   switch (keyboard.readInput())
   {
     case 0: testConnector(); break;
-    case 1: initDisplayText(); break;
+    case 1: resetMainMenu(); break;
     case 2: moveMenu(-1);break;
     case 3: moveMenu(1); break;
     case 4: break;

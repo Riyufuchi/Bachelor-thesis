@@ -8,7 +8,7 @@ namespace DeviceIO
   class IConnector
   {
     private:
-    char name[20];
+    char name[19];
     public:
       IConnector(const char* name);
       virtual ~IConnector();
