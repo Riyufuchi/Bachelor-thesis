@@ -2,11 +2,16 @@
 
 using namespace Device;
 
-Controller::Controller() : selectedItem(0)
+Controller::Controller()
 {
-  this->testIO[0] = new DeviceIO::ConOK("USB - OK");
-  this->testIO[1] = new DeviceIO::ConOK("Serial - OK");
-  this->testIO[2] = new DeviceIO::ConFail();
+  this->selectedItem = 0;
+  this->testIO[0] = new DeviceIO::Xlr3();
+  this->testIO[1] = new DeviceIO::Bosh();
+  this->testIO[2] = new DeviceIO::ConOK();
+  this->testIO[3] = new DeviceIO::ConFail();
+  // Uni - xlr 3, jack 2.1 2.5; rca
+  // Bosh
+  // Shimano
 }
 
 Controller::~Controller()
@@ -26,15 +31,15 @@ void Controller::resetMainMenu()
 {
   selectedItem = 0;
   display.print(1, display.centerText(_VERSRION));
-  display.print(2, "------00:00:00------");
-  display.print(4, display.centerText("C/C++ is the best!"));
+  display.print(4, "------00:00:00------");
+  display.print(3, display.centerText("C/C++ is the best!"));
   updateMenu();
 }
 
 void Controller::initDisplayText()
 {
   display.print(1, display.centerText(_VERSRION));
-  display.print(4, display.centerText("C/C++ is the best!"));
+  display.print(3, display.centerText("C/C++ is the best!"));
 }
 
 void Controller::initilize()
@@ -58,7 +63,6 @@ void Controller::initilize()
     return;
   }
   //display.print(2, display.centerText("##"));
-  delay(200);
   checks[2] = speaker.initialize();
   if(!checks[2])
   {
@@ -66,7 +70,7 @@ void Controller::initilize()
     return;
   }
   //display.print(2, display.centerText("###"));
-  display.print(2, "------00:00:00------");
+  display.print(4, "------00:00:00------");
   updateMenu();
 }
 
@@ -82,7 +86,7 @@ void Controller::moveMenu(char right)
 
 void Controller::updateMenu()
 {
-  display.print(3, display.centerText(testIO[selectedItem]->getName()));
+  display.print(2, display.centerText(testIO[selectedItem]->getName()));
 }
 
 void Controller::testConnector()
@@ -92,13 +96,13 @@ void Controller::testConnector()
   if (testIO[selectedItem]->testConnector())
   {
     strcat(lineBuffer, " OK");
-    display.print(4, display.centerText(lineBuffer));
+    display.print(3, display.centerText(lineBuffer));
     speaker.makeSound(Speaker::Sound::SUCCESS);
   }
   else
   {
     strcat(lineBuffer, " Fail");
-    display.print(4, display.centerText(lineBuffer));
+    display.print(3, display.centerText(lineBuffer));
     speaker.makeSound(Speaker::Sound::ERROR);
   }
 }
@@ -111,12 +115,12 @@ void Controller::run()
     case 1: resetMainMenu(); break;
     case 2: moveMenu(-1);break;
     case 3: moveMenu(1); break;
-    case 4: break;
+    case 4: testConnector(); break;
   }
 
   TimeUtils::updateTime(actualTime);
   if (actualTime.seconds < 10)
-    display.print(12, 2, 0);
+    display.print(12, 4, 0);
   TimeUtils::printTime(actualTime.hours, 6, display);
   TimeUtils::printTime(actualTime.minutes, 9, display);
   TimeUtils::printTime(actualTime.seconds, 12, display);

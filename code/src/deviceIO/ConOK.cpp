@@ -2,7 +2,7 @@
 
 using namespace DeviceIO;
 
-ConOK::ConOK(const char* name) : IConnector(name)
+ConOK::ConOK() : IConnector("USB - OK")
 {
 }
 

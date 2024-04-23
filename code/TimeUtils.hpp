@@ -19,9 +19,9 @@ namespace Device
     static void printTime(int val, int posBase, Display& dp)
     {
       if (val < 10)
-        dp.print(posBase + 1, 2, val);
+        dp.print(posBase + 1, 4, val);
       else
-        dp.print(posBase, 2, val);
+        dp.print(posBase, 4, val);
     }
     static void updateTime(Time& tTime)
     {

@@ -3,12 +3,13 @@
 
 namespace Device
 {
-  class Buffet
+  class Buffer
   {
     public:
-    ConFail();
-    ~ConFail();
-    bool testConnector() override;
+    static char lineBuffer[20];
+    Buffer() = default;
+    ~Buffer() = default;
+
   };
 }
 #endif

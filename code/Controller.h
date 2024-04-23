@@ -7,12 +7,11 @@
 #include "Display.h"
 #include "Keyboard.h"
 #include "Speaker.h"
-#include "IConnector.h"
 #include "TimeUtils.hpp"
-#include "ConOK.h"
-#include "ConFail.h"
 
-#define _VERSRION "Tester v0.17"
+#include "src/deviceIO/IncludeAllIO.hpp"
+
+#define _VERSRION "Tester v0.18"
 
 namespace Device
 {
@@ -24,7 +23,7 @@ namespace Device
       Keyboard keyboard;
       Speaker speaker;
       // Test IO
-      static const char NUM_OF_CONNECTORS = 3;
+      static const char NUM_OF_CONNECTORS = 4;
       DeviceIO::IConnector* testIO[NUM_OF_CONNECTORS];
       // Help attributes
       char selectedItem;

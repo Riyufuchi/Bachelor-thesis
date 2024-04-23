@@ -6,6 +6,7 @@
 #include <string.h>
 
 #include "IComponent.h"
+#include "Buffer.hpp"
 
 namespace Device
 {
@@ -35,5 +36,5 @@ namespace Device
         lcd.print(text);
       }
   };
-}
+ }
 #endif
