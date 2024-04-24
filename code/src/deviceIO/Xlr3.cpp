@@ -15,6 +15,7 @@ Xlr3::Xlr3(Mode mode, IConnector* output) : IConnector("XLR-3", nullptr, 2, outp
     case INPUT: this->pins = new char[3]{22, 24, 0}; break;
     case OUTPUT: this->pins = new char[3]{26, 28, 0}; break;
   }
+  setMode(mode);
 }
 
 Xlr3::~Xlr3()
@@ -25,10 +26,11 @@ bool Xlr3::testConnector(char& errorCode)
 {
   for (int i = 0; i < 3; i++)
   {
+    pinCheck = 0;
     for (int pinID = 0; pinID < numberOfPins; pinID++)
     {
-      digitalWrite(theOntherOne->getPin(pinID), HIGH);
-      if (digitalRead(pins[pinID]) == HIGH)
+      digitalWrite(theOntherOne->getPin(pinID), LOW);
+      if (digitalRead(pins[pinID]) == LOW)
       {
         pinCheck++;
       }
@@ -39,8 +41,6 @@ bool Xlr3::testConnector(char& errorCode)
         break;
       }
     }
-    if (pinCheck == numberOfPins)
-      return true;
   }
-  return false;
+  return (pinCheck == numberOfPins);
 }

@@ -34,7 +34,10 @@ void IConnector::setMode(Mode mode)
   if (pins == nullptr || numberOfPins == 0)
     return;
   for (int i = 0; i < numberOfPins; i++)
-    pinMode(pins[i], pinSetting);
+    if (pinSetting == 0)
+      pinMode(pins[i], INPUT_PULLUP);
+    else
+     pinMode(pins[i], OUTPUT);
 }
 
 void IConnector::reconnectTo(IConnector* connector)
@@ -59,6 +62,11 @@ bool IConnector::startTest(char& errorCode)
   if (mode != Mode::IN)
   {
     errorCode = -1;
+    return false;
+  }
+  if (theOntherOne->mode != Mode::OUT)
+  {
+    errorCode = -3;
     return false;
   }
   return testConnector(errorCode);

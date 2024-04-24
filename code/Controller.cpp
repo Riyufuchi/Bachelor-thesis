@@ -1,3 +1,4 @@
+#include "Arduino.h"
 #include "Controller.h"
 
 using namespace Device;
@@ -63,15 +64,16 @@ void Controller::resetMainMenu()
 {
   selectedItem = 0;
   display.print(1, display.centerText(_VERSRION));
-  //display.print(4, "------00:00:00------");
-  display.print(3, display.centerText("C/C++ is the best!"));
+  display.print(3, display.centerText("Test ready!"));
+  display.print(4, display.centerText("C/C++ is the best!"));
   updateMenu();
 }
 
 void Controller::initDisplayText()
 {
   display.print(1, display.centerText(_VERSRION));
-  display.print(3, display.centerText("C/C++ is the best!"));
+  display.print(3, display.centerText("Test ready!"));
+  display.print(4, display.centerText("C/C++ is the best!"));
 }
 
 void Controller::initilize()
@@ -124,7 +126,7 @@ void Controller::updateMenu()
 void Controller::testConnector()
 {
   memset(lineBuffer, 0, sizeof(lineBuffer));
-  strcat(lineBuffer, "Result:");
+  strcat(lineBuffer, "Connection: ");
   code = -100;
   if (testIO[selectedItem]->startTest(code))
   {
@@ -139,6 +141,7 @@ void Controller::testConnector()
     {
       case -1: strcat(errorBuffer, "Only input connector can be tested"); break;
       case -2: strcat(errorBuffer, "NullPtr to the other connector"); break;
+      case -3: strcat(errorBuffer, "Input can't output current!"); break;
       default: 
         if (code > 0)
           sprintf(errorBuffer, "Error at pin : %d", code);
@@ -149,6 +152,9 @@ void Controller::testConnector()
     printErrorMessage(display.centerText(testIO[selectedItem]->getConnectionName()), errorBuffer);
     speaker.makeSound(Speaker::Sound::ERROR);
   }
+  //while (keyboard.readInput() == -1)
+  //{}
+  //display.print(4, display.centerText("Test ready!"));
 }
 
 void Controller::run()
