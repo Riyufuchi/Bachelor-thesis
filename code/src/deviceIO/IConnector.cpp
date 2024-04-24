@@ -30,7 +30,7 @@ IConnector::~IConnector()
 void IConnector::setMode(Mode mode)
 {
   this->mode = mode;
-  uint8_t pinSetting = mode; // input = in = 0; output = out = 1
+  uint8_t pinSetting = (uint8_t)mode; // input = in = 0; output = out = 1
   if (pins == nullptr || numberOfPins == 0)
     return;
   for (int i = 0; i < numberOfPins; i++)
@@ -39,21 +39,26 @@ void IConnector::setMode(Mode mode)
 
 void IConnector::reconnectTo(IConnector* connector)
 {
-  output = connector;
+  theOntherOne = connector;
   memset(connectionName, 0, sizeof(connectionName));
   strcpy(connectionName, name);
   strcat(connectionName, " - ");
-  if (output == nullptr)
+  if (theOntherOne == nullptr)
     strcat(connectionName, "NONE");
   else
-    strcat(connectionName, output->getName());
+    strcat(connectionName, theOntherOne->getName());
 }
 
 bool IConnector::startTest()
 {
-  if (output == nullptr)
+  if (theOntherOne == nullptr)
     return false;
   return testConnector();
+}
+
+char IConnector::getPin(const char ID)
+{
+  return pins[ID];
 }
 
 const char* IConnector::getConnectionName()

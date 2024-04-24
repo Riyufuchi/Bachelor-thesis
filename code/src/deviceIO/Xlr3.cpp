@@ -23,16 +23,27 @@ Xlr3::~Xlr3()
 
 bool Xlr3::testConnector()
 {
-  // Read the input from the pin
-  bool pinState = digitalRead(26);
   bool high = false;
   if (mode == Mode::IN)
     high = true;
-
-  // Check if both pins are HIGH
-  if (pinState == high) {
-      return true; // Pins are connected
-  } else {
-      return false; // Pins are not connected
+  char check = 0;
+  for (int i = 0; i < 3; i++)
+  {
+    for (int pinID = 0; pinID < numberOfPins; pinID++)
+    {
+      digitalWrite(theOntherOne->getPin(pinID), 1);
+      if (digitalRead(pins[pinID]) == high)
+      {
+        check++;
+      }
+      else
+      {
+        check = 0;
+        break;
+      }
+    }
+    if (check == numberOfPins)
+      return true;
   }
+  return false;
 }
