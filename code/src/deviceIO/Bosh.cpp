@@ -2,7 +2,7 @@
 
 using namespace DeviceIO;
 
-Bosh::Bosh() : IConnector("Bosh")
+Bosh::Bosh() : IConnector("Bosh", Mode::IN)
 {
 }
 

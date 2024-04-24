@@ -5,7 +5,7 @@ using namespace Device;
 Controller::Controller()
 {
   // Init outpus
-  this->outputIO[0] = new DeviceIO::Xlr3(DeviceIO::Xlr3::Mode::OUT, 0);
+  this->outputIO[0] = new DeviceIO::Xlr3(DeviceIO::Mode::OUT, 0);
   this->outputIO[1] = new DeviceIO::Jack21();
   this->outputIO[2] = new DeviceIO::Jack25();
   this->outputIO[3] = new DeviceIO::Rca();

@@ -2,7 +2,7 @@
 
 using namespace DeviceIO;
 
-ConOK::ConOK() : IConnector("USB - OK")
+ConOK::ConOK() : IConnector("USB", Mode::IN)
 {
 }
 

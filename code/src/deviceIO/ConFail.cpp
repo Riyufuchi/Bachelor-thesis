@@ -2,7 +2,7 @@
 
 using namespace DeviceIO;
 
-ConFail::ConFail() : IConnector("Unconnected")
+ConFail::ConFail() : IConnector("Unconnected", Mode::IN)
 {
 }
 

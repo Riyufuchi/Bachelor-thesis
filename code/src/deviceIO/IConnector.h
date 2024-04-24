@@ -2,9 +2,16 @@
 #define _ICONNECTOR_H_
 
 #include <string.h>
+#include "stdint.h"
+#include "Arduino.h"
 
 namespace DeviceIO
 {
+  enum Mode
+  {
+    IN,
+    OUT
+  };
   class IConnector
   {
     private:
@@ -12,17 +19,19 @@ namespace DeviceIO
       char connectionName[19];
       virtual bool testConnector() = 0;
     protected:
+      Mode mode;
       IConnector* output;
       char* pins;
       char numberOfPins {0};
     public:
-      IConnector(const char* name);
-      IConnector(const char* name, char pins[], char numberOfPins);
-      IConnector(const char* name, char pins[], char numberOfPins, IConnector* con);
+      IConnector(const char* name, Mode mode);
+      IConnector(const char* name, char pins[], char numberOfPins, Mode mode);
+      IConnector(const char* name, char pins[], char numberOfPins, IConnector* con, Mode mode);
       virtual ~IConnector();
       const char* getName();
       const char* getConnectionName();
       void reconnectTo(IConnector* connector);
+      void setMode(Mode mode);
       bool startTest();
   };
 }

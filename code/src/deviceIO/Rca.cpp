@@ -2,7 +2,7 @@
 
 using namespace DeviceIO;
 
-Rca::Rca() : IConnector("RCA")
+Rca::Rca() : IConnector("RCA", Mode::OUT)
 {
 }
 

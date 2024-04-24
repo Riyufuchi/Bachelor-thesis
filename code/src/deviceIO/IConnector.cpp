@@ -1,28 +1,40 @@
+#include "Arduino.h"
 #include "IConnector.h"
 
 using namespace DeviceIO;
 
-IConnector::IConnector(const char* name) : IConnector(name, 0, 0)
+IConnector::IConnector(const char* name, Mode mode) : IConnector(name, nullptr, 0, mode)
 {
 }
 
-IConnector::IConnector(const char* name, char pins[], char numberOfPins) : IConnector(name, pins, numberOfPins, 0)
+IConnector::IConnector(const char* name, char pins[], char numberOfPinsm, Mode mode) : IConnector(name, pins, numberOfPins, nullptr, mode)
 {
 }
 
-IConnector::IConnector(const char* name, char pins[], char numberOfPins, IConnector* con)
+IConnector::IConnector(const char* name, char pins[], char numberOfPins, IConnector* con, Mode mode)
 {
   strncpy(this->name, name, sizeof(this->name));
   this->name[sizeof(this->name) - 1] = '\0';
   this->pins = pins;
   this->numberOfPins = numberOfPins;
   reconnectTo(con);
+  setMode(mode);
 }
 
 IConnector::~IConnector()
 {
   if (pins != nullptr)
     delete[] pins;
+}
+
+void IConnector::setMode(Mode mode)
+{
+  this->mode = mode;
+  uint8_t pinSetting = mode; // input = in = 0; output = out = 1
+  if (pins == nullptr || numberOfPins == 0)
+    return;
+  for (int i = 0; i < numberOfPins; i++)
+    pinMode(pins[i], pinSetting);
 }
 
 void IConnector::reconnectTo(IConnector* connector)

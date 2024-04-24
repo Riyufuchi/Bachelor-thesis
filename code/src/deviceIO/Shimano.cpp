@@ -2,7 +2,7 @@
 
 using namespace DeviceIO;
 
-Shimano::Shimano() : IConnector("Shimano")
+Shimano::Shimano() : IConnector("Shimano", Mode::IN)
 {
 }
 

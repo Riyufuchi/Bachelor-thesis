@@ -2,7 +2,7 @@
 
 using namespace DeviceIO;
 
-Jack21::Jack21() : IConnector("Jakc 2.1")
+Jack21::Jack21() : IConnector("Jakc 2.1", Mode::OUT)
 {
 }
 
