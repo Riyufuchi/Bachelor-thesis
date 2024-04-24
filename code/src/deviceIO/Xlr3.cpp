@@ -35,6 +35,7 @@ bool Xlr3::testConnector(char& errorCode)
       else
       {
         pinCheck = 0;
+        errorCode = pins[pinID];
         break;
       }
     }

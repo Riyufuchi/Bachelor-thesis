@@ -11,7 +11,7 @@
 
 #include "src/deviceIO/IncludeAllIO.hpp"
 
-#define _VERSRION "Tester v0.20"
+#define _VERSRION "Tester v0.23"
 
 namespace Device
 {
@@ -30,6 +30,7 @@ namespace Device
       // Help attributes
       TimeUtils timeUtils;
       bool printDebugChar;
+      char code;
       char selectedItem;
       char lineBuffer[20];
       char errorBuffer[40];

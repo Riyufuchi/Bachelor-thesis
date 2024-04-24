@@ -39,12 +39,12 @@ void Controller::splitMessage(const char* message, char* part1, char* part2, int
         part2[0] = '\0';
         return;
     }
-    int partLength = 20;
+    int partLength = 19;
     //while (message[partLength] != ' ' && partLength > 0) 
        // partLength--;
     strncpy(part1, message, partLength);
-    part1[partLength] = '\0'; // Null-terminate part1
-    strcpy(part2, &message[partLength + 1]);
+    part1[partLength + 1] = '\0'; // Null-terminate part1
+    strcpy(part2, &message[partLength]);
 }
 
 
@@ -125,7 +125,7 @@ void Controller::testConnector()
 {
   memset(lineBuffer, 0, sizeof(lineBuffer));
   strcat(lineBuffer, "Result:");
-  char code = 0;
+  code = -100;
   if (testIO[selectedItem]->startTest(code))
   {
     strcat(lineBuffer, " OK");
@@ -139,11 +139,14 @@ void Controller::testConnector()
     {
       case -1: strcat(errorBuffer, "Only input connector can be tested"); break;
       case -2: strcat(errorBuffer, "NullPtr to the other connector"); break;
-      default: sprintf(errorBuffer, "Error at pin : %d abcdefghijklmnopqrt", code); break;
+      default: 
+        if (code > 0)
+          sprintf(errorBuffer, "Error at pin : %d", code);
+        else
+          sprintf(errorBuffer, "Unknown error code: %d", code);
+      break;
     }
     printErrorMessage(display.centerText(testIO[selectedItem]->getConnectionName()), errorBuffer);
-    //display.print(3, display.centerText(lineBuffer));
-    //display.print(4, display.centerText(msg));
     speaker.makeSound(Speaker::Sound::ERROR);
   }
 }
