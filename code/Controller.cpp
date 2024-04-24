@@ -4,11 +4,19 @@ using namespace Device;
 
 Controller::Controller()
 {
+  // Init outpus
+  this->outputIO[0] = new DeviceIO::Xlr3(DeviceIO::Xlr3::Mode::OUT, 0);
+  this->outputIO[1] = new DeviceIO::Jack21();
+  this->outputIO[2] = new DeviceIO::Jack25();
+  this->outputIO[3] = new DeviceIO::Rca();
+  // Init inputs
   this->selectedItem = 0;
-  this->testIO[0] = new DeviceIO::Xlr3();
-  this->testIO[1] = new DeviceIO::Bosh();
-  this->testIO[2] = new DeviceIO::ConOK();
-  this->testIO[3] = new DeviceIO::ConFail();
+  this->testIO[0] = new DeviceIO::Xlr3(outputIO[0]);
+  this->testIO[1] = new DeviceIO::Xlr3(outputIO[1]);
+  this->testIO[2] = new DeviceIO::Xlr3(outputIO[2]);
+  this->testIO[3] = new DeviceIO::Bosh();
+  this->testIO[4] = new DeviceIO::Shimano();
+  //this->testIO[3] = new DeviceIO::ConFail();
   // Uni - xlr 3, jack 2.1 2.5; rca
   // Bosh
   // Shimano
@@ -86,14 +94,14 @@ void Controller::moveMenu(char right)
 
 void Controller::updateMenu()
 {
-  display.print(2, display.centerText(testIO[selectedItem]->getName()));
+  display.print(2, display.centerText(testIO[selectedItem]->getConnectionName()));
 }
 
 void Controller::testConnector()
 {
   memset(lineBuffer, 0, sizeof(lineBuffer));
   strcat(lineBuffer, "Result:");
-  if (testIO[selectedItem]->testConnector())
+  if (testIO[selectedItem]->startTest())
   {
     strcat(lineBuffer, " OK");
     display.print(3, display.centerText(lineBuffer));

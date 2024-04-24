@@ -1,7 +1,7 @@
 #ifndef _TIME_UTILS_H_
 #define _TIME_UTILS_H_
 
-#include "Display.h"
+#include "src/components/Display.h"
 
 namespace Device
 {

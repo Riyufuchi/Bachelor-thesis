@@ -6,7 +6,6 @@
 #include <string.h>
 
 #include "IComponent.h"
-#include "Buffer.hpp"
 
 namespace Device
 {

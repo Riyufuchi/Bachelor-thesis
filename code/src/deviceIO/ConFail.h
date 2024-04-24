@@ -8,9 +8,9 @@ namespace DeviceIO
   class ConFail : public IConnector
   {
     public:
-    ConFail();
-    ~ConFail();
-    bool testConnector() override;
+      ConFail();
+      ~ConFail();
+      bool testConnector() override;
   };
 }
 #endif
