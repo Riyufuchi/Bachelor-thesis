@@ -10,7 +10,7 @@ namespace DeviceIO
     public:
     Bosh();
     ~Bosh();
-    bool testConnector() override;
+    bool testConnector(char& errorCode) override;
   };
 }
 #endif

@@ -21,28 +21,24 @@ Xlr3::~Xlr3()
 {
 }
 
-bool Xlr3::testConnector()
+bool Xlr3::testConnector(char& errorCode)
 {
-  bool high = false;
-  if (mode == Mode::IN)
-    high = true;
-  char check = 0;
   for (int i = 0; i < 3; i++)
   {
     for (int pinID = 0; pinID < numberOfPins; pinID++)
     {
-      digitalWrite(theOntherOne->getPin(pinID), 1);
-      if (digitalRead(pins[pinID]) == high)
+      digitalWrite(theOntherOne->getPin(pinID), HIGH);
+      if (digitalRead(pins[pinID]) == HIGH)
       {
-        check++;
+        pinCheck++;
       }
       else
       {
-        check = 0;
+        pinCheck = 0;
         break;
       }
     }
-    if (check == numberOfPins)
+    if (pinCheck == numberOfPins)
       return true;
   }
   return false;

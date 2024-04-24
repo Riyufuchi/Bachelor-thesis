@@ -10,7 +10,7 @@ ConFail::~ConFail()
 {
 }
 
-bool ConFail::testConnector()
+bool ConFail::testConnector(char& errorCode)
 {
   return false;
 }

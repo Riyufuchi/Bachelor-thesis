@@ -28,8 +28,11 @@ namespace Device
       DeviceIO::IConnector* testIO[NUM_OF_CONNECTORS];
       DeviceIO::IConnector* outputIO[NUM_OF_OUTPUS];
       // Help attributes
+      TimeUtils timeUtils;
+      bool printDebugChar;
       char selectedItem;
       char lineBuffer[20];
+      char errorBuffer[40];
       TimeUtils::Time actualTime;
       // Methods
       void moveMenu(char right);
@@ -38,6 +41,7 @@ namespace Device
       void resetMainMenu();
       void testConnector();
       void printErrorMessage(const char* what, const char* message);
+      void splitMessage(const char* message, char* part1, char* part2, int maxLength);
     public:
       Controller();
       ~Controller();

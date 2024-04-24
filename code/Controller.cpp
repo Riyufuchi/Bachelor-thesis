@@ -26,20 +26,44 @@ Controller::~Controller()
 {
   for (int i = 0; i < NUM_OF_CONNECTORS; i++)
     delete testIO[i];
+  for (int i = 0; i < NUM_OF_OUTPUS; i++)
+    delete outputIO[i];
 }
+
+void Controller::splitMessage(const char* message, char* part1, char* part2, int maxLength)
+{
+    int messageLength = strlen(message);
+    if (messageLength <= maxLength)
+    {
+        strcpy(part1, message);
+        part2[0] = '\0';
+        return;
+    }
+    int partLength = 20;
+    //while (message[partLength] != ' ' && partLength > 0) 
+       // partLength--;
+    strncpy(part1, message, partLength);
+    part1[partLength] = '\0'; // Null-terminate part1
+    strcpy(part2, &message[partLength + 1]);
+}
+
 
 void Controller::printErrorMessage(const char* what, const char* message)
 {
+  char part1[20]; 
+  char part2[20];
+  splitMessage(message, part1, part2, 20);
+  // Print the two parts on separate lines
   display.print(2, display.centerText(what));
-  display.print(3, display.centerText(message));
-  // TODO: Ability to print longer messages
+  display.print(3, display.centerText(part1));
+  display.print(4, display.centerText(part2));
 }
 
 void Controller::resetMainMenu()
 {
   selectedItem = 0;
   display.print(1, display.centerText(_VERSRION));
-  display.print(4, "------00:00:00------");
+  //display.print(4, "------00:00:00------");
   display.print(3, display.centerText("C/C++ is the best!"));
   updateMenu();
 }
@@ -78,7 +102,7 @@ void Controller::initilize()
     return;
   }
   //display.print(2, display.centerText("###"));
-  display.print(4, "------00:00:00------");
+  //display.print(4, "------00:00:00------");
   updateMenu();
 }
 
@@ -101,7 +125,8 @@ void Controller::testConnector()
 {
   memset(lineBuffer, 0, sizeof(lineBuffer));
   strcat(lineBuffer, "Result:");
-  if (testIO[selectedItem]->startTest())
+  char code = 0;
+  if (testIO[selectedItem]->startTest(code))
   {
     strcat(lineBuffer, " OK");
     display.print(3, display.centerText(lineBuffer));
@@ -109,8 +134,16 @@ void Controller::testConnector()
   }
   else
   {
-    strcat(lineBuffer, " Fail");
-    display.print(3, display.centerText(lineBuffer));
+    memset(errorBuffer, 0, sizeof(errorBuffer));
+    switch (code)
+    {
+      case -1: strcat(errorBuffer, "Only input connector can be tested"); break;
+      case -2: strcat(errorBuffer, "NullPtr to the other connector"); break;
+      default: sprintf(errorBuffer, "Error at pin : %d abcdefghijklmnopqrt", code); break;
+    }
+    printErrorMessage(display.centerText(testIO[selectedItem]->getConnectionName()), errorBuffer);
+    //display.print(3, display.centerText(lineBuffer));
+    //display.print(4, display.centerText(msg));
     speaker.makeSound(Speaker::Sound::ERROR);
   }
 }
@@ -126,10 +159,19 @@ void Controller::run()
     case 4: testConnector(); break;
   }
 
-  TimeUtils::updateTime(actualTime);
+  if (timeUtils.checkInterval(1000))
+  {
+    if (printDebugChar)
+      display.print(19, 1, "#");
+    else
+      display.print(19, 1, " ");
+    printDebugChar = !printDebugChar;
+  }
+
+  /*TimeUtils::updateTime(actualTime);
   if (actualTime.seconds < 10)
     display.print(12, 4, 0);
   TimeUtils::printTime(actualTime.hours, 6, display);
   TimeUtils::printTime(actualTime.minutes, 9, display);
-  TimeUtils::printTime(actualTime.seconds, 12, display);
+  TimeUtils::printTime(actualTime.seconds, 12, display);*/
 }

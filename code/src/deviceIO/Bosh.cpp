@@ -10,7 +10,7 @@ Bosh::~Bosh()
 {
 }
 
-bool Bosh::testConnector()
+bool Bosh::testConnector(char& errorCode)
 {
   return true;
 }

@@ -10,7 +10,7 @@ Jack25::~Jack25()
 {
 }
 
-bool Jack25::testConnector()
+bool Jack25::testConnector(char& errorCode)
 {
   return true;
 }

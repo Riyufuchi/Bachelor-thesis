@@ -10,7 +10,7 @@ namespace DeviceIO
     public:
     Rca();
     ~Rca();
-    bool testConnector() override;
+    bool testConnector(char& errorCode) override;
   };
 }
 #endif

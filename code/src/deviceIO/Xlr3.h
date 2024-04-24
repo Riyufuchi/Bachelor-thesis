@@ -13,7 +13,7 @@ namespace DeviceIO
     Xlr3(IConnector* output);
     Xlr3(Mode mode, IConnector* output);
     ~Xlr3();
-    bool testConnector() override;
+    bool testConnector(char& errorCode) override;
   };
 }
 #endif

@@ -10,7 +10,7 @@ Rca::~Rca()
 {
 }
 
-bool Rca::testConnector()
+bool Rca::testConnector(char& errorCode)
 {
   return true;
 }

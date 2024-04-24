@@ -10,7 +10,7 @@ Shimano::~Shimano()
 {
 }
 
-bool Shimano::testConnector()
+bool Shimano::testConnector(char& errorCode)
 {
   return true;
 }

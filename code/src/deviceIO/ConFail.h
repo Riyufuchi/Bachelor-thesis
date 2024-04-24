@@ -10,7 +10,7 @@ namespace DeviceIO
     public:
       ConFail();
       ~ConFail();
-      bool testConnector() override;
+      bool testConnector(char& errorCode) override;
   };
 }
 #endif

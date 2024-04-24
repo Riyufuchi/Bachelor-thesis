@@ -49,11 +49,19 @@ void IConnector::reconnectTo(IConnector* connector)
     strcat(connectionName, theOntherOne->getName());
 }
 
-bool IConnector::startTest()
+bool IConnector::startTest(char& errorCode)
 {
   if (theOntherOne == nullptr)
+  {
+    errorCode = -2;
     return false;
-  return testConnector();
+  }
+  if (mode != Mode::IN)
+  {
+    errorCode = -1;
+    return false;
+  }
+  return testConnector(errorCode);
 }
 
 char IConnector::getPin(const char ID)

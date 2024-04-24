@@ -10,7 +10,7 @@ namespace DeviceIO
     public:
     Jack25();
     ~Jack25();
-    bool testConnector() override;
+   bool testConnector(char& errorCode) override;
   };
 }
 #endif

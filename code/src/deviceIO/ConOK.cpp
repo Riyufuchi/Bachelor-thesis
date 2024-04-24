@@ -10,7 +10,7 @@ ConOK::~ConOK()
 {
 }
 
-bool ConOK::testConnector()
+bool ConOK::testConnector(char& errorCode)
 {
   return true;
 }

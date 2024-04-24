@@ -17,8 +17,9 @@ namespace DeviceIO
     private:
       char name[19];
       char connectionName[19];
-      virtual bool testConnector() = 0;
+      virtual bool testConnector(char& errorCode) = 0;
     protected:
+      char pinCheck;
       Mode mode;
       IConnector* theOntherOne;
       char* pins;
@@ -29,7 +30,7 @@ namespace DeviceIO
       IConnector(const char* name, char pins[], char numberOfPins, IConnector* con, Mode mode);
       virtual ~IConnector();
       // Utils
-      bool startTest();
+      bool startTest(char& errorCode);
       void reconnectTo(IConnector* connector);
       // Getters
       const char* getName();

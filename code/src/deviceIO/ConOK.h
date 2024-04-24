@@ -10,7 +10,7 @@ namespace DeviceIO
     public:
     ConOK();
     ~ConOK();
-    bool testConnector() override;
+    bool testConnector(char& errorCode) override;
   };
 }
 #endif

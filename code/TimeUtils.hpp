@@ -1,3 +1,4 @@
+#include "Arduino.h"
 #ifndef _TIME_UTILS_H_
 #define _TIME_UTILS_H_
 
@@ -7,6 +8,9 @@ namespace Device
 {
   class TimeUtils
   {
+    private:
+    unsigned long previousMillis;
+    unsigned long currentMillis;
     public:
     struct Time
     {
@@ -14,8 +18,18 @@ namespace Device
       int minutes {0};
       int seconds {0}; // int will overflow in +-49 days, this program don't account for running longer than day tho 
     };
-    TimeUtils();
-    ~TimeUtils();
+    TimeUtils() = default;
+    ~TimeUtils() = default;
+    bool checkInterval(long interval)
+    {
+      currentMillis = millis();
+      if (currentMillis - previousMillis >= interval)
+      {
+        previousMillis = currentMillis;
+        return true;
+      }
+      return false;
+    }
     static void printTime(int val, int posBase, Display& dp)
     {
       if (val < 10)
