@@ -30,14 +30,16 @@ IConnector::~IConnector()
 void IConnector::setMode(Mode mode)
 {
   this->mode = mode;
-  uint8_t pinSetting = (uint8_t)mode; // input = in = 0; output = out = 1
   if (pins == nullptr || numberOfPins == 0)
     return;
+  uint8_t pinOption = 0;
+  switch (mode) 
+  {
+    case IN: pinOption = INPUT_PULLUP; break;
+    case OUT: pinOption = OUTPUT; break;
+  }
   for (int i = 0; i < numberOfPins; i++)
-    if (pinSetting == 0)
-      pinMode(pins[i], INPUT_PULLUP);
-    else
-     pinMode(pins[i], OUTPUT);
+    pinMode(pins[i], pinOption);   
 }
 
 void IConnector::reconnectTo(IConnector* connector)
