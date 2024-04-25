@@ -1,16 +1,4 @@
-%!TeX root =  thesis.tex
-
-\section{IO Panel}
-\begin{figure}[h!]
-	\centering
-	\includegraphics[width=\textwidth]{pictures/placeHolderFHD.png}
-    	\caption{IO Panel}
-   	\label{fig:panelIO}
-\end{figure}
-
-\section{IConnector}
-\lstinputlisting[language=C++, caption={IConnector}, label={lst:cpp_IConnector}]{../code/src/deviceIO/IConnector.h}
-Toto je společný předek pro jednotlivé konektory, který nám usnadní manipulaci s jeho potomky, tedy již specifickými konektory.
+%!TeX root =  ../../thesis.tex
 
 \section{XLR 3}
 \subsection{Pinové zapojení}
@@ -36,7 +24,7 @@ Toto je společný předek pro jednotlivé konektory, který nám usnadní manip
 
 \begin{table} [h!]
 	\centering
-	\catcode`\-=12 % Because of czech
+	\catcode`\-=12
 	\begin{tabular}[c]{|| c | c ||}
 	\hline
 		\multicolumn{2}{||c||}{XLR-3 Out} \\
@@ -53,18 +41,3 @@ Toto je společný předek pro jednotlivé konektory, který nám usnadní manip
 	\caption{Pinové rozložení XLR 3 - Out}
 	\label{table:pinXLR-OUT}
 \end{table}
-
-\section{Jack 2.1}
-\subsection{Pinové zapojení}
-
-\section{Jack 2.5}
-\subsection{Pinové zapojení}
-
-\section{RCA}
-\subsection{Pinové zapojení}
-
-\section{BOSH}
-\subsection{Pinové zapojení}
-
-\section{Shimano}
-\subsection{Pinové zapojení}

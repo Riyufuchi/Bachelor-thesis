@@ -1,0 +1,21 @@
+%!TeX root =  ../thesis.tex
+
+\section{IO Panel}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=\textwidth]{pictures/placeHolderFHD.png}
+    	\caption{IO Panel}
+   	\label{fig:panelIO}
+\end{figure}
+
+\newpage
+\section{IConnector}
+\lstinputlisting[language=C++, caption={IConnector}, label={lst:cpp_IConnector}, style=riyuCpp]{../code/src/deviceIO/IConnector.h}
+Toto je společný předek pro jednotlivé konektory, který nám usnadní manipulaci s jeho potomky, tedy již specifickými konektory.
+
+\include{chapters/connectors/xlr3.tex}
+\include{chapters/connectors/jack21.tex}
+\include{chapters/connectors/jack25.tex}
+\include{chapters/connectors/rca.tex}
+%\include{chapters/connectors/bosh.tex}
+%\include{chapters/connectors/shimano.tex}
