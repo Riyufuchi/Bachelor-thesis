@@ -11,7 +11,7 @@
 
 #include "src/deviceIO/IncludeAllIO.hpp"
 
-#define _VERSRION "Tester v0.28"
+#define _VERSRION "Tester v0.29"
 
 namespace Device
 {
@@ -33,12 +33,13 @@ namespace Device
       char code;
       char selectedItem;
       char lineBuffer[20];
+      char errorPart1[20]; 
+      char errorPart2[20];
       char errorBuffer[40];
       // Methods
       void moveMenu(char right);
       void updateMenu();
       void initDisplayText();
-      void resetMainMenu();
       void testConnector();
       void printErrorMessage(const char* what, const char* message);
       void splitMessage(const char* message, char* part1, char* part2, int maxLength);

@@ -17,10 +17,6 @@ Controller::Controller()
   this->testIO[2] = new DeviceIO::Xlr3(outputIO[2]);
   this->testIO[3] = new DeviceIO::Bosh();
   this->testIO[4] = new DeviceIO::Shimano();
-  //this->testIO[3] = new DeviceIO::ConFail();
-  // Uni - xlr 3, jack 2.1 2.5; rca
-  // Bosh
-  // Shimano
 }
 
 Controller::~Controller()
@@ -51,22 +47,11 @@ void Controller::splitMessage(const char* message, char* part1, char* part2, int
 
 void Controller::printErrorMessage(const char* what, const char* message)
 {
-  char part1[20]; 
-  char part2[20];
-  splitMessage(message, part1, part2, 20);
+  splitMessage(message, errorPart1, errorPart2, 20);
   // Print the two parts on separate lines
   display.print(2, display.centerText(what));
-  display.print(3, display.centerText(part1));
-  display.print(4, display.centerText(part2));
-}
-
-void Controller::resetMainMenu()
-{
-  selectedItem = 0;
-  display.print(1, display.centerText(_VERSRION));
-  display.print(3, display.centerText("Test ready!"));
-  display.print(4, display.centerText("C/C++ is the best!"));
-  updateMenu();
+  display.print(3, display.centerText(errorPart1));
+  display.print(4, display.centerText(errorPart2));
 }
 
 void Controller::initDisplayText()
@@ -89,22 +74,19 @@ void Controller::initilize()
     speaker.makeSound(Speaker::Sound::ERROR);
   }
   initDisplayText();
-  //display.print(2, display.centerText("#"));
   checks[1] = keyboard.initialize();
   if(!checks[1] || keyboard.readInput() != -1) // Also checks for broken buttons
   {
     printErrorMessage("Keyboard", "Input error");
     return;
   }
-  //display.print(2, display.centerText("##"));
   checks[2] = speaker.initialize();
   if(!checks[2])
   {
     printErrorMessage("Speaker", "Not connected!");
     return;
   }
-  //display.print(2, display.centerText("###"));
-  //display.print(4, "------00:00:00------");
+  selectedItem = 0;
   updateMenu();
 }
 
@@ -125,13 +107,10 @@ void Controller::updateMenu()
 
 void Controller::testConnector()
 {
-  memset(lineBuffer, 0, sizeof(lineBuffer));
-  strcat(lineBuffer, "Connection: ");
   code = -100;
   if (testIO[selectedItem]->startTest(code))
   {
-    strcat(lineBuffer, " OK");
-    display.print(3, display.centerText(lineBuffer));
+    display.print(3, display.centerText("Connection: OK"));
     speaker.makeSound(Speaker::Sound::SUCCESS);
   }
   else
@@ -152,20 +131,20 @@ void Controller::testConnector()
     printErrorMessage(display.centerText(testIO[selectedItem]->getConnectionName()), errorBuffer);
     speaker.makeSound(Speaker::Sound::ERROR);
   }
-  //while (keyboard.readInput() == -1)
-  //{}
-  //display.print(4, display.centerText("Test ready!"));
+  while (keyboard.readInput() == -1)
+  {}
+  display.print(3, display.centerText("Test ready!"));
 }
 
 void Controller::run()
 {
   switch (keyboard.readInput())
   {
-    case 0: testConnector(); break;
-    case 1: resetMainMenu(); break;
-    case 2: moveMenu(-1);break;
-    case 3: moveMenu(1); break;
-    case 4: testConnector(); break;
+    case 0: testConnector(); break; // AUTO
+    case 1: initilize(); break; // MENU
+    case 2: moveMenu(-1);break; // LEFT
+    case 3: moveMenu(1); break; // RIGT
+    case 4: testConnector(); break; // POWER_BTN
   }
 
   if (timeUtils.checkInterval(1000))
