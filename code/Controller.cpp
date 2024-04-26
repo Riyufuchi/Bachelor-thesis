@@ -69,7 +69,7 @@ void Controller::initilize()
   {
     checks[2] = speaker.initialize();
     if(!checks[2])
-      return;
+      exit(1);
     speaker.makeSound(Speaker::Sound::BOOT);
     speaker.makeSound(Speaker::Sound::ERROR);
   }
@@ -78,13 +78,13 @@ void Controller::initilize()
   if(!checks[1] || keyboard.readInput() != -1) // Also checks for broken buttons
   {
     printErrorMessage("Keyboard", "Input error");
-    return;
+    exit(1);
   }
   checks[2] = speaker.initialize();
   if(!checks[2])
   {
     printErrorMessage("Speaker", "Not connected!");
-    return;
+    exit(1);
   }
   selectedItem = 0;
   updateMenu();
@@ -131,9 +131,9 @@ void Controller::testConnector()
     printErrorMessage(display.centerText(testIO[selectedItem]->getConnectionName()), errorBuffer);
     speaker.makeSound(Speaker::Sound::ERROR);
   }
-  while (keyboard.readInput() == -1)
-  {}
-  display.print(3, display.centerText("Test ready!"));
+  //while (keyboard.readInput() == -1)
+  //{}
+  //display.print(3, display.centerText("Test ready!"));
 }
 
 void Controller::run()
