@@ -10,10 +10,9 @@ namespace DeviceIO
   class Xlr3 : public IConnector
   {
     public:
-    Xlr3(IConnector* output);
-    Xlr3(Mode mode, IConnector* output);
-    ~Xlr3();
-    bool testConnector(char& errorCode) override;
+      Xlr3(IConnector* output);
+      Xlr3(Mode mode, IConnector* output);
+      ~Xlr3();
   };
 }
 #endif

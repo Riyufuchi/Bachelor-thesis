@@ -8,9 +8,8 @@ namespace DeviceIO
   class Jack21 : public IConnector
   {
     public:
-    Jack21();
-    ~Jack21();
-    bool testConnector(char& errorCode) override;
+      Jack21();
+      ~Jack21();
   };
 }
 #endif

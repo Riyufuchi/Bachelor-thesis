@@ -11,7 +11,7 @@
 
 #include "src/deviceIO/IncludeAllIO.hpp"
 
-#define _VERSRION "Tester v0.25"
+#define _VERSRION "Tester v0.28"
 
 namespace Device
 {
@@ -34,7 +34,6 @@ namespace Device
       char selectedItem;
       char lineBuffer[20];
       char errorBuffer[40];
-      TimeUtils::Time actualTime;
       // Methods
       void moveMenu(char right);
       void updateMenu();

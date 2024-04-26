@@ -8,9 +8,8 @@ namespace DeviceIO
   class Rca : public IConnector
   {
     public:
-    Rca();
-    ~Rca();
-    bool testConnector(char& errorCode) override;
+      Rca();
+      ~Rca();
   };
 }
 #endif

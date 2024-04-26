@@ -8,9 +8,9 @@ namespace DeviceIO
   class Bosh : public IConnector
   {
     public:
-    Bosh();
-    ~Bosh();
-    bool testConnector(char& errorCode) override;
+      Bosh();
+      ~Bosh();
+      bool testConnector(char& errorCode) override;
   };
 }
 #endif

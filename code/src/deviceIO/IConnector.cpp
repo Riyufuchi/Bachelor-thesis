@@ -27,6 +27,29 @@ IConnector::~IConnector()
     delete[] pins;
 }
 
+bool IConnector::testConnector(char& errorCode)
+{
+  for (int i = 0; i < 3; i++)
+  {
+    pinCheck = 0;
+    for (int pinID = 0; pinID < numberOfPins; pinID++)
+    {
+      digitalWrite(theOntherOne->getPin(pinID), LOW);
+      if (digitalRead(pins[pinID]) == LOW)
+      {
+        pinCheck++;
+      }
+      else
+      {
+        pinCheck = 0;
+        errorCode = pins[pinID];
+        break;
+      }
+    }
+  }
+  return (pinCheck == numberOfPins);
+}
+
 void IConnector::setMode(Mode mode)
 {
   this->mode = mode;

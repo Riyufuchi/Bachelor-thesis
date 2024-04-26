@@ -10,7 +10,7 @@ namespace DeviceIO
     public:
     Shimano();
     ~Shimano();
-   bool testConnector(char& errorCode) override;
+    bool testConnector(char& errorCode) override;
   };
 }
 #endif
