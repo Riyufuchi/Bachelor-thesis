@@ -11,7 +11,7 @@
 
 #include "src/deviceIO/IncludeAllIO.hpp"
 
-#define _VERSRION "Tester v0.30"
+#define _VERSRION "Tester v0.31"
 
 namespace Device
 {
@@ -23,18 +23,17 @@ namespace Device
       Keyboard keyboard;
       Speaker speaker;
       // Test IO
-      static const char NUM_OF_CONNECTORS = 5;
-      static const char NUM_OF_OUTPUS = 5;
-      DeviceIO::IConnector* testIO[NUM_OF_CONNECTORS];
+      static const char NUM_OF_INPUTS = 5;
+      static const char NUM_OF_OUTPUS = 4;
+      DeviceIO::IConnector* testIO[NUM_OF_INPUTS];
       DeviceIO::IConnector* outputIO[NUM_OF_OUTPUS];
       // Help attributes
       TimeUtils timeUtils;
       bool printDebugChar;
       char code;
       char selectedItem;
-      char lineBuffer[20];
-      char errorPart1[20]; 
-      char errorPart2[20];
+      char lineBuffer[Display::DISPLAY_WIDTH];
+      char errorPart2[Display::DISPLAY_WIDTH];
       char errorBuffer[40];
       // Methods
       void moveMenu(char right);
@@ -42,7 +41,6 @@ namespace Device
       void initDisplayText();
       void testConnector();
       void printErrorMessage(const char* what, const char* message);
-      void splitMessage(const char* message, char* part1, char* part2, int maxLength);
     public:
       Controller();
       ~Controller();

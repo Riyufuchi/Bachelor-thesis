@@ -6,7 +6,7 @@ using namespace Device;
 Controller::Controller()
 {
   // Init outpus
-  this->outputIO[0] = new DeviceIO::Xlr3(DeviceIO::Mode::OUT, 0);
+  this->outputIO[0] = new DeviceIO::Xlr3(DeviceIO::Mode::OUT, nullptr);
   this->outputIO[1] = new DeviceIO::Jack21();
   this->outputIO[2] = new DeviceIO::Jack25();
   this->outputIO[3] = new DeviceIO::Rca();
@@ -21,36 +21,17 @@ Controller::Controller()
 
 Controller::~Controller()
 {
-  for (int i = 0; i < NUM_OF_CONNECTORS; i++)
+  for (int i = 0; i < NUM_OF_INPUTS; i++)
     delete testIO[i];
   for (int i = 0; i < NUM_OF_OUTPUS; i++)
     delete outputIO[i];
 }
 
-void Controller::splitMessage(const char* message, char* part1, char* part2, int maxLength)
-{
-    int messageLength = strlen(message);
-    if (messageLength <= maxLength)
-    {
-        strcpy(part1, message);
-        part2[0] = '\0';
-        return;
-    }
-    int partLength = 19;
-    //while (message[partLength] != ' ' && partLength > 0) 
-       // partLength--;
-    strncpy(part1, message, partLength);
-    part1[partLength + 1] = '\0'; // Null-terminate part1
-    strcpy(part2, &message[partLength]);
-}
-
-
 void Controller::printErrorMessage(const char* what, const char* message)
 {
-  splitMessage(message, errorPart1, errorPart2, 20);
-  // Print the two parts on separate lines
+  display.splitMessage(message, lineBuffer, errorPart2);
   display.print(2, display.centerText(what));
-  display.print(3, display.centerText(errorPart1));
+  display.print(3, display.centerText(lineBuffer));
   display.print(4, display.centerText(errorPart2));
 }
 
@@ -77,7 +58,7 @@ void Controller::initilize()
   checks[1] = keyboard.initialize();
   if(!checks[1] || keyboard.readInput() != -1) // Also checks for broken buttons
   {
-    printErrorMessage("Keyboard", "Input error");
+    printErrorMessage("Keyboard", "Failed init or stucked key");
     exit(1);
   }
   checks[2] = speaker.initialize();
@@ -93,10 +74,10 @@ void Controller::initilize()
 void Controller::moveMenu(char right)
 {
   selectedItem += right;
-  if (selectedItem >= NUM_OF_CONNECTORS)
+  if (selectedItem >= NUM_OF_INPUTS)
     selectedItem = 0;
   else if (selectedItem < 0)
-    selectedItem = NUM_OF_CONNECTORS - 1;
+    selectedItem = NUM_OF_INPUTS - 1;
   updateMenu();
 }
 

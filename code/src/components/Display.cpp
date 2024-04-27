@@ -3,12 +3,29 @@
 
 using namespace Device;
 
-Display::Display() : DISPLAY_WIDTH(20), lcd(0x27, DISPLAY_WIDTH, 4)
+Display::Display() : lcd(0x27, DISPLAY_WIDTH, 4)
 {
 }
 
 Display::~Display()
 {
+}
+
+void Display::splitMessage(const char* message, char* part1, char* part2)
+{
+    int messageLength = strlen(message);
+    if (messageLength <= DISPLAY_WIDTH)
+    {
+        strcpy(part1, message);
+        part2[0] = '\0';
+        return;
+    }
+    int partLength = 19;
+    //while (message[partLength] != ' ' && partLength > 0) 
+       // partLength--;
+    strncpy(part1, message, partLength);
+    part1[partLength] = '\0'; // Null-terminate part1
+    strcpy(part2, &message[partLength]);
 }
 
 char* Display::centerText(const char* text)

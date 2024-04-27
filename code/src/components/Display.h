@@ -11,15 +11,19 @@ namespace Device
 {
   class Display : public IComponent
   {
+    public:
+      static const char DISPLAY_WIDTH = 20;
     private:
-      const char DISPLAY_WIDTH;
-      char message[20];
+      char message[DISPLAY_WIDTH];
       LiquidCrystal_I2C lcd; // Declaration without initialization
     public:
       Display();
       ~Display();
       bool initialize() override;
+      // Methods
       void setLine(int line); // Sets cursor to given line
+      void Display::splitMessage(const char* message, char* part1, char* part2);
+      //Functions
       char* centerText(const char* text);
       // Templates
       template <typename T>
