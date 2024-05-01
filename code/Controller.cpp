@@ -4,34 +4,32 @@
 using namespace Device;
 
 Controller::Controller()
-{
-  // Init outpus
-  this->outputIO[0] = new DeviceIO::Xlr3(DeviceIO::Mode::OUT, nullptr);
-  this->outputIO[1] = new DeviceIO::Jack21();
-  this->outputIO[2] = new DeviceIO::Jack25();
-  this->outputIO[3] = new DeviceIO::Rca();
+{  
   // Init inputs
   this->selectedItem = 0;
-  this->testIO[0] = new DeviceIO::Xlr3(outputIO[0]);
-  this->testIO[1] = new DeviceIO::Xlr3(outputIO[1]);
-  this->testIO[2] = new DeviceIO::Xlr3(outputIO[2]);
-  this->testIO[3] = new DeviceIO::Bosh();
-  this->testIO[4] = new DeviceIO::Shimano();
+  this->outputIO[0] = new DeviceIO::Xlr3(DeviceIO::Mode::OUT, nullptr);
+  this->outputIO[1] = new DeviceIO::Bosh();
+  this->outputIO[2] = new DeviceIO::Shimano();
+
+  this->inputIO[0] = new DeviceIO::Xlr3(DeviceIO::Mode::IN, outputIO[0]);
+  this->inputIO[1] = new DeviceIO::Jack21(DeviceIO::Mode::IN, outputIO[0]);
+  this->inputIO[2] = new DeviceIO::Jack25(DeviceIO::Mode::IN, outputIO[0]);
+  this->inputIO[3] = new DeviceIO::Rca();
 }
 
 Controller::~Controller()
 {
   for (int i = 0; i < NUM_OF_INPUTS; i++)
-    delete testIO[i];
+    delete inputIO[i];
   for (int i = 0; i < NUM_OF_OUTPUS; i++)
     delete outputIO[i];
 }
 
 void Controller::printErrorMessage(const char* what, const char* message)
 {
-  display.splitMessage(message, lineBuffer, errorPart2);
+  display.splitMessage(message, rowBuffer, errorPart2);
   display.print(2, display.centerText(what));
-  display.print(3, display.centerText(lineBuffer));
+  display.print(3, display.centerText(rowBuffer));
   display.print(4, display.centerText(errorPart2));
 }
 
@@ -39,7 +37,6 @@ void Controller::initDisplayText()
 {
   display.print(1, display.centerText(_VERSRION));
   display.print(3, display.centerText("Test ready!"));
-  display.print(4, display.centerText("C/C++ is the best!"));
 }
 
 void Controller::initilize()
@@ -83,13 +80,13 @@ void Controller::moveMenu(char right)
 
 void Controller::updateMenu()
 {
-  display.print(2, display.centerText(testIO[selectedItem]->getConnectionName()));
+  display.print(2, display.centerText(inputIO[selectedItem]->getConnectionName()));
 }
 
 void Controller::testConnector()
 {
   code = -100;
-  if (testIO[selectedItem]->startTest(code))
+  if (inputIO[selectedItem]->startTest(code))
   {
     display.print(3, display.centerText("Connection: OK"));
     speaker.makeSound(Speaker::Sound::SUCCESS);
@@ -109,7 +106,7 @@ void Controller::testConnector()
           sprintf(errorBuffer, "Unknown error code: %d", code);
       break;
     }
-    printErrorMessage(display.centerText(testIO[selectedItem]->getConnectionName()), errorBuffer);
+    printErrorMessage(display.centerText(inputIO[selectedItem]->getConnectionName()), errorBuffer);
     speaker.makeSound(Speaker::Sound::ERROR);
   }
   //while (keyboard.readInput() == -1)
@@ -136,11 +133,4 @@ void Controller::run()
       display.print(19, 1, " ");
     printDebugChar = !printDebugChar;
   }
-
-  /*TimeUtils::updateTime(actualTime);
-  if (actualTime.seconds < 10)
-    display.print(12, 4, 0);
-  TimeUtils::printTime(actualTime.hours, 6, display);
-  TimeUtils::printTime(actualTime.minutes, 9, display);
-  TimeUtils::printTime(actualTime.seconds, 12, display);*/
 }

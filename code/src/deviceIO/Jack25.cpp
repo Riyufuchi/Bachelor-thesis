@@ -2,7 +2,11 @@
 
 using namespace DeviceIO;
 
-Jack25::Jack25() : IConnector("Jack 2.5", new char[2]{32, 33}, 2, Mode::OUT)
+Jack25::Jack25() : Jack25(Mode::IN, nullptr)
+{
+}
+
+Jack25::Jack25(Mode mode, IConnector* otherOne) : IConnector("Jack 2.5", new char[2]{32, 33}, 2, otherOne, mode)
 {
 }
 

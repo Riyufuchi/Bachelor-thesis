@@ -9,6 +9,7 @@ namespace DeviceIO
   {
     public:
     Jack25();
+    Jack25(Mode mode, IConnector* otherOne);
     ~Jack25();
   };
 }

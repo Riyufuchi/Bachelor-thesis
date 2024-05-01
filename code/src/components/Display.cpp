@@ -20,7 +20,7 @@ void Display::splitMessage(const char* message, char* part1, char* part2)
         part2[0] = '\0';
         return;
     }
-    int partLength = 19;
+    int partLength = DISPLAY_WIDTH - 1;
     //while (message[partLength] != ' ' && partLength > 0) 
        // partLength--;
     strncpy(part1, message, partLength);
@@ -33,20 +33,20 @@ char* Display::centerText(const char* text)
     int textLength = strlen(text);
     if (textLength >= DISPLAY_WIDTH)
     {
-      memset(message, 0, sizeof(message));
-      strncpy(message, text, 19);
-      return message;
+      memset(rowBuffer, 0, sizeof(rowBuffer));
+      strncpy(rowBuffer, text, 19);
+      return text;
     }
 
     int spacesToAdd = DISPLAY_WIDTH - textLength;
     int spacesBefore = spacesToAdd / 2;
     int spacesAfter = spacesToAdd - spacesBefore;
 
-    memset(message, ' ', spacesBefore);   // Fill spaces before text
-    strcpy(message + spacesBefore, text); // Copy text
-    memset(message + spacesBefore + textLength, ' ', spacesAfter); // Fill spaces after text
-    message[DISPLAY_WIDTH - 1] = '\0'; // Null-terminate the string
-    return message;
+    memset(rowBuffer, ' ', spacesBefore);   // Fill spaces before text
+    strcpy(rowBuffer + spacesBefore, text); // Copy text
+    memset(rowBuffer + spacesBefore + textLength, ' ', spacesAfter); // Fill spaces after text
+    rowBuffer[DISPLAY_WIDTH - 1] = '\0'; // Null-terminate the string
+    return rowBuffer;
 }
 
 bool Display::initialize()

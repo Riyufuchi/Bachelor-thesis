@@ -14,8 +14,8 @@ namespace Device
     public:
       static const char DISPLAY_WIDTH = 20;
     private:
-      char message[DISPLAY_WIDTH];
       LiquidCrystal_I2C lcd; // Declaration without initialization
+      char rowBuffer[DISPLAY_WIDTH];
     public:
       Display();
       ~Display();

@@ -9,6 +9,7 @@ namespace DeviceIO
   {
     public:
       Rca();
+      Rca(Mode mode, IConnector* otherOne);
       ~Rca();
   };
 }

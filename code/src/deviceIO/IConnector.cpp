@@ -69,12 +69,18 @@ void IConnector::reconnectTo(IConnector* connector)
 {
   theOntherOne = connector;
   memset(connectionName, 0, sizeof(connectionName));
-  strcpy(connectionName, name);
+  const char* name2 = (theOntherOne == nullptr) ? "NONE" : theOntherOne->getName();
+  if (mode == Mode::OUT)
+    sprintf(connectionName, "%s - %s", name, name2);
+  else
+    sprintf(connectionName, "%s - %s", name2, name);
+  
+  /*strcpy(connectionName, name);
   strcat(connectionName, " - ");
   if (theOntherOne == nullptr)
     strcat(connectionName, "NONE");
   else
-    strcat(connectionName, theOntherOne->getName());
+    strcat(connectionName, theOntherOne->getName());*/
 }
 
 bool IConnector::startTest(char& errorCode)
