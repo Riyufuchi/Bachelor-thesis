@@ -5,16 +5,18 @@ using namespace Device;
 
 Controller::Controller()
 {  
-  // Init inputs
+  // Init outputs
   this->selectedItem = 0;
   this->outputIO[0] = new DeviceIO::Xlr3(DeviceIO::Mode::OUT, nullptr);
   this->outputIO[1] = new DeviceIO::Bosh();
   this->outputIO[2] = new DeviceIO::Shimano();
-
+  // XLR
   this->inputIO[0] = new DeviceIO::Xlr3(DeviceIO::Mode::IN, outputIO[0]);
   this->inputIO[1] = new DeviceIO::Jack21(DeviceIO::Mode::IN, outputIO[0]);
   this->inputIO[2] = new DeviceIO::Jack25(DeviceIO::Mode::IN, outputIO[0]);
   this->inputIO[3] = new DeviceIO::Rca();
+  // Bosh
+  this->inputIO[4] = this->outputIO[1] = new DeviceIO::Bosh();
 }
 
 Controller::~Controller()
@@ -53,7 +55,7 @@ void Controller::initilize()
   }
   initDisplayText();
   checks[1] = keyboard.initialize();
-  if(!checks[1] || keyboard.readInput() != -1) // Also checks for broken buttons
+  if(!checks[1]) // Also checks for broken buttons
   {
     printErrorMessage("Keyboard", "Failed init or stucked key");
     exit(1);
@@ -96,9 +98,10 @@ void Controller::testConnector()
     memset(errorBuffer, 0, sizeof(errorBuffer));
     switch (code)
     {
-      case -1: strcat(errorBuffer, "Only input connector can be tested"); break;
+      //case -1: strcat(errorBuffer, "Only input connector can be tested"); break;
       case -2: strcat(errorBuffer, "NullPtr to the other connector"); break;
       case -3: strcat(errorBuffer, "Input can't output current!"); break;
+      case -4: strcat(errorBuffer, "Can't connect two outputs!"); break;
       default: 
         if (code > 0)
           sprintf(errorBuffer, "Error at pin : %d", code);

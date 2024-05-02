@@ -90,12 +90,16 @@ bool IConnector::startTest(char& errorCode)
     errorCode = -2;
     return false;
   }
-  if (mode != Mode::IN)
+  if (mode == Mode::OUT) // This instance should be INPUT
   {
-    errorCode = -1;
-    return false;
+    if (theOntherOne->mode == Mode::OUT)
+    {
+      errorCode = -4;
+      return false;
+    }
+    return theOntherOne->testConnector(errorCode);
   }
-  if (theOntherOne->mode != Mode::OUT)
+  if (theOntherOne->mode == Mode::IN) // The other one should be OUT in this case
   {
     errorCode = -3;
     return false;

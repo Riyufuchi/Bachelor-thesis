@@ -16,7 +16,7 @@ bool Keyboard::initialize()
   {
     pinMode(button_pins[x], INPUT_PULLUP);
   }
-  return true;
+  return (readInput() == -1);
   //digitalWrite(44, HIGH);
 }
 int Keyboard::readInput()
