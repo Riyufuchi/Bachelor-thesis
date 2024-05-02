@@ -42,7 +42,7 @@ bool IConnector::testConnector(char& errorCode)
       else
       {
         pinCheck = 0;
-        errorCode = pins[pinID];
+        errorCode = pinID + 1;
         break;
       }
     }

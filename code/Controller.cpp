@@ -5,24 +5,31 @@ using namespace Device;
 
 Controller::Controller()
 {  
-  // Init outputs
   this->selectedItem = 0;
+  this->menuY = 0;
+  // Outputs
   this->outputIO[0] = new DeviceIO::Xlr3(DeviceIO::Mode::OUT, nullptr);
   this->outputIO[1] = new DeviceIO::Bosh();
   this->outputIO[2] = new DeviceIO::Shimano();
   // XLR
-  this->inputIO[0] = new DeviceIO::Xlr3(DeviceIO::Mode::IN, outputIO[0]);
-  this->inputIO[1] = new DeviceIO::Jack21(DeviceIO::Mode::IN, outputIO[0]);
-  this->inputIO[2] = new DeviceIO::Jack25(DeviceIO::Mode::IN, outputIO[0]);
-  this->inputIO[3] = new DeviceIO::Rca();
+  this->menuIO[0][0] = new DeviceIO::Xlr3(DeviceIO::Mode::IN, outputIO[0]);
+  this->menuIO[0][1] = new DeviceIO::Jack21(DeviceIO::Mode::IN, outputIO[0]);
+  this->menuIO[0][2] = new DeviceIO::Jack25(DeviceIO::Mode::IN, outputIO[0]);
+  this->menuIO[0][3] = new DeviceIO::Rca(DeviceIO::Mode::IN, outputIO[0]);
   // Bosh
-  this->inputIO[4] = this->outputIO[1] = new DeviceIO::Bosh();
+  this->menuIO[1][0] = new DeviceIO::Bosh();
+  // Shimano
+  this->menuIO[2][0] = new DeviceIO::Shimano();
+  // Lenghts
+  this->menus[0] = 4;
+  this->menus[1] = 0;
+  this->menus[2] = 0;
 }
 
 Controller::~Controller()
 {
   for (int i = 0; i < NUM_OF_INPUTS; i++)
-    delete inputIO[i];
+    delete menuIO[i];
   for (int i = 0; i < NUM_OF_OUTPUS; i++)
     delete outputIO[i];
 }
@@ -72,23 +79,35 @@ void Controller::initilize()
 
 void Controller::moveMenu(char right)
 {
-  selectedItem += right;
-  if (selectedItem >= NUM_OF_INPUTS)
-    selectedItem = 0;
-  else if (selectedItem < 0)
-    selectedItem = NUM_OF_INPUTS - 1;
+  clamp(selectedItem, right, 0, menus[menuY]);
+  updateMenu();
+}
+
+void Controller::clamp(char& dest, char add, char min, char max)
+{
+  dest += add;
+  if (dest >= max)
+    dest = min;
+  else if (dest < min)
+    dest = max;
+}
+
+void Controller::updateMenuY()
+{
+  clamp(menuY, 1, 0, 3);
+  selectedItem = 0;
   updateMenu();
 }
 
 void Controller::updateMenu()
 {
-  display.print(2, display.centerText(inputIO[selectedItem]->getConnectionName()));
+  display.print(2, display.centerText(menuIO[menuY][selectedItem]->getConnectionName()));
 }
 
 void Controller::testConnector()
 {
   code = -100;
-  if (inputIO[selectedItem]->startTest(code))
+  if (menuIO[menuY][selectedItem]->startTest(code))
   {
     display.print(3, display.centerText("Connection: OK"));
     speaker.makeSound(Speaker::Sound::SUCCESS);
@@ -109,7 +128,7 @@ void Controller::testConnector()
           sprintf(errorBuffer, "Unknown error code: %d", code);
       break;
     }
-    printErrorMessage(display.centerText(inputIO[selectedItem]->getConnectionName()), errorBuffer);
+    printErrorMessage(display.centerText(menuIO[menuY][selectedItem]->getConnectionName()), errorBuffer);
     speaker.makeSound(Speaker::Sound::ERROR);
   }
   //while (keyboard.readInput() == -1)
@@ -122,8 +141,8 @@ void Controller::run()
   switch (keyboard.readInput())
   {
     case 0: testConnector(); break; // AUTO
-    case 1: initilize(); break; // MENU
-    case 2: moveMenu(-1);break; // LEFT
+    case 1: updateMenuY(); break; // MENU
+    case 2: moveMenu(-1); break; // LEFT
     case 3: moveMenu(1); break; // RIGT
     case 4: testConnector(); break; // POWER_BTN
   }
