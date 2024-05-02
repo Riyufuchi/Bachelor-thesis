@@ -28,8 +28,9 @@ Controller::Controller()
 
 Controller::~Controller()
 {
-  for (int i = 0; i < NUM_OF_INPUTS; i++)
-    delete menuIO[i];
+  for (int x = 0; x < 3; x++)
+    for (int i = 0; i < menus[x]; i++)
+      delete menuIO[x][i];
   for (int i = 0; i < NUM_OF_OUTPUS; i++)
     delete outputIO[i];
 }
