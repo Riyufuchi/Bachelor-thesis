@@ -22,8 +22,8 @@ Controller::Controller()
   this->menuIO[2][0] = new DeviceIO::Shimano();
   // Lenghts
   this->menus[0] = 4;
-  this->menus[1] = 0;
-  this->menus[2] = 0;
+  this->menus[1] = 1;
+  this->menus[2] = 1;
 }
 
 Controller::~Controller()
@@ -90,7 +90,7 @@ void Controller::clamp(char& dest, char add, char min, char max)
   if (dest >= max)
     dest = min;
   else if (dest < min)
-    dest = max;
+    dest = max - 1;
 }
 
 void Controller::updateMenuY()

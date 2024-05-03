@@ -1,0 +1,59 @@
+\documentclass[14pt,a4paper,titlepage]{scrreprt}
+
+% Language is defined in package module
+
+\usepackage {fontspec}
+\usepackage[hidelinks]{hyperref}
+\usepackage{pdfpages}
+
+%pro formátování čísel
+\usepackage{numprint}
+\npthousandsep{\,}\npthousandthpartsep{}\npdecimalsign{.}
+
+%Uprava (odstraneni modifikaci generovaneneho texttu tridou scratcl)
+\setkomafont{disposition}{\mdseries\rmfamily}
+
+\title{Návrh zařízení pro testování nabíjecích kabelů}
+\subtitle{Bakalářská práce}
+\author{Filip Šimek}
+\date{\today}
+
+%font
+\setmainfont{Times_New_Roman}
+
+%Rozestup řádku (1.5)
+\linespread{1.35}
+
+%Nastaveni okraje
+\usepackage[left=3.50cm, right=1.50cm, top=2.50cm, bottom=2.0cm]{geometry}
+
+\RedeclareSectionCommand[
+  beforeskip=.1cm,
+  afterskip=0.1cm
+]{chapter}
+
+%Justify text mode
+\tolerance=1
+\emergencystretch=\maxdimen
+\hyphenpenalty=10000
+\hbadness=10000
+
+% My modules
+\input{../../texModules/czech.tex}
+%\input{texModules/paragraph.tex}
+
+
+\begin{document}
+	\begin{titlepage}
+		\begin{center}
+			%\vspace*{2cm}
+			{Univerzita Pardubice}\\
+			{Fakulta Elektrotechniky a Informatiky} \\
+			\vfill
+			{Návrh zařízení pro testování nabíjecích kabelů}\\ {Bakalářská práce} \\
+			\vfill
+			{2024} \hfill {Filip Šimek} \\
+			\end{center}
+\end{titlepage}
+
+\end{document}

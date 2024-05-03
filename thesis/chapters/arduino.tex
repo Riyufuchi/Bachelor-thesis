@@ -11,6 +11,7 @@ Platforma Arduino se programuje pomocí C/C++ popřípadě Arduino verze C/C++. 
 \subsubsection{Co je to Ino file?}
 Ino file je soubor skatche pro Arduino, Arduino IDE ho využívá jako hlavní soubor, jen má místo metody main() metody setup() a loop().  Metoda setup() slouží pro přípravu zařízení a je automaticky volána při spuštění zaříze,  loop() pak obsahuje kód, který je vykonáván mikrokontrolérem, dokud není vypnut nebo se nevyskytne problém. Arduino se dá programovat i pomocí svého upraveného jazyka C++, proto koncovka .ino.
 
+\newpage
 \subsection{Controller}
 \lstinputlisting[language=C++, caption={Device controller}, label={lst:cpp_controller}]{../code/Controller.h}
 Controller je hlavní třída, ačkoliv je hlavní část je v code.ino \ref{lst:code}, třída Controller zpřehlední kód, jelikož se do ní nic nedoplňuje při kompilaci, jako do hlavního ino souboru.

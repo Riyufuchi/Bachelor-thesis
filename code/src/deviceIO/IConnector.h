@@ -5,6 +5,8 @@
 #include "stdint.h"
 #include "Arduino.h"
 
+#define _FORMAT "%s -> %s"
+
 namespace DeviceIO
 {
   enum Mode

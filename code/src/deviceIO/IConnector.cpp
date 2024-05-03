@@ -1,4 +1,3 @@
-#include "Arduino.h"
 #include "IConnector.h"
 
 using namespace DeviceIO;
@@ -71,16 +70,9 @@ void IConnector::reconnectTo(IConnector* connector)
   memset(connectionName, 0, sizeof(connectionName));
   const char* name2 = (theOntherOne == nullptr) ? "NONE" : theOntherOne->getName();
   if (mode == Mode::OUT)
-    sprintf(connectionName, "%s - %s", name, name2);
+    sprintf(connectionName, _FORMAT, name, name2);
   else
-    sprintf(connectionName, "%s - %s", name2, name);
-  
-  /*strcpy(connectionName, name);
-  strcat(connectionName, " - ");
-  if (theOntherOne == nullptr)
-    strcat(connectionName, "NONE");
-  else
-    strcat(connectionName, theOntherOne->getName());*/
+    sprintf(connectionName, _FORMAT, name2, name);
 }
 
 bool IConnector::startTest(char& errorCode)

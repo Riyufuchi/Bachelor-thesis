@@ -1,4 +1,4 @@
-\documentclass[12pt,a4paper,titlepage]{scrreprt}
+\documentclass[22pt,a4paper,titlepage]{scrreprt}
 
 % Language is defined in package module
 
@@ -13,23 +13,23 @@
 %Uprava (odstraneni modifikaci generovaneneho texttu tridou scratcl)
 \setkomafont{disposition}{\mdseries\rmfamily}
 
-\title{\vspace{6cm}Návrh zařízení pro testování nabíjecích kabelů}
+\title{Návrh zařízení pro testování nabíjecích kabelů}
 \subtitle{Bakalářská práce}
 \author{Filip Šimek}
 \date{\today}
 
 %font
-\setmainfont{DejaVu Serif}
+\setmainfont{Times_New_Roman}
 
 %Rozestup řádku (1.5)
 \linespread{1.35}
 
-%Nastaveni okraje (normostrana)
-\usepackage[left=3.00cm, right=3.00cm, top=2.0cm, bottom=2.50cm]{geometry}
+%Nastaveni okraje
+\usepackage[left=3.50cm, right=1.50cm, top=2.50cm, bottom=2.0cm]{geometry}
 
 \RedeclareSectionCommand[
   beforeskip=.1cm,
-  afterskip=1.0ex plus .2ex
+  afterskip=0.1cm
 ]{chapter}
 
 %Justify text mode
@@ -39,12 +39,21 @@
 \hbadness=10000
 
 % My modules
-\input{texModules/czech.tex}
-\input{texModules/paragraph.tex}
+\input{../../texModules/czech.tex}
+%\input{texModules/paragraph.tex}
 
 
 \begin{document}
-
-	\maketitle 
+	\begin{titlepage}
+		\begin{center}
+			%\vspace*{2cm}
+			{Univerzita Pardubice} \\
+			{Fakulta Elektrotechniky a Informatiky} \\
+			\vfill
+			{Bakalářská práce} \\
+			\vfill
+			{2024} \hfill {Filip Šimek} \\
+			\end{center}
+\end{titlepage}
 
 \end{document}
