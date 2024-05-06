@@ -13,14 +13,13 @@ Display::~Display()
 
 void Display::splitMessage(const char* message, char* part1, char* part2)
 {
-    int messageLength = strlen(message);
-    if (messageLength <= DISPLAY_WIDTH)
+    if (strlen(message) <= DISPLAY_WIDTH)
     {
         strcpy(part1, message);
         part2[0] = '\0';
         return;
     }
-    int partLength = DISPLAY_WIDTH - 1;
+    partLength = DISPLAY_WIDTH - 1;
     //while (message[partLength] != ' ' && partLength > 0) 
        // partLength--;
     strncpy(part1, message, partLength);
@@ -30,7 +29,7 @@ void Display::splitMessage(const char* message, char* part1, char* part2)
 
 char* Display::centerText(const char* text)
 {
-    int textLength = strlen(text);
+    textLength = strlen(text);
     if (textLength >= DISPLAY_WIDTH)
     {
       memset(rowBuffer, 0, sizeof(rowBuffer));
@@ -38,9 +37,9 @@ char* Display::centerText(const char* text)
       return text;
     }
 
-    int spacesToAdd = DISPLAY_WIDTH - textLength;
-    int spacesBefore = spacesToAdd / 2;
-    int spacesAfter = spacesToAdd - spacesBefore;
+    spacesToAdd = DISPLAY_WIDTH - textLength;
+    spacesBefore = spacesToAdd / 2;
+    spacesAfter = spacesToAdd - spacesBefore;
 
     memset(rowBuffer, ' ', spacesBefore);   // Fill spaces before text
     strcpy(rowBuffer + spacesBefore, text); // Copy text
@@ -53,7 +52,7 @@ bool Display::initialize()
 {
   lcd.begin(); // Inicializace LCD
   lcd.backlight(); // Zapnutí podsvícení
-  delay(1000);
+  delay(200);
   return true;
 }
 
@@ -67,4 +66,5 @@ void Display::setLine(int line)
     case 4: lcd.setCursor(0, 3); break;
     default: lcd.setCursor(0, 0); break;
   }
+  
 }

@@ -70,9 +70,9 @@ void IConnector::reconnectTo(IConnector* connector)
   memset(connectionName, 0, sizeof(connectionName));
   const char* name2 = (theOntherOne == nullptr) ? "NONE" : theOntherOne->getName();
   if (mode == Mode::OUT)
-    sprintf(connectionName, _FORMAT, name, name2);
+    snprintf(connectionName, sizeof(connectionName), _FORMAT, name, name2);
   else
-    sprintf(connectionName, _FORMAT, name2, name);
+    snprintf(connectionName, sizeof(connectionName), _FORMAT, name2, name);
 }
 
 bool IConnector::startTest(char& errorCode)

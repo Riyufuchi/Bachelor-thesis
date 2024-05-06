@@ -16,6 +16,9 @@ namespace Device
     private:
       LiquidCrystal_I2C lcd; // Declaration without initialization
       char rowBuffer[DISPLAY_WIDTH];
+      // "Buffers"
+      int textLength, partLength;
+      int spacesToAdd, spacesBefore, spacesAfter;
     public:
       Display();
       ~Display();

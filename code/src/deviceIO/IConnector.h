@@ -18,7 +18,7 @@ namespace DeviceIO
   {
     private:
       char name[19];
-      char connectionName[19];
+      char connectionName[20];
       virtual bool testConnector(char& errorCode);
     protected:
       char pinCheck;
