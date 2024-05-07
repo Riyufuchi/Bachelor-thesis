@@ -26,14 +26,14 @@ IConnector::~IConnector()
     delete[] pins;
 }
 
-bool IConnector::testConnector(char& errorCode)
+bool IConnector::testConnector(char resultArr[])
 {
   for (int i = 0; i < 3; i++)
   {
     pinCheck = 0;
     for (int pinID = 0; pinID < numberOfPins; pinID++)
     {
-      digitalWrite(theOntherOne->getPin(pinID), LOW);
+      digitalWrite(theOtherOne->getPin(pinID), LOW);
       if (digitalRead(pins[pinID]) == LOW)
       {
         pinCheck++;
@@ -41,11 +41,11 @@ bool IConnector::testConnector(char& errorCode)
       else
       {
         pinCheck = 0;
-        errorCode = pinID + 1;
-        break;
+        resultArr[pinID + 1] = pinID + 1;
       }
     }
   }
+  resultArr[0] = 0; // Test execution was success
   return (pinCheck == numberOfPins);
 }
 
@@ -55,7 +55,7 @@ void IConnector::setMode(Mode mode)
   if (pins == nullptr || numberOfPins == 0)
     return;
   uint8_t pinOption = 0;
-  switch (mode) 
+  switch (mode)
   {
     case IN: pinOption = INPUT_PULLUP; break;
     case OUT: pinOption = OUTPUT; break;
@@ -66,37 +66,52 @@ void IConnector::setMode(Mode mode)
 
 void IConnector::reconnectTo(IConnector* connector)
 {
-  theOntherOne = connector;
+  theOtherOne = connector;
   memset(connectionName, 0, sizeof(connectionName));
-  const char* name2 = (theOntherOne == nullptr) ? "NONE" : theOntherOne->getName();
+  const char* name2 = (theOtherOne == nullptr) ? "NONE" : theOtherOne->getName();
   if (mode == Mode::OUT)
     snprintf(connectionName, sizeof(connectionName), _FORMAT, name, name2);
   else
     snprintf(connectionName, sizeof(connectionName), _FORMAT, name2, name);
 }
 
-bool IConnector::startTest(char& errorCode)
+bool IConnector::startTest(char resultArr[])
 {
-  if (theOntherOne == nullptr)
+  if (theOtherOne == nullptr)
   {
-    errorCode = -2;
+    resultArr[0] = -2;
+    return false;
+  }
+  if (!(isReady() && theOtherOne->isReady()))
+  {
+    resultArr[0] = -5;
     return false;
   }
   if (mode == Mode::OUT) // This instance should be INPUT
   {
-    if (theOntherOne->mode == Mode::OUT)
+    if (theOtherOne->mode == Mode::OUT)
     {
-      errorCode = -4;
+      resultArr[0] = -4;
       return false;
     }
-    return theOntherOne->testConnector(errorCode);
+    return theOtherOne->testConnector(resultArr);
   }
-  if (theOntherOne->mode == Mode::IN) // The other one should be OUT in this case
+  if (theOtherOne->mode == Mode::IN) // The other one should be OUT in this case
   {
-    errorCode = -3;
+    resultArr[0] = -3;
     return false;
   }
-  return testConnector(errorCode);
+  return testConnector(resultArr);
+}
+
+bool IConnector::isReady()
+{
+  return (numberOfPins != 0 && pins != nullptr);
+}
+
+const char IConnector::getNumberOfPins()
+{
+  return numberOfPins;
 }
 
 char IConnector::getPin(const char ID)

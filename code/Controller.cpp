@@ -9,17 +9,17 @@ Controller::Controller()
   this->menuY = 0;
   // Outputs
   this->outputIO[0] = new DeviceIO::Xlr3(DeviceIO::Mode::OUT, nullptr);
-  this->outputIO[1] = new DeviceIO::Bosh();
-  this->outputIO[2] = new DeviceIO::Shimano();
-  // XLR
+  this->outputIO[1] = new DeviceIO::Xlr4();
+  this->outputIO[2] = new DeviceIO::Xlr5();
+  // XLR-3
   this->menuIO[0][0] = new DeviceIO::Xlr3(DeviceIO::Mode::IN, outputIO[0]);
   this->menuIO[0][1] = new DeviceIO::Jack21(DeviceIO::Mode::IN, outputIO[0]);
   this->menuIO[0][2] = new DeviceIO::Jack25(DeviceIO::Mode::IN, outputIO[0]);
   this->menuIO[0][3] = new DeviceIO::Rca(DeviceIO::Mode::IN, outputIO[0]);
-  // Bosh
-  this->menuIO[1][0] = new DeviceIO::Bosh();
-  // Shimano
-  this->menuIO[2][0] = new DeviceIO::Shimano();
+  // XLR-4
+  this->menuIO[1][0] = new DeviceIO::Bosh(DeviceIO::Mode::IN, outputIO[1]);
+  // XLR-5
+  this->menuIO[2][0] = new DeviceIO::Shimano(DeviceIO::Mode::IN, outputIO[2]);
   // Lenghts
   this->menus[0] = 4;
   this->menus[1] = 1;
@@ -105,10 +105,29 @@ void Controller::updateMenu()
   display.print(2, display.centerText(menuIO[menuY][selectedItem]->getConnectionName()));
 }
 
+// TODO: Center test result
+void Controller::printTestResults()
+{
+  index = 10;
+  display.clearLine(3);
+  display.clearLine(4);
+  display.print(3, "Bad pins: ");
+  for (int i = 1; i <= menuIO[menuY][selectedItem]->getNumberOfPins(); i++)
+  {
+    if (result[i] != -100)
+    {
+      display.print(index++, 3, (short)result[i]);
+      //index++;
+      display.print(index++, 3, ",");
+      //index++;
+    }
+  }
+}
+
 void Controller::testConnector()
 {
-  code = -100;
-  if (menuIO[menuY][selectedItem]->startTest(code))
+  memset(result, -100, sizeof(result));
+  if (menuIO[menuY][selectedItem]->startTest(result))
   {
     display.print(3, display.centerText("Connection: OK"));
     speaker.makeSound(Speaker::Sound::SUCCESS);
@@ -116,21 +135,18 @@ void Controller::testConnector()
   else
   {
     memset(errorBuffer, 0, sizeof(errorBuffer));
-    switch (code)
+    switch (result[0])
     {
       //case -1: strcat(errorBuffer, "Only input connector can be tested"); break;
       case -2: strcat(errorBuffer, "NullPtr to the other connector"); break;
       case -3: strcat(errorBuffer, "Input can't output current!"); break;
       case -4: strcat(errorBuffer, "Can't connect two outputs!"); break;
-      default: 
-        if (code > 0)
-          sprintf(errorBuffer, "Error at pin : %d", code);
-        else
-          sprintf(errorBuffer, "Unknown error code: %d", code);
-      break;
+      case -5: strcat(errorBuffer, "Connectors not implemented!"); break;
+      case 0: printTestResults(); goto skip; break;
+      default: sprintf(errorBuffer, "Unknown error code: %d", result[0]); break;
     }
     printErrorMessage(display.centerText(menuIO[menuY][selectedItem]->getConnectionName()), errorBuffer);
-    speaker.makeSound(Speaker::Sound::ERROR);
+    skip: speaker.makeSound(Speaker::Sound::ERROR);
   }
   //while (keyboard.readInput() == -1)
   //{}

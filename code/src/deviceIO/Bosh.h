@@ -9,8 +9,8 @@ namespace DeviceIO
   {
     public:
       Bosh();
+      Bosh(Mode mode, IConnector* output);
       ~Bosh();
-      bool testConnector(char& errorCode) override;
   };
 }
 #endif

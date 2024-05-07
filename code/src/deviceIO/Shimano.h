@@ -9,8 +9,8 @@ namespace DeviceIO
   {
     public:
     Shimano();
+    Shimano(Mode mode, IConnector* output);
     ~Shimano();
-    bool testConnector(char& errorCode) override;
   };
 }
 #endif

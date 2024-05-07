@@ -2,15 +2,14 @@
 
 using namespace DeviceIO;
 
-Shimano::Shimano() : IConnector("Shimano", Mode::OUT)
+Shimano::Shimano() : Shimano(Mode::IN, nullptr)
+{
+}
+
+Shimano::Shimano(Mode mode, IConnector* output) : IConnector("Shimano", nullptr, 3, output, mode)
 {
 }
 
 Shimano::~Shimano()
 {
-}
-
-bool Shimano::testConnector(char& errorCode)
-{
-  return true;
 }

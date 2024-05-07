@@ -11,7 +11,7 @@
 
 #include "src/deviceIO/IncludeAllIO.hpp"
 
-#define _VERSRION "Tester v0.37"
+#define _VERSRION "Tester v0.38"
 
 namespace Device
 {
@@ -31,7 +31,8 @@ namespace Device
       // Help attributes
       TimeUtils timeUtils;
       bool printDebugChar;
-      char code;
+      char index;
+      char result[7];
       char selectedItem;
       char menuY;
       char rowBuffer[Display::DISPLAY_WIDTH];
@@ -45,6 +46,7 @@ namespace Device
       void initDisplayText();
       void testConnector();
       void printErrorMessage(const char* what, const char* message);
+      void printTestResults();
     public:
       Controller();
       ~Controller();

@@ -3,6 +3,8 @@
 
 #include "IConnector.h"
 #include "Xlr3.h"
+#include "Xlr4.h"
+#include "Xlr5.h"
 #include "Jack21.h"
 #include "Jack25.h"
 #include "Bosh.h"

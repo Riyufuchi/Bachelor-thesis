@@ -25,7 +25,8 @@ namespace Device
       bool initialize() override;
       // Methods
       void setLine(int line); // Sets cursor to given line
-      void Display::splitMessage(const char* message, char* part1, char* part2);
+      void splitMessage(const char* message, char* part1, char* part2);
+      void clearLine(int line);
       //Functions
       char* centerText(const char* text);
       // Templates

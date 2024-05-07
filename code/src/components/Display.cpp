@@ -48,6 +48,12 @@ char* Display::centerText(const char* text)
     return rowBuffer;
 }
 
+void Display::clearLine(int line)
+{
+  for (int i = 0; i < Display::DISPLAY_WIDTH; i++)
+    print(i, line, " ");
+}
+
 bool Display::initialize()
 {
   lcd.begin(); // Inicializace LCD
@@ -66,5 +72,4 @@ void Display::setLine(int line)
     case 4: lcd.setCursor(0, 3); break;
     default: lcd.setCursor(0, 0); break;
   }
-  
 }
