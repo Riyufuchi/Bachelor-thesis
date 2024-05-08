@@ -1,3 +1,4 @@
+
 #include "Arduino.h"
 #include "Controller.h"
 
@@ -105,21 +106,17 @@ void Controller::updateMenu()
   display.print(2, display.centerText(menuIO[menuY][selectedItem]->getConnectionName()));
 }
 
-// TODO: Center test result
 void Controller::printTestResults()
 {
-  index = 10;
-  display.clearLine(3);
-  display.clearLine(4);
-  display.print(3, "Bad pins: ");
+  memset(errorBuffer, 0, sizeof(errorBuffer));
+  strcpy(errorBuffer, "Bad pins: ");
   for (int i = 1; i <= menuIO[menuY][selectedItem]->getNumberOfPins(); i++)
   {
-    if (result[i] != -100)
+    if (result[i] != -100) // -100 is default value in the array
     {
-      display.print(index++, 3, (short)result[i]);
-      //index++;
-      display.print(index++, 3, ",");
-      //index++;
+      sprintf(errorPart2, "%d", result[i]);
+      strcat(errorBuffer, errorPart2);
+      strcat(errorBuffer, ",");
     }
   }
 }
@@ -142,11 +139,11 @@ void Controller::testConnector()
       case -3: strcat(errorBuffer, "Input can't output current!"); break;
       case -4: strcat(errorBuffer, "Can't connect two outputs!"); break;
       case -5: strcat(errorBuffer, "Connectors not implemented!"); break;
-      case 0: printTestResults(); goto skip; break;
+      case 0: printTestResults(); break;
       default: sprintf(errorBuffer, "Unknown error code: %d", result[0]); break;
     }
     printErrorMessage(display.centerText(menuIO[menuY][selectedItem]->getConnectionName()), errorBuffer);
-    skip: speaker.makeSound(Speaker::Sound::ERROR);
+    speaker.makeSound(Speaker::Sound::ERROR);
   }
   //while (keyboard.readInput() == -1)
   //{}

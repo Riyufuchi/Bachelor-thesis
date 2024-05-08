@@ -11,7 +11,7 @@
 
 #include "src/deviceIO/IncludeAllIO.hpp"
 
-#define _VERSRION "Tester v0.38"
+#define _VERSRION "Tester v0.39"
 
 namespace Device
 {
@@ -31,8 +31,8 @@ namespace Device
       // Help attributes
       TimeUtils timeUtils;
       bool printDebugChar;
-      char index;
-      char result[7];
+      //char index;
+      char result[6]; // Max 5 pins on connector
       char selectedItem;
       char menuY;
       char rowBuffer[Display::DISPLAY_WIDTH];
