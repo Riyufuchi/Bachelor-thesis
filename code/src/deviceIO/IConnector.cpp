@@ -6,11 +6,11 @@ IConnector::IConnector(const char* name, Mode mode) : IConnector(name, nullptr, 
 {
 }
 
-IConnector::IConnector(const char* name, char pins[], char numberOfPinsm, Mode mode) : IConnector(name, pins, numberOfPins, nullptr, mode)
+IConnector::IConnector(const char* name, char pins[], char numberOfPinsm, Mode mode) : IConnector(name, pins, numberOfPins, mode, nullptr)
 {
 }
 
-IConnector::IConnector(const char* name, char pins[], char numberOfPins, IConnector* con, Mode mode)
+IConnector::IConnector(const char* name, char pins[], char numberOfPins, Mode mode, IConnector* con)
 {
   strncpy(this->name, name, sizeof(this->name));
   this->name[sizeof(this->name) - 1] = '\0';
@@ -104,27 +104,27 @@ bool IConnector::startTest(char resultArr[])
   return testConnector(resultArr);
 }
 
-bool IConnector::isReady()
+bool IConnector::isReady() const
 {
   return (numberOfPins != 0 && pins != nullptr);
 }
 
-const char IConnector::getNumberOfPins()
+const char IConnector::getNumberOfPins() const
 {
   return numberOfPins;
 }
 
-char IConnector::getPin(const char ID)
+const char IConnector::getPin(const char ID) const
 {
   return pins[ID];
 }
 
-const char* IConnector::getConnectionName()
+const char* IConnector::getConnectionName() const
 {
   return connectionName;
 }
 
-const char* IConnector::getName()
+const char* IConnector::getName() const
 {
   return name;
 }

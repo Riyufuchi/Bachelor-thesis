@@ -1,4 +1,3 @@
-
 #include "Arduino.h"
 #include "Controller.h"
 
@@ -109,7 +108,7 @@ void Controller::updateMenu()
 void Controller::printTestResults()
 {
   memset(errorBuffer, 0, sizeof(errorBuffer));
-  strcpy(errorBuffer, "Bad pins: ");
+  strcpy(errorBuffer, "Error at pins: ");
   for (int i = 1; i <= menuIO[menuY][selectedItem]->getNumberOfPins(); i++)
   {
     if (result[i] != -100) // -100 is default value in the array
@@ -119,6 +118,7 @@ void Controller::printTestResults()
       strcat(errorBuffer, ",");
     }
   }
+  errorBuffer[strlen(errorBuffer) - 1] = '\0'; // Removes last ','
 }
 
 void Controller::testConnector()
@@ -126,7 +126,7 @@ void Controller::testConnector()
   memset(result, -100, sizeof(result));
   if (menuIO[menuY][selectedItem]->startTest(result))
   {
-    display.print(3, display.centerText("Connection: OK"));
+    display.print(3, display.centerText("Connection is OK"));
     speaker.makeSound(Speaker::Sound::SUCCESS);
   }
   else

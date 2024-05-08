@@ -29,17 +29,17 @@ namespace DeviceIO
     public:
       IConnector(const char* name, Mode mode);
       IConnector(const char* name, char pins[], char numberOfPins, Mode mode);
-      IConnector(const char* name, char pins[], char numberOfPins, IConnector* con, Mode mode);
+      IConnector(const char* name, char pins[], char numberOfPins, Mode mode, IConnector* con);
       virtual ~IConnector();
       // Utils
       bool startTest(char resultArr[]);
       void reconnectTo(IConnector* connector);
-      bool isReady();
+      bool isReady() const;
       // Getters
-      const char* getName();
-      const char* getConnectionName();
-      const char getNumberOfPins();
-      char getPin(const char ID);
+      const char* getName() const;
+      const char* getConnectionName() const;
+      const char getNumberOfPins() const;
+      const char getPin(const char ID) const;
       // Setters
       void setMode(Mode mode);
   };
