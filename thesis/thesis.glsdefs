@@ -1,0 +1,84 @@
+\glsdefs@newdocentry{keyword1}%
+{%
+name={Keyword 1},%
+sort={Keyword 1},%
+type={main},%
+first={Keyword 1},%
+firstplural={Keyword 1s},%
+text={Keyword 1},%
+plural={Keyword 1s},%
+description={Description of Keyword 1},%
+descriptionplural={Description of Keyword 1},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{keyword2}%
+{%
+name={Keyword 2},%
+sort={Keyword 2},%
+type={main},%
+first={Keyword 2},%
+firstplural={Keyword 2s},%
+text={Keyword 2},%
+plural={Keyword 2s},%
+description={Description of Keyword 2},%
+descriptionplural={Description of Keyword 2},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{ard}%
+{%
+name={Arduino},%
+sort={Arduino},%
+type={main},%
+first={Arduino},%
+firstplural={Arduinos},%
+text={Arduino},%
+plural={Arduinos},%
+description={IoT device},%
+descriptionplural={IoT device},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+

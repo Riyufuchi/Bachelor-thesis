@@ -28,8 +28,8 @@ namespace DeviceIO
       char numberOfPins;
     public:
       IConnector(const char* name, Mode mode);
-      IConnector(const char* name, char pins[], char numberOfPins, Mode mode);
-      IConnector(const char* name, char pins[], char numberOfPins, Mode mode, IConnector* con);
+      //IConnector(const char* name, char pins[], char numberOfPins, Mode mode);
+      IConnector(const char* name, char pins[], char numberOfPins, Mode mode, IConnector* con = nullptr);
       virtual ~IConnector();
       // Utils
       bool startTest(char resultArr[]);

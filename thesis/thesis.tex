@@ -4,7 +4,7 @@
 
 \usepackage {fontspec}
 \usepackage[hidelinks]{hyperref}
-\usepackage{pdfpages}
+\usepackage{pdfpages} % For inclusion of PDFs
 
 \usepackage{tabulary}
 \usepackage{emoji}
@@ -46,14 +46,20 @@
 \hyphenpenalty=10000
 \hbadness=10000
 
+% WIP modules
+\usepackage{glossaries}
+
+
 % My modules
 \input{texModules/czech.tex}
 \input{texModules/paragraph.tex}
 \input{texModules/cppListing.tex}
 \input{texModules/table.tex}
+\input{texModules/debug-border.tex}
 
 % My commands
 \newcommand{\ardMeg}{Arduino Mega 2560}
+\input{chapters/keywords.tex}
 
 \begin{document}
 
@@ -77,7 +83,9 @@
 	
 	\chapter{Předmluva}
 	\section {Úvod}
-	Téma mojí bakalářské práce je “Návrh zařízení pro testování nabíjecích kabelů”. Toto zařízení bude řízeno jednodeskovým počítačem Arduino (\ardMeg) a bude se testovat a následně používat v reálném prostředí. Tudíž má má bakalářská práce i praktické využití a není jen teoretická. Ovšem součástí je teoretická část o IoT - Internet of Things neboli Internet věcí.
+	Téma mojí bakalářské práce je “Návrh zařízení pro testování nabíjecích kabelů”. Toto zařízení bude řízeno jednodeskovým počítačem Arduino (\ardMeg) a bude se testovat a následně používat v reálném prostředí. Tudíž má má bakalářská práce i praktické využití a není jen teoretická. Ovšem součástí je teoretická část o IoT - Internet of Things neboli Internet věcí. \gls{ard}
+	
+	\printglossary
 	
 	\begin{figure}[h!]
 		\centering

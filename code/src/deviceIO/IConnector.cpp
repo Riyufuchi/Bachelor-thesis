@@ -6,9 +6,8 @@ IConnector::IConnector(const char* name, Mode mode) : IConnector(name, nullptr, 
 {
 }
 
-IConnector::IConnector(const char* name, char pins[], char numberOfPinsm, Mode mode) : IConnector(name, pins, numberOfPins, mode, nullptr)
-{
-}
+//IConnector::IConnector(const char* name, char pins[], char numberOfPinsm, Mode mode) : IConnector(name, pins, numberOfPins, mode, nullptr)
+//{}
 
 IConnector::IConnector(const char* name, char pins[], char numberOfPins, Mode mode, IConnector* con)
 {

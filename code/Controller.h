@@ -11,7 +11,7 @@
 
 #include "src/deviceIO/IncludeAllIO.hpp"
 
-#define _VERSRION "Tester v0.40"
+#define _VERSRION "Tester v0.41"
 
 namespace Device
 {

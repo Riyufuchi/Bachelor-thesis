@@ -52,14 +52,14 @@ void Controller::initDisplayText()
 void Controller::initilize()
 {
   bool checks[3];
+  checks[2] = speaker.initialize();
   checks[0] = display.initialize();
   if (!checks[0])
   {
-    checks[2] = speaker.initialize();
     if(!checks[2])
       exit(1);
     speaker.makeSound(Speaker::Sound::BOOT);
-    speaker.makeSound(Speaker::Sound::ERROR);
+    speaker.makeSound(Speaker::Sound::SOS);
   }
   initDisplayText();
   checks[1] = keyboard.initialize();
@@ -68,14 +68,13 @@ void Controller::initilize()
     printErrorMessage("Keyboard", "Failed init or stucked key");
     exit(1);
   }
-  checks[2] = speaker.initialize();
   if(!checks[2])
   {
     printErrorMessage("Speaker", "Not connected!");
     exit(1);
   }
-  selectedItem = 0;
   updateMenu();
+  speaker.makeSound(Speaker::Sound::BOOT);
 }
 
 void Controller::moveMenu(char right)
