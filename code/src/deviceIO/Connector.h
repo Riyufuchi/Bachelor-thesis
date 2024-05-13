@@ -1,5 +1,5 @@
-#ifndef _ICONNECTOR_H_
-#define _ICONNECTOR_H_
+#ifndef _CONNECTOR_H_
+#define _CONNECTOR_H_
 
 #include <string.h>
 #include "stdint.h"
@@ -14,7 +14,7 @@ namespace DeviceIO
     IN,
     OUT
   };
-  class IConnector
+  class Connector
   {
     private:
       char name[19];
@@ -23,17 +23,16 @@ namespace DeviceIO
     protected:
       char pinCheck;
       Mode mode;
-      IConnector* theOtherOne;
+      Connector* theOtherOne;
       char* pins;
       char numberOfPins;
     public:
-      IConnector(const char* name, Mode mode);
-      //IConnector(const char* name, char pins[], char numberOfPins, Mode mode);
-      IConnector(const char* name, char pins[], char numberOfPins, Mode mode, IConnector* con = nullptr);
-      virtual ~IConnector();
+      Connector(const char* name, Mode mode);
+      Connector(const char* name, char pins[], char numberOfPins, Mode mode, Connector* con = nullptr);
+      virtual ~Connector();
       // Utils
       bool startTest(char resultArr[]);
-      void reconnectTo(IConnector* connector);
+      void reconnectTo(Connector* connector);
       bool isReady() const;
       // Getters
       const char* getName() const;

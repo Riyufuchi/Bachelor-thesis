@@ -1,15 +1,15 @@
 #ifndef _SHIMANO_H_
 #define _SHIMANO_H_
 
-#include "IConnector.h"
+#include "Connector.h"
 
 namespace DeviceIO
 {
-  class Shimano : public IConnector
+  class Shimano : public Connector
   {
     public:
     Shimano();
-    Shimano(Mode mode, IConnector* output);
+    Shimano(Mode mode, Connector* output);
     ~Shimano();
   };
 }

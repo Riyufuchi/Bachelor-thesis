@@ -12,7 +12,7 @@ namespace Device
   {
     private:
       char plusPin = 36;
-      const short SUCCESS_INTERVAL = 125;
+      const short DEFAULT_INTERVAL = 125;
       const short BOOT_INTERVAL = 100;
       SignalSOS sos;
     public:

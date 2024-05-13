@@ -8,7 +8,7 @@ Xlr4::Xlr4() : Xlr4(Mode::OUT, nullptr)
 
 }
 
-Xlr4::Xlr4(Mode mode, IConnector* output) : IConnector("XLR-4", nullptr, 4, mode, output)
+Xlr4::Xlr4(Mode mode, Connector* output) : Connector("XLR-4", nullptr, 4, mode, output)
 {
 }
 

@@ -6,7 +6,7 @@ Bosh::Bosh() : Bosh(Mode::IN, nullptr)
 {
 }
 
-Bosh::Bosh(Mode mode, IConnector* output) : IConnector("Bosh", nullptr, 3, mode, output)
+Bosh::Bosh(Mode mode, Connector* output) : Connector("Bosh", nullptr, 3, mode, output)
 {
 }
 

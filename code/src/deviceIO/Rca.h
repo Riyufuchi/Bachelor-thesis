@@ -1,15 +1,15 @@
 #ifndef _RCA_H_
 #define _RCA_H_
 
-#include "IConnector.h"
+#include "Connector.h"
 
 namespace DeviceIO
 {
-  class Rca : public IConnector
+  class Rca : public Connector
   {
     public:
       Rca();
-      Rca(Mode mode, IConnector* otherOne);
+      Rca(Mode mode, Connector* otherOne);
       ~Rca();
   };
 }

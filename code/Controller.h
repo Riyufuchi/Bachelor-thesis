@@ -11,7 +11,7 @@
 
 #include "src/deviceIO/IncludeAllIO.hpp"
 
-#define _VERSRION "Tester v0.41"
+#define _VERSRION "Tester v0.42"
 
 namespace Device
 {
@@ -25,8 +25,8 @@ namespace Device
       // Test IO
       static const char NUM_OF_INPUTS = 4;
       static const char NUM_OF_OUTPUS = 3;
-      DeviceIO::IConnector* menuIO[3][NUM_OF_INPUTS];
-      DeviceIO::IConnector* outputIO[NUM_OF_OUTPUS];
+      DeviceIO::Connector* menuIO[3][NUM_OF_INPUTS];
+      DeviceIO::Connector* outputIO[NUM_OF_OUTPUS];
       char menus[3];
       // Help attributes
       TimeUtils timeUtils;

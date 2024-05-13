@@ -1,15 +1,15 @@
 #ifndef _BOSH_H_
 #define _BOSH_H_
 
-#include "IConnector.h"
+#include "Connector.h"
 
 namespace DeviceIO
 {
-  class Bosh : public IConnector
+  class Bosh : public Connector
   {
     public:
       Bosh();
-      Bosh(Mode mode, IConnector* output);
+      Bosh(Mode mode, Connector* output);
       ~Bosh();
   };
 }

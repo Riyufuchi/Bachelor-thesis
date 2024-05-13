@@ -3,12 +3,12 @@
 
 using namespace DeviceIO;
 
-Xlr3::Xlr3(IConnector* output) : Xlr3(Mode::IN, output)
+Xlr3::Xlr3(Connector* output) : Xlr3(Mode::IN, output)
 {
 
 }
 
-Xlr3::Xlr3(Mode mode, IConnector* output) : IConnector("XLR-3", nullptr, 2, mode, output)
+Xlr3::Xlr3(Mode mode, Connector* output) : Connector("XLR-3", nullptr, 2, mode, output)
 {
   switch (mode)
   {

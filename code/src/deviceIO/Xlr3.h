@@ -3,15 +3,15 @@
 
 #include <Arduino.h>
 
-#include "IConnector.h"
+#include "Connector.h"
 
 namespace DeviceIO
 {
-  class Xlr3 : public IConnector
+  class Xlr3 : public Connector
   {
     public:
-      Xlr3(IConnector* output);
-      Xlr3(Mode mode, IConnector* output);
+      Xlr3(Connector* output);
+      Xlr3(Mode mode, Connector* output);
       ~Xlr3();
   };
 }

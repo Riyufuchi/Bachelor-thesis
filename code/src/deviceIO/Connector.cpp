@@ -1,15 +1,12 @@
-#include "IConnector.h"
+#include "Connector.h"
 
 using namespace DeviceIO;
 
-IConnector::IConnector(const char* name, Mode mode) : IConnector(name, nullptr, 0, mode)
+Connector::Connector(const char* name, Mode mode) : Connector(name, nullptr, 0, mode)
 {
 }
 
-//IConnector::IConnector(const char* name, char pins[], char numberOfPinsm, Mode mode) : IConnector(name, pins, numberOfPins, mode, nullptr)
-//{}
-
-IConnector::IConnector(const char* name, char pins[], char numberOfPins, Mode mode, IConnector* con)
+Connector::Connector(const char* name, char pins[], char numberOfPins, Mode mode, Connector* con)
 {
   strncpy(this->name, name, sizeof(this->name));
   this->name[sizeof(this->name) - 1] = '\0';
@@ -19,13 +16,13 @@ IConnector::IConnector(const char* name, char pins[], char numberOfPins, Mode mo
   setMode(mode);
 }
 
-IConnector::~IConnector()
+Connector::~Connector()
 {
   if (pins != nullptr)
     delete[] pins;
 }
 
-bool IConnector::testConnector(char resultArr[])
+bool Connector::testConnector(char resultArr[])
 {
   for (int i = 0; i < 3; i++)
   {
@@ -48,7 +45,7 @@ bool IConnector::testConnector(char resultArr[])
   return (pinCheck == numberOfPins);
 }
 
-void IConnector::setMode(Mode mode)
+void Connector::setMode(Mode mode)
 {
   this->mode = mode;
   if (pins == nullptr || numberOfPins == 0)
@@ -63,7 +60,7 @@ void IConnector::setMode(Mode mode)
     pinMode(pins[i], pinOption);   
 }
 
-void IConnector::reconnectTo(IConnector* connector)
+void Connector::reconnectTo(Connector* connector)
 {
   theOtherOne = connector;
   memset(connectionName, 0, sizeof(connectionName));
@@ -74,7 +71,7 @@ void IConnector::reconnectTo(IConnector* connector)
     snprintf(connectionName, sizeof(connectionName), _FORMAT, name2, name);
 }
 
-bool IConnector::startTest(char resultArr[])
+bool Connector::startTest(char resultArr[])
 {
   if (theOtherOne == nullptr)
   {
@@ -103,27 +100,27 @@ bool IConnector::startTest(char resultArr[])
   return testConnector(resultArr);
 }
 
-bool IConnector::isReady() const
+bool Connector::isReady() const
 {
   return (numberOfPins != 0 && pins != nullptr);
 }
 
-const char IConnector::getNumberOfPins() const
+const char Connector::getNumberOfPins() const
 {
   return numberOfPins;
 }
 
-const char IConnector::getPin(const char ID) const
+const char Connector::getPin(const char ID) const
 {
   return pins[ID];
 }
 
-const char* IConnector::getConnectionName() const
+const char* Connector::getConnectionName() const
 {
   return connectionName;
 }
 
-const char* IConnector::getName() const
+const char* Connector::getName() const
 {
   return name;
 }

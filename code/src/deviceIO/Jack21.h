@@ -1,15 +1,15 @@
 #ifndef _JACK_21_H_
 #define _JACK_21_H_
 
-#include "IConnector.h"
+#include "Connector.h"
 
 namespace DeviceIO
 {
-  class Jack21 : public IConnector
+  class Jack21 : public Connector
   {
     public:
       Jack21();
-      Jack21(Mode mode, IConnector* otherOne);
+      Jack21(Mode mode, Connector* otherOne);
       ~Jack21();
   };
 }
