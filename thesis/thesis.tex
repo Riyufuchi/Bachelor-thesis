@@ -30,14 +30,14 @@
 
 %Nastaveni okraje (normostrana)
 %\usepackage[left=3.00cm, right=3.00cm, top=2.0cm, bottom=2.50cm]{geometry}
-\usepackage[left=3.50cm, right=1.50cm, top=2.0cm, bottom=2.50cm]{geometry}
+\usepackage[a4paper, left=3.50cm, right=1.50cm, top=2.50cm, bottom=2.50cm]{geometry}
 
 %\usepackage[left=2.25cm, right=2.25cm, top=1.75cm, bottom=1.75cm, includeheadfoot]{geometry}
 %\setlength{\parindent}{0pt} % Odstraní odsazení prvního odstavce každé sekce
 
 \RedeclareSectionCommand[
   beforeskip=.1cm,
-  afterskip=1.0ex plus .2ex
+  afterskip= .1cm %1.0ex plus .2ex
 ]{chapter}
 
 %Justify text mode
@@ -55,7 +55,6 @@
 \input{texModules/paragraph.tex}
 \input{texModules/cppListing.tex}
 \input{texModules/table.tex}
-\input{texModules/debug-border.tex}
 
 % My commands
 \newcommand{\ardMeg}{Arduino Mega 2560}
@@ -95,7 +94,7 @@
 	\end{figure}
 	
 	\chapter{IoT - Internet věcí}
-	\input{IoT.tex}
+	\input{chapters/IoT.tex}
 	
 	\chapter{Návrh zařízení}
 	\section{Účel a využití}
@@ -119,7 +118,7 @@
 	\addcontentsline{toc}{section}{Seznam obrázků}
 	\listoftables
 	\addcontentsline{toc}{section}{Seznam tabulek}
-	\lstlistoflistings
-	\addcontentsline{toc}{section}{Seznam zdrojových kódů} % Add the list of listings to the TOC as a section
+	%\lstlistoflistings
+	%\addcontentsline{toc}{section}{Seznam zdrojových kódů} % Add the list of listings to the TOC as a section
 
 \end{document}
