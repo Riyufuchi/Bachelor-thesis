@@ -1,0 +1,19 @@
+%!TeX root =  ../thesis.tex
+
+\section{UML}
+
+\section{Klíčové třídy}
+
+\newpage
+\subsection{Controller}
+\lstinputlisting[language=C++, caption={Device controller}, label={lst:cpp_controller}]{../code/Controller.h}
+Controller je hlavní třída, ačkoliv je hlavní část je v code.ino \ref{lst:code}, třída Controller zpřehlední kód, jelikož se do ní nic nedoplňuje při kompilaci, jako do hlavního ino souboru.
+
+\newpage
+\subsection{Connector}
+\lstinputlisting[language=C++, caption={Connector}, label={lst:cpp_Connector}, style=riyuCpp]{../code/src/deviceIO/Connector.h}
+Toto je společný předek pro jednotlivé konektory, který nám usnadní manipulaci s jeho potomky, tedy již specifickými konektory.
+
+\newpage
+\subsection{IComponent}
+\lstinputlisting[language=C++, caption={IComponent}, label={lst:cpp_icomp}]{../code/src/components/IComponent.h}

@@ -69,7 +69,7 @@
 
 \begin{document}
 
-	\includepdf{specialPages/frontPage/frontPage.pdf} %Desky
+	%\includepdf{specialPages/frontPage/frontPage.pdf} %Desky
 	\includepdf{specialPages/titlePage/titlePage.pdf} %\maketitle 
 	\includepdf[pages={1-2}]{specialPages/zadaniBP.pdf}
 	
@@ -96,7 +96,7 @@
 
 	
 	\chapter{Úvod}
-	Téma mojí bakalářské práce je “Návrh zařízení pro testování nabíjecích kabelů”. Toto zařízení bude řízeno jednodeskovým počítačem Arduino (\ardMeg) a bude se testovat a následně používat v reálném prostředí. Tudíž má má bakalářská práce i praktické využití a není jen teoretická. Ovšem součástí je teoretická část o IoT - Internet of Things neboli Internet věcí. \gls{ard} \gls{ard2} Arduino
+	Téma mojí bakalářské práce je “Návrh zařízení pro testování nabíjecích kabelů”. Toto zařízení bude řízeno jednodeskovým počítačem Arduino (\ardMeg) a bude se testovat a následně používat v reálném prostředí. Tudíž má má bakalářská práce i praktické využití a není jen teoretická. Ovšem součástí je teoretická část o IoT - Internet of Things neboli Internet věcí. \gls{ard}
 	
 	
 	\chapter{IoT - Internet věcí}
@@ -105,14 +105,17 @@
 	
 	\chapter{Použitý HW a SW}
 	\input{chapters/arduino.tex}
-	
-	\chapter{Návrh testeru kabelů – Hardwarová část}
 	\input{chapters/komponenty.tex}
 	
+	\chapter{Návrh testeru kabelů – Hardwarová část}
+	%\input{chapters/komponenty.tex}
+	
 	\chapter{Návrh testeru kabelů – Softwarová část}
-	\input{chapters/kabely.tex}
+	\input{chapters/firmware.tex}
+	
 	
 	\chapter{Testování}
+	\input{chapters/kabely.tex}
 	
 	\chapter{Závěr}
 	Závěrem je že C++ > C\#.

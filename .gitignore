@@ -12,6 +12,7 @@
 *.syncctx
 *.gldefs
 *.ilg
+*.gls
 bin
 
 # C++
