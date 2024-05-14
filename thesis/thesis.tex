@@ -16,10 +16,19 @@
 %Uprava (odstraneni modifikaci generovaneneho texttu tridou scratcl)
 \setkomafont{disposition}{\mdseries\rmfamily}
 
-%\title{\vspace{6cm}Návrh zařízení pro testování nabíjecích kabelů}
-%\subtitle{Bakalářská práce}
-%\author{Filip Šimek}
-%\date{\today}
+\title{\vspace{6cm}Návrh zařízení pro testování nabíjecích kabelů}
+\subtitle{Bakalářská práce}
+\author{Filip Šimek}
+\date{\today}
+
+\hypersetup{
+	pdfauthor={Filip Šimek},%
+	pdftitle={Návrh zařízení pro testování nabíjecích kabelů},%
+	pdfsubject={Bakalářská práce},%
+	%pdfkeywords={one, two},%
+	%pdfproducer={LaTeX},%
+	pdfcreator={LuaLaTeX}
+}
 
 %font
 %\setmainfont{DejaVu Serif}
@@ -58,7 +67,7 @@
 
 % My commands
 \newcommand{\ardMeg}{Arduino Mega 2560}
-\input{chapters/keywords.tex}
+\input{chapters/introduction/keywords.tex}
 
 \newglossaryentry{ard2}{
     name={Arduino2},
@@ -73,9 +82,9 @@
 	\includepdf{specialPages/titlePage/titlePage.pdf} %\maketitle 
 	\includepdf[pages={1-2}]{specialPages/zadaniBP.pdf}
 	
-	\input{chapters/authorship.tex}
+	\input{chapters/introduction/authorship.tex}
 	\thispagestyle{empty}
-	\input{chapters/thanks.tex}
+	\input{chapters/introduction/thanks.tex}
 	\thispagestyle{empty}
 	
 	\setcounter{page}{5}
@@ -100,19 +109,19 @@
 	
 	
 	\chapter{IoT - Internet věcí}
-	\input{chapters/IoT.tex}
+	\input{chapters/iot/IoT.tex}
 	
 	
 	\chapter{Použitý HW a SW}
-	\input{chapters/arduino.tex}
-	\input{chapters/komponenty.tex}
-	\input{chapters/kabely.tex}
+	\input{chapters/usedHW/arduino.tex}
+	\input{chapters/usedHW/display.tex}
+	\input{chapters/usedHW/keyboard.tex}
 	
 	\chapter{Návrh testeru kabelů – Hardwarová část}
-	\input{chapters/hardware.tex}
+	\input{chapters/designHW/hardware.tex}
 	
 	\chapter{Návrh testeru kabelů – Softwarová část}
-	\input{chapters/firmware.tex}
+	\input{chapters/designSW/firmware.tex}
 	
 	
 	\chapter{Testování}
