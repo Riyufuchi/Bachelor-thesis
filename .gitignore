@@ -9,7 +9,9 @@
 *.toc
 *.glo
 *.ist
-
+*.syncctx
+*.gldefs
+*.ilg
 bin
 
 # C++

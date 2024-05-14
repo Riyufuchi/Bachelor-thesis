@@ -16,10 +16,10 @@
 %Uprava (odstraneni modifikaci generovaneneho texttu tridou scratcl)
 \setkomafont{disposition}{\mdseries\rmfamily}
 
-\title{\vspace{6cm}Návrh zařízení pro testování nabíjecích kabelů}
-\subtitle{Bakalářská práce}
-\author{Filip Šimek}
-\date{\today}
+%\title{\vspace{6cm}Návrh zařízení pro testování nabíjecích kabelů}
+%\subtitle{Bakalářská práce}
+%\author{Filip Šimek}
+%\date{\today}
 
 %font
 %\setmainfont{DejaVu Serif}
@@ -60,64 +60,67 @@
 \newcommand{\ardMeg}{Arduino Mega 2560}
 \input{chapters/keywords.tex}
 
+\newglossaryentry{ard2}{
+    name={Arduino2},
+    description={IoT device2}
+}
+
+\makeglossaries
+
 \begin{document}
 
 	\includepdf{specialPages/frontPage/frontPage.pdf} %Desky
-	%\maketitle 
-	\includepdf{specialPages/titlePage/titlePage.pdf}
-	\includepdf[pages={1-2}]{zadaniBP.pdf}
-
-	\setcounter{page}{6}
+	\includepdf{specialPages/titlePage/titlePage.pdf} %\maketitle 
+	\includepdf[pages={1-2}]{specialPages/zadaniBP.pdf}
 	
+	\input{chapters/authorship.tex}
+	\thispagestyle{empty}
+	\input{chapters/thanks.tex}
+	\thispagestyle{empty}
+	
+	\setcounter{page}{5}
+	\printglossary
+	\thispagestyle{empty}
+	
+	\listoffigures
+	\addcontentsline{toc}{section}{Seznam obrázků}
+	\thispagestyle{empty}
+	\listoftables
+	\addcontentsline{toc}{section}{Seznam tabulek}
+	\thispagestyle{empty}
+
 	\addtocontents{toc}{\protect\pagestyle{empty}}
 	\addtocontents{toc}{\protect\thispagestyle{empty}}
 	\tableofcontents
 	\thispagestyle{empty}
+
 	
-	%\chapter{Kapitola}
-	%\section {Sekce}
-	%\subsection {SubSekce}
-	%\subsubsection {SubSubSekce}
-	%\paragraph{Odstavec}
+	\chapter{Úvod}
+	Téma mojí bakalářské práce je “Návrh zařízení pro testování nabíjecích kabelů”. Toto zařízení bude řízeno jednodeskovým počítačem Arduino (\ardMeg) a bude se testovat a následně používat v reálném prostředí. Tudíž má má bakalářská práce i praktické využití a není jen teoretická. Ovšem součástí je teoretická část o IoT - Internet of Things neboli Internet věcí. \gls{ard} \gls{ard2} Arduino
 	
-	\chapter{Předmluva}
-	\section {Úvod}
-	Téma mojí bakalářské práce je “Návrh zařízení pro testování nabíjecích kabelů”. Toto zařízení bude řízeno jednodeskovým počítačem Arduino (\ardMeg) a bude se testovat a následně používat v reálném prostředí. Tudíž má má bakalářská práce i praktické využití a není jen teoretická. Ovšem součástí je teoretická část o IoT - Internet of Things neboli Internet věcí. \gls{ard}
-	
-	\printglossary
-	
-	\begin{figure}[h!]
-		\centering
-		\includegraphics[width=\textwidth]{pictures/placeHolderFHD.png}
-	    	\caption{Výsledné zařízení}
-	   	\label{fig:projektFinal}
-	\end{figure}
 	
 	\chapter{IoT - Internet věcí}
 	\input{chapters/IoT.tex}
 	
-	\chapter{Návrh zařízení}
-	\section{Účel a využití}
 	
-	%\chapter{Technický popis}
-	\chapter{Casing \& Mikrokontrolér}
+	\chapter{Použitý HW a SW}
 	\input{chapters/arduino.tex}
-	\chapter{Komponenty}
+	
+	\chapter{Návrh testeru kabelů – Hardwarová část}
 	\input{chapters/komponenty.tex}
-	\chapter{Testování kabelů}
+	
+	\chapter{Návrh testeru kabelů – Softwarová část}
 	\input{chapters/kabely.tex}
 	
-	 \section*{Závěr}
+	\chapter{Testování}
+	
+	\chapter{Závěr}
 	Závěrem je že C++ > C\#.
 
 	\newpage
 	\chapter{Přílohy}
 	\section*{Zdroje}
 	\addcontentsline{toc}{section}{Seznam zdrojů}
-	\listoffigures
-	\addcontentsline{toc}{section}{Seznam obrázků}
-	\listoftables
-	\addcontentsline{toc}{section}{Seznam tabulek}
 	%\lstlistoflistings
 	%\addcontentsline{toc}{section}{Seznam zdrojových kódů} % Add the list of listings to the TOC as a section
 
