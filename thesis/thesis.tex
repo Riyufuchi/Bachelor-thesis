@@ -56,7 +56,9 @@
 \hbadness=10000
 
 % WIP modules
-\usepackage{glossaries}
+%\usepackage{glossaries}
+%\input{chapters/introduction/keywords.tex}
+%\makeglossaries
 
 
 % My modules
@@ -67,14 +69,6 @@
 
 % My commands
 \newcommand{\ardMeg}{Arduino Mega 2560}
-\input{chapters/introduction/keywords.tex}
-
-\newglossaryentry{ard2}{
-    name={Arduino2},
-    description={IoT device2}
-}
-
-\makeglossaries
 
 \begin{document}
 
@@ -88,7 +82,14 @@
 	\thispagestyle{empty}
 	
 	\setcounter{page}{5}
-	\printglossary
+	\newpage
+	\input{chapters/introduction/keywordsPage.tex} %\printglossary
+	\thispagestyle{empty}
+	
+	
+	\addtocontents{toc}{\protect\pagestyle{empty}}
+	\addtocontents{toc}{\protect\thispagestyle{empty}}
+	\tableofcontents
 	\thispagestyle{empty}
 	
 	\listoffigures
@@ -97,16 +98,9 @@
 	\listoftables
 	\addcontentsline{toc}{section}{Seznam tabulek}
 	\thispagestyle{empty}
-
-	\addtocontents{toc}{\protect\pagestyle{empty}}
-	\addtocontents{toc}{\protect\thispagestyle{empty}}
-	\tableofcontents
-	\thispagestyle{empty}
-
 	
 	\chapter{Úvod}
-	Téma mojí bakalářské práce je “Návrh zařízení pro testování nabíjecích kabelů”. Toto zařízení bude řízeno jednodeskovým počítačem Arduino (\ardMeg) a bude se testovat a následně používat v reálném prostředí. Tudíž má má bakalářská práce i praktické využití a není jen teoretická. Ovšem součástí je teoretická část o IoT - Internet of Things neboli Internet věcí. \gls{ard}
-	
+	V posledních letech se rozšířila elektromobilita, zejména elektro-koloběžky a elektrických kola, která jsou ve spoustě městech i sdílená. Tyto dopravní prostředky je potřeba nabíjet a k tomu je potřeba je připojit ke zdroji elektrické energie, ovšem při výrobě nabíjecích kabelů může dojít k chybě, proto je potřeba je testovat, aby se zaručila jejich funkčnost. Špatný kabel nemusí fungovat vůbec nebo při špatném zapojení koncového konektoru může způsobit poškození daného zařízení. Tato bakalářská práce má za cíl v praktické části navrhnout a sestavit zařízení na testování kabelů, které bude použito při výrobě kabelů pro ověření jejich funkčnosti. V teoretické části se práce zabývá IoT, nebo-li Internet věcí (Internet of Things) a technologiemi, které budou použity pro sestavení testovacího zařízení.
 	
 	\chapter{IoT - Internet věcí}
 	\input{chapters/iot/IoT.tex}
@@ -114,7 +108,9 @@
 	
 	\chapter{Použitý HW a SW}
 	\input{chapters/usedHW/arduino.tex}
+	\newpage
 	\input{chapters/usedHW/display.tex}
+	\newpage
 	\input{chapters/usedHW/keyboard.tex}
 	
 	\chapter{Návrh testeru kabelů – Hardwarová část}
@@ -125,10 +121,11 @@
 	
 	
 	\chapter{Testování}
+	\input{chapters/testing/testing.tex}
 	
 	
 	\chapter{Závěr}
-	Závěrem je že C++ > C\#.
+	Cílem práce bylo vytvořit zařízení pro testování nabíjecích kabelů pro elektrická kola s použitím mikrokontroléru Arduino. Výsledné zařízení je funkční, splňuje požadavky a také je možné jednoduše rozšířit funkčnost díky objektovém přístupu v jazyce C++. Zařízení je schopné vypsat na displej, které piny konektoru jsou špatné a nepřenáší se skrz ně elektrický proud/signál, také vypisuje chybové hlášky i v případě chybné implementace, například při nenastavení příslušných pinů pro konektor na Arduinu. Také pomocí zvuku upozorňuje zařízení uživatele na na výsledek testu a svého stavu, dojde-li k chybě, momentálně je implementované/ošetřené čtyři chybové stavy. Také na bezpečnost byl kladen důraz a přes kabel nejde více než 5V, které stačí, pro vyhodnocení testu.
 
 	\newpage
 	\chapter{Přílohy}

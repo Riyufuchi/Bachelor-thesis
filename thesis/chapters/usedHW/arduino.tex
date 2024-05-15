@@ -1,13 +1,21 @@
-%!TeX root =  ../thesis.tex
+%!TeX root =  ../../thesis.tex
 
 \section{Arduino}
-Platforma Arduino se programuje pomocí C/C++ popřípadě Arduino verze C/C++. Já firmaware pro toto zařízení napíši v C++, ačkoliv by se většinou běžně vyvíjí v Céčku, ale pro tento projekt poslouží C++ lépe a taky s ním mám více zkušeností.
+Základem testeru je mikrokontrolér od značky Arduino model \ardMeg. Tento model disponuje velkým počtem pinům, na které je možné připojit různá zařízení a následně je ovládat mikrokontrolérem. Mikrokontroléry Arduino se programují pomocí C/C++. Já firmware pro toto tester píši v C++.
 
-\subsection{Ino file}
-\lstinputlisting[language=C++, caption={Code.ino}, label={lst:code}]{../code/Code.ino}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=\textwidth]{pictures/placeHolderFHD.png}
+    	\caption{\ardMeg}
+   	\label{fig:arduinoMega}
+\end{figure}
 
-\subsubsection*{Co je to Ino file?}
-Ino file je soubor skatche pro Arduino, Arduino IDE ho využívá jako hlavní soubor, jen má místo metody main() metody setup() a loop().  Metoda setup() slouží pro přípravu zařízení a je automaticky volána při spuštění zaříze,  loop() pak obsahuje kód, který je vykonáván mikrokontrolérem, dokud není vypnut nebo se nevyskytne problém. Arduino se dá programovat i pomocí svého upraveného jazyka C++, proto koncovka .ino.
+
+%\subsection*{Ino file}
+%\lstinputlisting[language=C++, caption={Code.ino}, label={lst:code}]{../code/Code.ino}
+
+%\subsubsection*{Co je to Ino file?}
+%Ino file je soubor skatche pro Arduino, Arduino IDE ho využívá jako hlavní soubor, jen má místo metody main() metody setup() a loop().  Metoda setup() slouží pro přípravu zařízení a je automaticky volána při spuštění zaříze,  loop() pak obsahuje kód, který je vykonáván %mikrokontrolérem, dokud není vypnut nebo se nevyskytne problém. Arduino se dá programovat i pomocí svého upraveného jazyka C++, proto koncovka .ino.
 
 
 
