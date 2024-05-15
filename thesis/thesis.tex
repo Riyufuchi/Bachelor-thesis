@@ -31,11 +31,11 @@
 }
 
 %font
-%\setmainfont{DejaVu Serif}
 \setmainfont{Times_New_Roman}
 
 %Rozestup řádku (1.5)
-\linespread{1.35}
+%\linespread{1.35}
+\linespread{1.5}
 
 %Nastaveni okraje (normostrana)
 %\usepackage[left=3.00cm, right=3.00cm, top=2.0cm, bottom=2.50cm]{geometry}
@@ -49,23 +49,17 @@
   afterskip= .1cm %1.0ex plus .2ex
 ]{chapter}
 
-%Justify text mode
-\tolerance=1
-\emergencystretch=\maxdimen
-\hyphenpenalty=10000
-\hbadness=10000
-
 % WIP modules
 %\usepackage{glossaries}
 %\input{chapters/introduction/keywords.tex}
 %\makeglossaries
-
 
 % My modules
 \input{texModules/czech.tex}
 \input{texModules/paragraph.tex}
 \input{texModules/cppListing.tex}
 \input{texModules/table.tex}
+\input{texModules/justify.tex}
 
 % My commands
 \newcommand{\ardMeg}{Arduino Mega 2560}
@@ -100,7 +94,7 @@
 	\thispagestyle{empty}
 	
 	\chapter{Úvod}
-	V posledních letech se rozšířila elektromobilita, zejména elektro-koloběžky a elektrických kola, která jsou ve spoustě městech i sdílená. Tyto dopravní prostředky je potřeba nabíjet a k tomu je potřeba je připojit ke zdroji elektrické energie, ovšem při výrobě nabíjecích kabelů může dojít k chybě, proto je potřeba je testovat, aby se zaručila jejich funkčnost. Špatný kabel nemusí fungovat vůbec nebo při špatném zapojení koncového konektoru může způsobit poškození daného zařízení. Tato bakalářská práce má za cíl v praktické části navrhnout a sestavit zařízení na testování kabelů, které bude použito při výrobě kabelů pro ověření jejich funkčnosti. V teoretické části se práce zabývá IoT, nebo-li Internet věcí (Internet of Things) a technologiemi, které budou použity pro sestavení testovacího zařízení.
+	V posledních letech se rozšířila elektromobilita, zejména elektro-koloběžky a elektrická kola, která jsou ve spoustě městech i sdílená. Tyto dopravní prostředky je potřeba nabíjet, ovšem při výrobě nabíjecích kabelů může dojít k chybě a proto je potřeba je otestovat, aby se zaručila jejich správná funkčnost. Špatný kabel nemusí fungovat vůbec nebo při špatném zapojení koncového konektoru může způsobit poškození daného zařízení. Tato bakalářská práce má za cíl v praktické části navrhnout a sestavit zařízení na testování kabelů, které bude použito při výrobě kabelů k ověření jejich funkčnosti. V teoretické části se práce zabývá IoT, nebo-li Internet věcí (Internet of Things) a technologiemi, které budou použity pro sestavení testovacího zařízení.
 	
 	\chapter{IoT - Internet věcí}
 	\input{chapters/iot/IoT.tex}
@@ -125,7 +119,7 @@
 	
 	
 	\chapter{Závěr}
-	Cílem práce bylo vytvořit zařízení pro testování nabíjecích kabelů pro elektrická kola s použitím mikrokontroléru Arduino. Výsledné zařízení je funkční, splňuje požadavky a také je možné jednoduše rozšířit funkčnost díky objektovém přístupu v jazyce C++. Zařízení je schopné vypsat na displej, které piny konektoru jsou špatné a nepřenáší se skrz ně elektrický proud/signál, také vypisuje chybové hlášky i v případě chybné implementace, například při nenastavení příslušných pinů pro konektor na Arduinu. Také pomocí zvuku upozorňuje zařízení uživatele na na výsledek testu a svého stavu, dojde-li k chybě, momentálně je implementované/ošetřené čtyři chybové stavy. Také na bezpečnost byl kladen důraz a přes kabel nejde více než 5V, které stačí, pro vyhodnocení testu.
+	Cílem práce bylo vytvořit zařízení pro testování nabíjecích kabelů pro elektrická kola s použitím mikrokontroléru Arduino. Výsledné zařízení je splňuje požadavky a je možné jednoduše rozšířit funkčnost díky objektovém přístupu v jazyce C++. Zařízení je schopné vypsat na displej přesně, které piny konektoru jsou špatné a nepřenáší se skrz ně elektrický proud/signál, také vypisuje chybové hlášky i v případě chybné implementace, například při nenastavení příslušných pinů pro konektor na Arduinu. Také pomocí zvuku upozorňuje zařízení uživatele na na výsledek testu a svého stavu, jsou naimplementované/ošetřené čtyři chybové stavy. Také na bezpečnost byl kladen důraz a přes kabel nejde více než 5V, které stačí, pro vyhodnocení testu.
 
 	\newpage
 	\chapter{Přílohy}
