@@ -35,19 +35,26 @@
 
 %Rozestup řádku (1.5)
 %\linespread{1.35}
-\linespread{1.5}
+%\linespread{1.5}
+\linespread{1.25}
 
 %Nastaveni okraje (normostrana)
-%\usepackage[left=3.00cm, right=3.00cm, top=2.0cm, bottom=2.50cm]{geometry}
 \usepackage[a4paper, left=3.50cm, right=1.50cm, top=2.50cm, bottom=2.50cm]{geometry}
-
-%\usepackage[left=2.25cm, right=2.25cm, top=1.75cm, bottom=1.75cm, includeheadfoot]{geometry}
-%\setlength{\parindent}{0pt} % Odstraní odsazení prvního odstavce každé sekce
 
 \RedeclareSectionCommand[
   beforeskip=.1cm,
   afterskip= .1cm %1.0ex plus .2ex
 ]{chapter}
+
+%\setkomafont{chapter}{\fontsize{18}{18*1.2}\selectfont}
+\setkomafont{chapter}{\fontsize{16}{19.2}\selectfont}   
+\setkomafont{section}{\fontsize{14}{16.8}\selectfont}
+\setkomafont{subsection}{\fontsize{13}{15.6}\selectfont}
+\setkomafont{subsubsection}{\fontsize{13}{15.6}\selectfont}
+
+\makeatletter
+\newcommand\thefontsize{(Font size = \f@size pt)}
+\makeatother
 
 % WIP modules
 %\usepackage{glossaries}
@@ -93,11 +100,12 @@
 	\addcontentsline{toc}{section}{Seznam tabulek}
 	\thispagestyle{empty}
 	
-	\chapter{Úvod}
+	\chapter{Úvod} %\thefontsize}
 	V posledních letech se rozšířila elektromobilita, zejména elektro-koloběžky a elektrická kola, která jsou ve spoustě městech i sdílená. Tyto dopravní prostředky je potřeba nabíjet, ovšem při výrobě nabíjecích kabelů může dojít k chybě a proto je potřeba je otestovat, aby se zaručila jejich správná funkčnost. Špatný kabel nemusí fungovat vůbec nebo při špatném zapojení koncového konektoru může způsobit poškození daného zařízení. Tato bakalářská práce má za cíl v praktické části navrhnout a sestavit zařízení na testování kabelů, které bude použito při výrobě kabelů k ověření jejich funkčnosti. V teoretické části se práce zabývá IoT, nebo-li Internet věcí (Internet of Things) a technologiemi, které budou použity pro sestavení testovacího zařízení.
 	
 	\chapter{IoT - Internet věcí}
 	\input{chapters/iot/IoT.tex}
+	\input{chapters/iot/challenges.tex}
 	
 	
 	\chapter{Použitý HW a SW}
@@ -125,6 +133,8 @@
 	\chapter{Přílohy}
 	\section*{Zdroje}
 	\addcontentsline{toc}{section}{Seznam zdrojů}
+	https://www.arduino.cc/en/about
+	
 	%\lstlistoflistings
 	%\addcontentsline{toc}{section}{Seznam zdrojových kódů} % Add the list of listings to the TOC as a section
 
