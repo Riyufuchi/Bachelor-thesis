@@ -1,6 +1,8 @@
 %!TeX root =  ../../thesis.tex
 
 \section{Klávesnice}
+Pro dostatečné ovládání byla vybrána klávesnice s pěti tlačítky: Right, Left, Power, Auto, Menu. Tlačítko “Power” začne test kabelu, tlačítka “Left” a “Right” se používají k posouvání rotačního meny a tlačítko “Menu” přepíná mezi třemi zdrojovými konektory, nebo-li přepíná mezi submeny.
+
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=\textwidth]{pictures/placeHolderFHD.png}
@@ -8,8 +10,10 @@
    	\label{fig:keyborad}
 \end{figure}
 
-\subsection{Připojení k desce}
+\subsection*{Připojení k desce}
 \begin{table} [h!]
+	\caption{Pinové rozložení klávesnice}
+	\label{table:pinKB}
 	\centering
 	\catcode`\-=12 % Because of czech
 	\begin{tabular}[c]{|| c | c | c ||}
@@ -29,6 +33,4 @@
 		52 & AUTO & Začne testovat vybraný kabel\\
 	\hline
 	\end{tabular}
-	\caption{Pinové rozložení klávesnice}
-	\label{table:pinKB}
 \end{table}

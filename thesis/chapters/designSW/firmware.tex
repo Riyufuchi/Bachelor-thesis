@@ -1,13 +1,54 @@
 %!TeX root =  ../../thesis.tex
 
-\section{UML}
-
 \section{Klíčové třídy}
 \subsection{Controller}
-Controller je hlavní třída, ačkoliv je hlavní část je v code.ino \ref{lst:code}, třída Controller zpřehlední kód, jelikož se do ní nic nedoplňuje při kompilaci, jako do hlavního ino souboru.
+Controller je hlavní třída, ačkoliv je hlavní část je v code.ino, třída Controller zpřehlední kód, jelikož podléhá standardnímu zápisu C++ kódu. Třída Controller obsahuje dvě důležité veřejné metody a to metodu “run()” a “initialize()”.
+
+\subsubsection{Metoda initilize()}
+Tato metoda inicializuje zařízení a volá metody pro inicializaci na komponentech, v případě, že nastane chyba, zařízení se jí pokusí ohlásit, výpisem na displej a zvukovým signálem, v intervalu SOS v morseovce. Tato metoda je volána v metodě “setup()” při přípravě zařízení a na jejím konci se při úspěchu ozve bzučák s krátkým pípnutím, které oznámí, že zařízení je připravené k použití.
+
+\subsubsection{Metoda run()}
+Tato metoda hlavní činnost programu pro tester a je volána v metodě “loop()”. Na začátku metody se zkontroluje vstup z klávesnice, pokud nějaký je, tak se vykoná příslušná akce, pak se řeší probliknutí kontrolního znaku na displeji.
 
 \subsection{Connector}
-Společný předek pro konkrétní konektory.
+Třída Connector slouží jako předek pro konkrétní konektory, ačkoliv není abstraktní a dá se vytvořit instance, tak dědění nám zpřehledňuje kód, už jen kvůli tomu, že vždy nemusíme vyplnit celý její konstruktor, který si žádá mnoho parametrů, jako jsou například název, pole s čísly příslušných pinů, odkaz na proti konektor a atp.. Tato třída obsahuje také společné metody pro práci s konektory, které si nyní popíšeme.
+
+\subsubsection{void setMode(Mode mode)}
+Tato metoda nastavuje piny, na které je konektor připojen na vstupní nebo výstupní a parametrem je enumerátor Mode, který dělá kód přehlednější. Enumerátor je také atributem třídy Connector a tato metoda slouží zároveň jako setter pro tento atribut.
+\begin{lstlisting}[language=C++, caption={Metoda setMode(Mode)}, label={lst:cpp_method}]
+void Connector::setMode(Mode mode)
+{
+  this->mode = mode;
+  if (pins == nullptr || numberOfPins == 0)
+    return;
+  uint8_t pinOption = 0;
+  switch (mode)
+  {
+    case IN: pinOption = INPUT_PULLUP; break;
+    case OUT: pinOption = OUTPUT; break;
+  }
+  for (int i = 0; i < numberOfPins; i++)
+    pinMode(pins[i], pinOption);   
+}
+\end{lstlisting}
+
+\subsubsection{void reconnectTo(Connector* connector)}
+Metoda reconnectTo(Connector*) nastavuje ukazatel na protější konektor a vytváří název spojení, který se bude zobrazovat v menu.
+\begin{lstlisting}[language=C++, caption={Metoda reconnectTo(Connector*)}, label={lst:cpp_method}]
+void Connector::reconnectTo(Connector* connector)
+{
+  theOtherOne = connector;
+  memset(connectionName, 0, sizeof(connectionName));
+  const char* name2 = (theOtherOne == nullptr) ? "NONE" : theOtherOne->getName();
+  if (mode == Mode::OUT)
+    snprintf(connectionName, sizeof(connectionName), _FORMAT, name, name2);
+  else
+    snprintf(connectionName, sizeof(connectionName), _FORMAT, name2, name);
+}
+\end{lstlisting}
+
+\subsubsection{bool startTest(char resultArr[])}
+Toto je metoda na spuštění testu, jako parametr bere pole znaků, ačkoliv se nejedná o textový řetězec, ale o pole s malými čísly. Na první místo se píše stav testu, hodnota 0 je pro úspěšný test a záporné jsou pro chyby. Zbytek pole pak obsahuje buď -100 nebo číslo pinu na konektoru, který je vadný. V případě úspěšného testu je návratová hodnota “true”, jinak vždy “false”. Tato metoda také kontroluje, zda-li je test proveditelný. Mezi kontrolované případy patří: nulový ukazatel na protější konektor, špatně nastavený konektor nebo že oba jsou výstupní nebo vstupní. Metodu, která provádí samotné testování popíši v kapitole “Testování”.
 
 \subsection{IComponent}
-Společný předek pro komponenty zařízení, jako jsou například: displej, klávesnice nebo bzučák.
+Společný předek pro komponenty zařízení, jako jsou například: displej, klávesnice nebo bzučák. Tento předek obsahuje jednu čistě virtuální funkci a to funkci “inicialize()”, která vrací “true”, když se podaří danou komponentu inicializovat.

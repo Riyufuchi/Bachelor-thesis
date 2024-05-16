@@ -66,6 +66,8 @@ void Controller::initilize()
   if(!checks[1]) // Also checks for broken buttons
   {
     printErrorMessage("Keyboard", "Failed init or stucked key");
+    if(checks[2])
+      speaker.makeSound(Speaker::Sound::SOS);
     exit(1);
   }
   if(!checks[2])
@@ -133,20 +135,16 @@ void Controller::testConnector()
     memset(errorBuffer, 0, sizeof(errorBuffer));
     switch (result[0])
     {
-      //case -1: strcat(errorBuffer, "Only input connector can be tested"); break;
-      case -2: strcat(errorBuffer, "NullPtr to the other connector"); break;
+      case 0: printTestResults(); break;
+      case -2: strcat(errorBuffer, "NullPtr to the other connector"); break; // Error code -1 is no longer used
       case -3: strcat(errorBuffer, "Input can't output current!"); break;
       case -4: strcat(errorBuffer, "Can't connect two outputs!"); break;
       case -5: strcat(errorBuffer, "Connectors not implemented!"); break;
-      case 0: printTestResults(); break;
       default: sprintf(errorBuffer, "Unknown error code: %d", result[0]); break;
     }
     printErrorMessage(display.centerText(menuIO[menuY][selectedItem]->getConnectionName()), errorBuffer);
     speaker.makeSound(Speaker::Sound::ERROR);
   }
-  //while (keyboard.readInput() == -1)
-  //{}
-  //display.print(3, display.centerText("Test ready!"));
 }
 
 void Controller::run()

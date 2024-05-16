@@ -100,25 +100,31 @@
 	\addcontentsline{toc}{section}{Seznam tabulek}
 	\thispagestyle{empty}
 	
-	\chapter{Úvod} %\thefontsize}
+	\addcontentsline{toc}{section}{Úvod}
+	\chapter*{Úvod} %\thefontsize}
 	V posledních letech se rozšířila elektromobilita, zejména elektro-koloběžky a elektrická kola, která jsou ve spoustě městech i sdílená. Tyto dopravní prostředky je potřeba nabíjet, ovšem při výrobě nabíjecích kabelů může dojít k chybě a proto je potřeba je otestovat, aby se zaručila jejich správná funkčnost. Špatný kabel nemusí fungovat vůbec nebo při špatném zapojení koncového konektoru může způsobit poškození daného zařízení. Tato bakalářská práce má za cíl v praktické části navrhnout a sestavit zařízení na testování kabelů, které bude použito při výrobě kabelů k ověření jejich funkčnosti. V teoretické části se práce zabývá IoT, nebo-li Internet věcí (Internet of Things) a technologiemi, které budou použity pro sestavení testovacího zařízení.
+	\thispagestyle{empty}
 	
 	\chapter{IoT - Internet věcí}
 	\input{chapters/iot/IoT.tex}
 	\input{chapters/iot/challenges.tex}
 	
 	
-	\chapter{Použitý HW a SW}
+	\chapter{Použitý Hardware a Software}
 	\input{chapters/usedHW/arduino.tex}
-	\newpage
+	%\newpage
 	\input{chapters/usedHW/display.tex}
-	\newpage
+	%\newpage
 	\input{chapters/usedHW/keyboard.tex}
+	\input{chapters/usedHW/speaker.tex}
+	\input{chapters/usedSW/ide.tex}
 	
 	\chapter{Návrh testeru kabelů – Hardwarová část}
+	\input{chapters/designHW/blockSchematic.tex}
 	\input{chapters/designHW/hardware.tex}
 	
 	\chapter{Návrh testeru kabelů – Softwarová část}
+	\input{chapters/designSW/uml.tex}
 	\input{chapters/designSW/firmware.tex}
 	
 	
@@ -134,6 +140,7 @@
 	\section*{Zdroje}
 	\addcontentsline{toc}{section}{Seznam zdrojů}
 	https://www.arduino.cc/en/about
+	https://www.arduino.cc/en/Guide/Introduction
 	
 	%\lstlistoflistings
 	%\addcontentsline{toc}{section}{Seznam zdrojových kódů} % Add the list of listings to the TOC as a section

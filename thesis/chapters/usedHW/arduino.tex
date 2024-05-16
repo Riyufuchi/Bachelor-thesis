@@ -1,7 +1,7 @@
 %!TeX root =  ../../thesis.tex
 
 \section{Arduino}
-Základem testeru je mikrokontrolér od značky Arduino model \ardMeg. Tento model disponuje velkým počtem pinům, na které je možné připojit různá zařízení a následně je ovládat mikrokontrolérem. Mikrokontroléry Arduino se programují pomocí C/C++. Já firmware pro toto tester píši v C++.
+Pro účely vytvoření testeru na kabely byl vybrán mikrokontrolér od značky Arduino model \ardMeg. Tento model disponuje velkým počtem pinům, jak digitálních tak analogových, které budou potřeba vzhledem k potřebám testeru. Já použiji pouze ty digitální pro připojení konektorů pro testování kabelů, klávesnice a bzučáku. Mikrokontrolér Arduino se dá programovat pomocí mnoha jazyků, zejména pak C/C++.
 
 \begin{figure}[h!]
 	\centering
@@ -9,13 +9,3 @@ Základem testeru je mikrokontrolér od značky Arduino model \ardMeg. Tento mod
     	\caption{\ardMeg}
    	\label{fig:arduinoMega}
 \end{figure}
-
-
-%\subsection*{Ino file}
-%\lstinputlisting[language=C++, caption={Code.ino}, label={lst:code}]{../code/Code.ino}
-
-%\subsubsection*{Co je to Ino file?}
-%Ino file je soubor skatche pro Arduino, Arduino IDE ho využívá jako hlavní soubor, jen má místo metody main() metody setup() a loop().  Metoda setup() slouží pro přípravu zařízení a je automaticky volána při spuštění zaříze,  loop() pak obsahuje kód, který je vykonáván %mikrokontrolérem, dokud není vypnut nebo se nevyskytne problém. Arduino se dá programovat i pomocí svého upraveného jazyka C++, proto koncovka .ino.
-
-
-
