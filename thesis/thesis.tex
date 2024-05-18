@@ -13,6 +13,8 @@
 \usepackage{numprint}
 \npthousandsep{\,}\npthousandthpartsep{}\npdecimalsign{.}
 
+\usepackage{float}
+
 %Uprava (odstraneni modifikaci generovaneneho texttu tridou scratcl)
 \setkomafont{disposition}{\mdseries\rmfamily}
 
@@ -36,7 +38,7 @@
 %Rozestup řádku (1.5)
 %\linespread{1.35}
 %\linespread{1.5}
-\linespread{1.25}
+\linespread{1.5}
 
 %Nastaveni okraje (normostrana)
 \usepackage[a4paper, left=3.50cm, right=1.50cm, top=2.50cm, bottom=2.50cm]{geometry}
@@ -93,16 +95,21 @@
 	\tableofcontents
 	\thispagestyle{empty}
 	
-	\listoffigures
-	\addcontentsline{toc}{section}{Seznam obrázků}
-	\thispagestyle{empty}
-	\listoftables
-	\addcontentsline{toc}{section}{Seznam tabulek}
-	\thispagestyle{empty}
+	\newpage
+	\begin{minipage}{\textwidth}
+ 		\listoffigures
+ 		\addcontentsline{toc}{section}{Seznam obrázků}
+ 		\thispagestyle{empty}
+ 		%\vspace{1cm} % Adjust the vertical space between the lists
+ 		\listoftables
+ 		\addcontentsline{toc}{section}{Seznam tabulek}
+ 		\thispagestyle{empty}
+	\end{minipage}
+
 	
 	\addcontentsline{toc}{section}{Úvod}
 	\chapter*{Úvod} %\thefontsize}
-	V posledních letech se rozšířila elektromobilita, zejména elektro-koloběžky a elektrická kola, která jsou ve spoustě městech i sdílená. Tyto dopravní prostředky je potřeba nabíjet, ovšem při výrobě nabíjecích kabelů může dojít k chybě a proto je potřeba je otestovat, aby se zaručila jejich správná funkčnost. Špatný kabel nemusí fungovat vůbec nebo při špatném zapojení koncového konektoru může způsobit poškození daného zařízení. Tato bakalářská práce má za cíl v praktické části navrhnout a sestavit zařízení na testování kabelů, které bude použito při výrobě kabelů k ověření jejich funkčnosti. V teoretické části se práce zabývá IoT, nebo-li Internet věcí (Internet of Things) a technologiemi, které budou použity pro sestavení testovacího zařízení.
+V posledních letech se rozšířila elektromobilita, zejména elektro-koloběžky a elektrická kola, která jsou ve spoustě městech i sdílená. Tyto dopravní prostředky je potřeba nabíjet, k čemuž lze využívat i veřejné nabíjecí stanice. Elektrokola se ve veřejné síti nabíjecích stanic nabíjí pomocí nabíjecích kabelů, které se připojují přímo ke stanicím. Je tedy celkem vhodné disponovat nějakou vhodnou testovací platformou pro testování těchto nabíjecích kabelů, protože vlivem používání dochází k jejich opotřebování. Rovněž při výrobě nabíjecích kabelů může dojít k chybě a proto je potřeba je otestovat, aby se zaručila jejich správná funkčnost. Špatný kabel nemusí fungovat vůbec, nebo při špatném zapojení koncového konektoru by mohlo způsobit poškození daného zařízení. Tato bakalářská práce má za cíl v praktické části navrhnout a sestavit zařízení na testování kabelů, které bude použito při výrobě kabelů k ověření jejich funkčnosti. V teoretické části se práce zabývá IoT, neboli Internet věcí (Internet of Things) a technologiemi, které budou použity pro sestavení testovacího zařízení.
 	\thispagestyle{empty}
 	
 	\chapter{IoT - Internet věcí}

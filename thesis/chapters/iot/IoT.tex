@@ -5,26 +5,6 @@ Internet věcí (IoT) označuje síť vzájemně propojených fyzických zaříz
 Základem těchto zařízení bývají jednodeskové počítače nebo po případě mikrokontroléry.\\
 Jednodeskové počítače jsou zařízení obsahující veškeré potřebné komponenty pro provoz a řízení výpočetních procesů na jediné desce plošného spoje a mezi známé příklady patří Arduino, Raspberry Pi nebo ESP32.
 
-\subsection{Raspberry Pi}
-Raspberry Pi je značka jednodeskových počítačů na kterých je primárně operační systém Raspberry Pi OS (dříve Raspbian). Jedná se odlehčenou linuxovou distribuci, která je založena na linuxové distribuci Debian, které je známá svou stabilitou. Raspberry Pi je původem ze Spojeného Království a je vhodné pro začátečníky v IoT, jelikož použití je intuitivnější a také se na něm dá vyvíjet pomocí Pythonu.
-
-\begin{figure}[h!]
-	\centering
-	\includegraphics[width=\textwidth]{pictures/placeHolderFHD.png}
-    	\caption{Raspberry Pi}
-   	\label{fig:rasPI}
-\end{figure}
-
-\subsection{Arduino}
-Arduino je open source platforma původem z Itálie, v základu se jedná o mikrokontrolér se zabudovaným programátorem, tudíž není potřeba externí programátor čipů, což usnadňuje prototypování různých zařízení. Adrudio mikrokontroléry se dělají on velmi malých (Arduino Nano 33 BLE) po velké (Arduino Mega), které je určeno pro velké projekty, kde je potřeba prostor komplexní instrukce nebo tam, kde je potřeba propojení s větším množinovým komponentů, nejpopulárnější je však “Arduino Uno”, které je takový “zlatý střed”.
-
-\begin{figure}[h!]
-	\centering
-	\includegraphics[width=\textwidth]{pictures/placeHolderFHD.png}
-    	\caption{Arduino Uno}
-   	\label{fig:arduinoUno}
-\end{figure}	
-
-\subsection{Arduino vs. Raspberry Pi}
-Zatímco Raspberry Pi je jednodeskový počítač v tradičním slova smyslu, neboli má grafický výstup zpracovávaný grafickým čipem a operační systém (Linux nebo Windows) a dá se použít jako stan
-Na závěr porovnání Arduina a Raspberry Pi. Arduino je mikrokontrolér, vykonává instrukce “od zapnutí do vypnutí” a v pozadí není žádný operační systém jako u Raspberry Pi, proto je spolehlivější.
+\input{chapters/iot/raspberry.tex}
+\input{chapters/iot/arduino.tex}
+\input{chapters/iot/comparation.tex}

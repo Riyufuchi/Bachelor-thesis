@@ -3,10 +3,9 @@
 \section{Bzučák}
 Zařízení obsahuje i bzučák pro zvukovou indikaci výsledku testu, po případě zahlášení chyby. Pro chyby zabzučí bzučák dvakrát a v případě úspěšného testu jen jednou.
 
-\subsection*{Připojení k desce}
-\begin{table} [h!]
-	\caption{Pinové rozložení klávesnice}
-	\label{table:pinKB}
+\begin{table} [H]
+	\caption{Pinové rozložení bzučáku}
+	\label{table:pinSP}
 	\centering
 	\catcode`\-=12 % Because of czech
 	\begin{tabular}[c]{|| c | c ||}
@@ -17,7 +16,9 @@ Zařízení obsahuje i bzučák pro zvukovou indikaci výsledku testu, po příp
 	\hline
 		42 &  Plus \\
 	\hline
-		46 & Uzemění \\
+		GND & Uzemění \\
 	\hline
 	\end{tabular}
 \end{table}
+
+Tabulka \ref{table:pinSP} popisuje propojení bzučáku s Arduinem.
