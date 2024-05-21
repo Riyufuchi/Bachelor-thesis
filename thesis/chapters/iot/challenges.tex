@@ -14,11 +14,11 @@ Debugovat mikrokontrolér není tak lehké jako program pro počítač, ale nen�
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\textwidth]{pictures/code.png}
-    	\caption{Ukázka kódu kdy Arduino posálá zprávu do IDE}
+    	\caption{Ukázka kódu kdy Arduino posílá zprávu do IDE}
    	\label{fig:usbIDE}
 \end{figure}
 
-Na obrázku \ref{fig:usbIDE} je kód, který demonstruje jak se dá poslat text do IDE. V setupu je potřeba nastavit modulační rychlost, kdy 9600 je maximum pro Arduino. V metodě loop je pak samotný výstup, kdy sekundové čekání je moc, ale měl by se text vypisovat opakovaně, tak bude potřeba, jinak ho nebudeme stíhat číst.
+Na obrázku \ref{fig:usbIDE} je kód, který demonstruje jak se dá poslat text do IDE. V setupu je potřeba nastavit modulační rychlost, kdy 9600 je maximum pro Arduino. V metodě \hl{loop()} je pak samotný výstup, kdy sekundové čekání je moc, ale měl by se text vypisovat opakovaně, tak bude potřeba, jinak ho nebudeme stíhat číst.
 
 \begin{figure}[H]
 	\centering

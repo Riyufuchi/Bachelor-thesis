@@ -11,7 +11,7 @@ Jako vývojové prostředí používám oficiální Arduino IDE, což mi zaruču
 \end{figure}
 
 Na obrázku \ref{fig:arduinoIDE} je vývojové prostředí Arduino, můžeme si všimnout, že ve spodní části je konzole s výstupem, nyní tam je výsledek kompilace programu, dále vpravo je struktura projektu. Arduino IDE vyžaduje pevnou strukturu, kód, který nebude v hlavní složce, musí být ve složce “src”. Hlavní soubor se musí jmenovat jako složka ve které je umístěn a musí být typu “.ino”, v tomto souboru je kód v jazyce Arduino a obsahuje vždy minimálně dvě metody.\\
-Metodu “setup()” a metodu “loop()”, metoda “setup()” slouží k inicializaci zařízení a metoda “loop()” obsahuje kód, který je vykonáván mikrokontrolérem ve smyčce, dokud není nějakým způsobem přerušen.
+Metodu \hl{setup()} a metodu \hl{loop()}, metoda \hl{setup()} slouží k inicializaci zařízení a metoda \hl{loop()} obsahuje kód, který je vykonáván mikrokontrolérem ve smyčce, dokud není nějakým způsobem přerušen.
 
 \subsection{Programovací jazyk}
 Arduino se dá v základu programovat pomocí jazyku Arduino, který je založená na jazyce AVR-C, nebo také v C/C++. Já jej budu programovat v jazyce C++, jelikož s ním mám zkušenost a objektový přístup ulehčí implementaci konektorů a jejich následnému testování. Ačkoliv se pro tyto účely používá spíše jazyk C, tak pro potřeby navrhovaného zařízení by použití jazyka C nepřineslo žádnou znatelnou výhodu oproti C++.
