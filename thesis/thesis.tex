@@ -82,10 +82,25 @@
 \makeatother
 
 % WIP modules
-%\usepackage{glossaries}
-%\input{chapters/introduction/keywords.tex}
-%\makeglossaries
+\usepackage{glossaries}
+\input{chapters/introduction/keywords.tex}
+\makeglossaries
 
+
+
+% Customize the glossary style to remove page numbers
+\newglossarystyle{mystyle}{%
+  \renewenvironment{theglossary}%
+    {\begin{description}}{\end{description}}%
+  \renewcommand*{\glossentry}[2]{%
+    \item[\glsentryitem{##1}\glstarget{##1}{\glossentryname{##1}}] %
+    \glossentrydesc{##1}\glspostdescription\space}%
+}
+
+%\renewcommand{\glossaryname}{}
+\renewcommand{\glossarysection}[2][]{}
+
+\glsaddall
 % My modules
 \input{texModules/czech.tex}
 \input{texModules/paragraph.tex}
@@ -128,7 +143,13 @@
  		\addcontentsline{toc}{section}{Seznam tabulek}
  		\thispagestyle{empty}
 	\end{minipage}
-
+	
+	\newpage
+	\addcontentsline{toc}{section}{Seznam zkratek}
+	\section*{Seznam zkratek}
+	\printglossary[type=\acronymtype,style=mystyle] %\input{chapters/introduction/shortcuts.tex}
+	\thispagestyle{empty}
+	%\newpage
 	
 	\addcontentsline{toc}{section}{Úvod}
 	\chapter*{Úvod} %\thefontsize}
@@ -150,7 +171,7 @@ V posledních letech se rozšířila elektromobilita, zejména elektro-koloběž
 	\input{chapters/usedSW/ide.tex}
 	
 	\chapter{Návrh testeru kabelů – Hardwarová část}
-	\input{chapters/designHW/blockSchematic.tex}
+	%\input{chapters/designHW/blockSchematic.tex}
 	\input{chapters/designHW/hardware.tex}
 	
 	\chapter{Návrh testeru kabelů – Softwarová část}
@@ -169,8 +190,7 @@ V posledních letech se rozšířila elektromobilita, zejména elektro-koloběž
 	\chapter{Přílohy}
 	\section*{Zdroje}
 	\addcontentsline{toc}{section}{Seznam zdrojů}
-	https://www.arduino.cc/en/about
-	https://www.arduino.cc/en/Guide/Introduction
+	Arduino. Online. Arduino. © 2024. Dostupné z: https://www.arduino.cc/en/about. [cit. 2024-05-22].
 	
 	%\lstlistoflistings
 	%\addcontentsline{toc}{section}{Seznam zdrojových kódů} % Add the list of listings to the TOC as a section
