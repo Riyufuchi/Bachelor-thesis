@@ -2,7 +2,7 @@
 
 % Language is defined in package module
 
-\usepackage {fontspec}
+\usepackage{fontspec}
 \usepackage[hidelinks]{hyperref}
 \usepackage{pdfpages} % For inclusion of PDFs
 
@@ -12,8 +12,6 @@
 %pro formátování čísel
 \usepackage{numprint}
 \npthousandsep{\,}\npthousandthpartsep{}\npdecimalsign{.}
-
-\usepackage{float}
 
 \usepackage{xcolor}
 \usepackage{soul}
@@ -33,7 +31,7 @@
 	pdfauthor={Filip Šimek},%
 	pdftitle={Návrh zařízení pro testování nabíjecích kabelů},%
 	pdfsubject={Bakalářská práce},%
-	%pdfkeywords={one, two},%
+	pdfkeywords={arduino, internet of things, microcontroller, electric energy},%
 	%pdfproducer={LaTeX},%
 	pdfcreator={LuaLaTeX}
 }
@@ -63,7 +61,7 @@
     }
 }
 
-%Nastaveni okraje (normostrana)
+%Nastaveni okraje
 \usepackage[a4paper, left=3.50cm, right=1.50cm, top=2.50cm, bottom=2.50cm]{geometry}
 
 \RedeclareSectionCommand[
@@ -77,16 +75,10 @@
 \setkomafont{subsection}{\fontsize{13}{15.6}\selectfont}
 \setkomafont{subsubsection}{\fontsize{13}{15.6}\selectfont}
 
-\makeatletter
-\newcommand\thefontsize{(Font size = \f@size pt)}
-\makeatother
-
 % WIP modules
 \usepackage{glossaries}
 \input{chapters/introduction/shortcuts.tex}
 \makeglossaries
-
-
 
 % Customize the glossary style to remove page numbers
 \newglossarystyle{mystyle}{%
@@ -107,6 +99,8 @@
 \input{texModules/cppListing.tex}
 \input{texModules/table.tex}
 \input{texModules/justify.tex}
+\input{texModules/command-fontSize.tex}
+\input{texModules/command-figure.tex}
 
 % My commands
 \newcommand{\ardMeg}{Arduino Mega 2560}
@@ -188,6 +182,7 @@ V posledních letech se rozšířila elektromobilita, zejména elektro-koloběž
 
 	\newpage
 	\chapter{Přílohy}
+	\include{chapters/techDocu/docu.tex}
 	\section*{Zdroje}
 	\addcontentsline{toc}{section}{Seznam zdrojů}
 	Arduino. Online. Arduino. © 2024. Dostupné z: https://www.arduino.cc/en/about. [cit. 2024-05-22].

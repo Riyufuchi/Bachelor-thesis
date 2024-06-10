@@ -13,7 +13,7 @@ Xlr3::Xlr3(Mode mode, Connector* output) : Connector("XLR-3", nullptr, 2, mode, 
   switch (mode)
   {
     case OUT: this->pins = new char[2]{22, 24}; break;
-    case IN: this->pins = new char[2]{26, 28}; break;
+    case IN: this->pins = new char[2]{7, 6}; break;
   }
   setMode(mode);
 }

@@ -29,6 +29,8 @@ namespace Device
         beep(DEFAULT_INTERVAL);
         delay(100);
         beep(DEFAULT_INTERVAL);
+        delay(100);
+        beep(DEFAULT_INTERVAL);
       break;
       case BOOT: beep(BOOT_INTERVAL); break;
     }

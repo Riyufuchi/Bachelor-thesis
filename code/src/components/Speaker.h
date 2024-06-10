@@ -11,7 +11,7 @@ namespace Device
   class Speaker : public IComponent
   {
     private:
-      char plusPin = 36;
+      char plusPin = 1;
       const short DEFAULT_INTERVAL = 125;
       const short BOOT_INTERVAL = 100;
       SignalSOS sos;

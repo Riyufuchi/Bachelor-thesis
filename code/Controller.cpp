@@ -99,6 +99,8 @@ void Controller::updateMenuY()
   clamp(menuY, 1, 0, 3);
   selectedItem = 0;
   updateMenu();
+  display.print(3, display.centerText("Test ready!"));
+  display.print(19, 3, " "); // This prevents chars to get stuck
 }
 
 void Controller::updateMenu()

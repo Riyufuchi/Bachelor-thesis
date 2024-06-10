@@ -18,21 +18,25 @@ Na obrázku \ref{fig:keyborad} je vidět klávesnice/ovládací panel, kterým s
 	\label{table:pinKB}
 	\centering
 	\catcode`\-=12 % Because of czech
-	\begin{tabular}[c]{|| c | c | c ||}
+	\begin{tabular}[c]{|| c | c | c | c ||}
 	\hline
-		\multicolumn{3}{||c||}{Piny klávesničky} \\
+		\multicolumn{4}{||c||}{Piny klávesničky} \\
 	\hline
- 		 \textbf{PIN} & \textbf{Tlačítko} & \textbf{Akce}\\
+		\textbf{PIN} & \textbf{Tlačítko} & \textbf{Barva kabelu} & \textbf{Akce}\\
 	\hline
-		42 &  RIGHT & Posune rotační menu doprava\\
+		42 &  RIGHT & \textcolor{purple}{fialová} & Posune rotační menu doprava\\
 	\hline
-		46 & POWER &  Začne testovat vybraný kabel\\
+		46 & POWER & \textcolor{green}{zelená} & Začne testovat vybraný kabel\\
 	\hline
-		48 & LEFT & Posune rotační menu doleva\\
+		48 & LEFT & \textcolor{yellow}{\textbf{žlutá}} & Posune rotační menu doleva\\
 	\hline
-		50 & MENU & Přepne menu na další zdrojový konektor \\
+		50 & MENU & \textcolor{orange}{oranžová} & Přepne menu na další zdrojový konektor \\
 	\hline
-		52 & AUTO & Začne testovat vybraný kabel\\
+		52 & AUTO & \textcolor{red}{červená} & Začne testovat vybraný kabel\\
+	\hline
+		44 & - & \textcolor{blue}{modrá} & Napájení klávesnice\\
+	\hline
+		GND & - & \textcolor{gray}{šedá} & Uzemnění\\
 	\hline
 	\end{tabular}
 \end{table}
